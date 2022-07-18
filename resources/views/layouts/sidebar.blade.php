@@ -32,6 +32,21 @@
             </div>
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span>@lang('translation.menu')</span></li>
+{{--                Rutas menu--}}
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarRutas" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarRutas">
+                        <i class="bx bxs-car"></i> <span>Formulario Ruta</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarRutas">
+                        <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a href="rutas.rutas-form" class="nav-link">Rutas</a>
+                        </li>
+                        </ul>
+                    </div>
+{{--                    <a href="rutas.rutas-form" class="nav-link">Rutas</a>--}}
+                </li>
+{{--                Fin rutas menu--}}
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                         <i class="bx bxs-dashboard"></i> <span>@lang('translation.dashboards')</span>
