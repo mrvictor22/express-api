@@ -19,3 +19,5 @@ Homestead.json
 
 
 public/
+
+storage/framework/views/
