@@ -40,7 +40,7 @@
                     <div class="collapse menu-dropdown" id="sidebarRutas">
                         <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                            <a href="rutas.rutas-form" class="nav-link">Rutas</a>
+                            <a href="{{route('test')}}" class="nav-link">Rutas</a>
                         </li>
                         </ul>
                     </div>

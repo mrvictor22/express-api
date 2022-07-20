@@ -32,8 +32,13 @@ class RutasController extends Controller
      */
     public function index()
     {
-//        return view('rutas.rutas-form');
-        return view('index');
+//        return view('rutas-form');
+
+    }
+    public function form()
+    {
+        return view('rutas.rutas-form');
+
     }
     public function root()
     {
