@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Auth::routes();
+Route::get('routes-form' , [\App\Http\Controllers\RutasController::class, 'form'])->name('test');
 //Language Translation
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
 
@@ -22,5 +23,6 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('roo
 //Update User Details
 Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
 Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('updatePassword');
-
 Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+
+//Route::resource('rutas' , \App\Http\Controllers\RutasController::class);
