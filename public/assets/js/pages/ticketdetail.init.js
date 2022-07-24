@@ -1,1 +1,90 @@
-(()=>{document.querySelectorAll(".favourite-btn").forEach((function(e){e.addEventListener("click",(function(e){this.classList.toggle("active")}))}));var e=function(e){var t=new Date(e),n=""+["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][t.getMonth()],a=""+t.getDate(),c=t.getFullYear();return n.length<2&&(n="0"+n),a.length<2&&(a="0"+a),[a+" "+n,c].join(", ")},t=localStorage.getItem("ticket-list"),n=(localStorage.getItem("option"),localStorage.getItem("ticket_no")),a=JSON.parse(t);if(a){var c,i;switch(document.getElementById("ticket-title").innerHTML="#VLZ"+n+" - "+a.tasks_name,document.getElementById("t-no").innerHTML=n,document.getElementById("create-date").innerHTML=e(a.create_date),document.getElementById("due-date").innerHTML=e(a.due_date),document.getElementById("c-date").innerHTML=e(a.create_date),document.getElementById("d-date").innerHTML=e(a.due_date),a.status){case"New":c="info";break;case"Open":c="success";break;case"Inprogress":c="warning";break;case"Closed":c="danger"}switch(a.priority){case"Low":i="success";break;case"Medium":i="warning";break;case"High":i="danger"}document.getElementById("ticket-status").classList.replace("bg-info","bg-"+c),document.getElementById("ticket-status").innerHTML=a.status,document.getElementById("ticket-priority").classList.replace("bg-danger","bg-"+i),document.getElementById("ticket-priority").innerHTML=a.priority;var r=document.createElement("div");r.innerHTML=a.status,document.getElementById("t-status").value=r.innerText,document.getElementById("t-priority").classList.replace("bg-danger","bg-"+i),document.getElementById("t-priority").innerHTML=a.priority,document.getElementById("ticket-client").innerHTML=a.client_name,document.getElementById("t-client").innerHTML=a.client_name}})();
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!*************************************************!*\
+  !*** ./resources/js/pages/ticketdetail.init.js ***!
+  \*************************************************/
+/*
+Template Name: Velzon - Admin & Dashboard Template
+Author: Themesbrand
+Website: https://Themesbrand.com/
+Contact: Themesbrand@gmail.com
+File: Ticket detail init js
+*/
+// favourite btn
+Array.from(document.querySelectorAll(".favourite-btn")).forEach(function (item) {
+  item.addEventListener("click", function (event) {
+    this.classList.toggle("active");
+  });
+});
+
+var str_dt = function formatDate(date) {
+  var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var d = new Date(date),
+      month = '' + monthNames[d.getMonth()],
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+  return [day + " " + month, year].join(', ');
+};
+
+var ticket_list = localStorage.getItem("ticket-list");
+var options = localStorage.getItem("option");
+var ticket_no = localStorage.getItem("ticket_no");
+var ticket = JSON.parse(ticket_list);
+
+if (ticket) {
+  document.getElementById("ticket-title").innerHTML = "#VLZ" + ticket_no + " - " + ticket.tasks_name;
+  document.getElementById("t-no").innerHTML = ticket_no;
+  document.getElementById("create-date").innerHTML = str_dt(ticket.create_date);
+  document.getElementById("due-date").innerHTML = str_dt(ticket.due_date);
+  document.getElementById("c-date").innerHTML = str_dt(ticket.create_date);
+  document.getElementById("d-date").innerHTML = str_dt(ticket.due_date);
+  var status_badge;
+
+  switch (ticket.status) {
+    case 'New':
+      status_badge = "info";
+      break;
+
+    case 'Open':
+      status_badge = "success";
+      break;
+
+    case 'Inprogress':
+      status_badge = "warning";
+      break;
+
+    case 'Closed':
+      status_badge = "danger";
+  }
+
+  var priority_badge;
+
+  switch (ticket.priority) {
+    case 'Low':
+      priority_badge = "success";
+      break;
+
+    case 'Medium':
+      priority_badge = "warning";
+      break;
+
+    case 'High':
+      priority_badge = "danger";
+  }
+
+  document.getElementById("ticket-status").classList.replace("bg-info", "bg-" + status_badge);
+  document.getElementById("ticket-status").innerHTML = ticket.status;
+  document.getElementById("ticket-priority").classList.replace("bg-danger", "bg-" + priority_badge);
+  document.getElementById("ticket-priority").innerHTML = ticket.priority;
+  var div = document.createElement("div");
+  div.innerHTML = ticket.status;
+  document.getElementById("t-status").value = div.innerText;
+  document.getElementById("t-priority").classList.replace("bg-danger", "bg-" + priority_badge);
+  document.getElementById("t-priority").innerHTML = ticket.priority;
+  document.getElementById("ticket-client").innerHTML = ticket.client_name;
+  document.getElementById("t-client").innerHTML = ticket.client_name;
+}
+/******/ })()
+;

@@ -1,1 +1,75 @@
-(()=>{window.addEventListener("scroll",(function(e){var t;e.preventDefault(),(t=document.getElementById("navbar"))&&(document.body.scrollTop>=50||document.documentElement.scrollTop>=50?t.classList.add("is-sticky"):t.classList.remove("is-sticky"))}));var e=document.querySelectorAll(".filter-btns .nav-link"),t=document.querySelectorAll(".product-item");e.forEach((function(n){n.addEventListener("click",(function(n){n.preventDefault();for(var i=0;i<e.length;i++)e[i].classList.remove("active");this.classList.add("active");var l=n.target.dataset.filter;t.forEach((function(e){"all"===l||e.classList.contains(l)?e.style.display="block":e.style.display="none"}))}))}));new Swiper(".mySwiper",{slidesPerView:4,spaceBetween:30,loop:!0,autoplay:{delay:2500,disableOnInteraction:!1},pagination:{el:".swiper-pagination",clickable:!0},navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"}})})();
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!************************************************!*\
+  !*** ./resources/js/pages/nft-landing.init.js ***!
+  \************************************************/
+/*
+Template Name: Velzon - Admin & Dashboard Template
+Author: Themesbrand
+Website: https://Themesbrand.com/
+Contact: Themesbrand@gmail.com
+File: nft-landing init js
+*/
+//  Window scroll sticky class add
+function windowScroll() {
+  var navbar = document.getElementById("navbar");
+
+  if (navbar) {
+    if (document.body.scrollTop >= 50 || document.documentElement.scrollTop >= 50) {
+      navbar.classList.add("is-sticky");
+    } else {
+      navbar.classList.remove("is-sticky");
+    }
+  }
+}
+
+window.addEventListener('scroll', function (ev) {
+  ev.preventDefault();
+  windowScroll();
+}); // filter btn
+
+var filterBtns = document.querySelectorAll(".filter-btns .nav-link");
+var productItems = document.querySelectorAll(".product-item");
+Array.from(filterBtns).forEach(function (button) {
+  button.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    for (var i = 0; i < filterBtns.length; i++) {
+      filterBtns[i].classList.remove("active");
+    }
+
+    this.classList.add("active");
+    var filter = e.target.dataset.filter;
+    Array.from(productItems).forEach(function (item) {
+      if (filter === "all") {
+        item.style.display = "block";
+      } else {
+        if (item.classList.contains(filter)) {
+          item.style.display = "block";
+        } else {
+          item.style.display = "none";
+        }
+      }
+    });
+  });
+}); //collection categories
+
+var swiper = new Swiper(".mySwiper", {
+  slidesPerView: 4,
+  spaceBetween: 30,
+  loop: true,
+  autoplay: {
+    delay: 2500,
+    disableOnInteraction: false
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev"
+  }
+});
+/******/ })()
+;
