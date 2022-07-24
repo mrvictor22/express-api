@@ -33,8 +33,6 @@
             </div>
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span>@lang('translation.menu')</span></li>
-<<<<<<< HEAD
-=======
 {{--                Rutas menu--}}
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarRutas" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarRutas">
@@ -50,7 +48,7 @@
 {{--                    <a href="rutas.rutas-form" class="nav-link">Rutas</a>--}}
                 </li>
 {{--                Fin rutas menu--}}
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                         <i class="bx bxs-dashboard"></i> <span>@lang('translation.dashboards')</span>
                     </a>
@@ -76,8 +74,8 @@
                             </li>
                         </ul>
                     </div>
-                </li> <!-- end Dashboard Menu -->
-                <li class="nav-item">
+                </li> <!-- end Dashboard Menu --> --}}
+                {{-- <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
                         <i class="bx bx-layer"></i> <span>@lang('translation.apps')</span>
                     </a>
@@ -303,8 +301,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>
->>>>>>> express-3-Formulario-de-Rutas
+                </li> --}}
 
                 <li class="nav-item">
 
@@ -312,13 +309,13 @@
 
 
 
-
+{{-- 
                 <li class="menu-title"><i class="ri-more-fill"></i> <span>@lang('translation.pages')</span></li>
 
 
 
 
-                <li class="menu-title"><i class="ri-more-fill"></i> <span>@lang('translation.components')</span></li>
+                <li class="menu-title"><i class="ri-more-fill"></i> <span>@lang('translation.components')</span></li> --}}
 
 
 

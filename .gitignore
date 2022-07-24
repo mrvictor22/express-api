@@ -18,6 +18,6 @@ Homestead.json
 .phpunit.result.cache
 
 
-public/
+
 
 storage/framework/views/
