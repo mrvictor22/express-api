@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 Route::get('routes-form' , [\App\Http\Controllers\RutasController::class, 'form'])->name('test');
+Route::post('routes-form', [\App\Http\Controllers\RutasController::class, 'store'])->name('routes-form.store');
 //Language Translation
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
 

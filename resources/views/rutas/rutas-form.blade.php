@@ -11,7 +11,9 @@
             Formulario nueva ruta
         @endslot
     @endcomponent
-
+    
+ 
+    
 <div class="row">
     <div class="col-lg-12">
 
@@ -25,6 +27,8 @@
 
                 </div><!-- end card header -->
                 <div class="card-body">
+                    <form method="POST" action="{{route('routes-form.store')}}" >
+                        @csrf
                     <div class="live-preview">
                         <div class="row gy-4">
 
@@ -49,20 +53,20 @@
                                         <tr>
                                           <td>
                                                 Nombre producto
-                                                <input type="text" class="form-control" id="n_itemInput" name="Details[0].Name">
+                                                <input type="text" class="form-control" id="n_itemInput" name="DetailsName[0]">
                                             
                                         </td>
                                           <td>
                                             <div>
                                                  Cantidad  
-                                                <input type="text" class="form-control" id="n_itemamount"name="Details[0].Amount">
+                                                <input type="text" class="form-control" id="n_itemamount"name="DetailsAmount[0]">
                                                    
                                                
                                             </div>
                                         </td>
                                           <td>
                                                 Codigo
-                                                <input type="text" class="form-control" id="c_itemInput" name="Details[0].Code">
+                                                <input type="text" class="form-control" id="c_itemInput" name="DetailsCode[0]">
                                             
                                             </td>
                                          
@@ -137,7 +141,7 @@
                                 <div>
                                     <label class="form-label mb-0">Fecha y Hora de despacho</label>
                                     
-                                    <input type="text" class="form-control" data-provider="flatpickr"
+                                    <input type="text" class="form-control" data-provider="flatpickr" name='fecha_despacho'
                                         data-date-format="d.m.y" data-enable-time>
                                 </div>
                             </div>
@@ -145,7 +149,20 @@
 
                         </div>
                         <!--end row-->
+                        <br>
+                        <div class="row align-items-center g-3">   
+                            <div class="col">
+
+                            </div>
+                            <div class="col d-grid gap-2">
+                                <button type="submit" class="btn rounded-pill btn-primary waves-effect waves-light">Guardar</button>
+                            </div>
+                            <div class="col">
+
+                            </div>
+                        </div>
                     </div>
+                </form>
 
                 </div>
             </div>
@@ -173,12 +190,21 @@ $('#button').click(function(){
            var newName = oldName.replace(/\d/,index);
         //    $( this ).prop('name',newName).val(newName);
            $( this ).prop('name',newName);
+           $( this ).val('');
        });
     //    $('#button').text('length: '+ input.length);
       
        $('table').append(clone); 
        });
 
+
+
+        
+        
+   
+
 });
-    </script>
+
+
+</script>
 @endsection
