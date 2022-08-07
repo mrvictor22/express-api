@@ -81,11 +81,11 @@ class RutasController extends Controller
                $ruta_save->debug_request = $request;
                $ruta_save->save();
                $last_id = $ruta_save->id;
-            $name =  count($request->DetailsName);
+            // $name =  count($request->DetailsName);
             $count =  count($request->DetailsName);
             
-            info($name);
-            info($request->DetailsName);
+            // info($name);
+            // info($request->DetailsName);
 
             for ($i=0; $i < $count ; $i++) { 
                 
