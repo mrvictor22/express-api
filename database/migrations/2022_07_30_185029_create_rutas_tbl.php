@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('email_contact', 250);
             $table->string('direccion_contact', 250);
             $table->string('sucursal', 250);
+            $table->text('debug_request', 250);
             $table->date('fecha_despacho');
             $table->timestamps();
         });

@@ -24,10 +24,10 @@ class RutasController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+  //  public function __construct()
+  //  {
+  //      $this->middleware('auth');
+  //  }
     /**
      * Show the application dashboard.
      *
@@ -35,7 +35,7 @@ class RutasController extends Controller
      */
     public function index()
     {
-//        return view('rutas-form');
+        return view('rutas.index');
 
     }
     public function form()
@@ -83,12 +83,12 @@ class RutasController extends Controller
                $last_id = $ruta_save->id;
             // $name =  count($request->DetailsName);
             $count =  count($request->DetailsName);
-            
+
             // info($name);
             // info($request->DetailsName);
 
-            for ($i=0; $i < $count ; $i++) { 
-                
+            for ($i=0; $i < $count ; $i++) {
+
                 $prod_names = $request->DetailsName[$i];
                 $prod_amounts = $request->DetailsAmount[$i];
                 $prod_codes = $request->DetailsCode[$i];
@@ -101,10 +101,10 @@ class RutasController extends Controller
                 $productos_ruta->save();
             }
 
-          
-            
 
-            
+
+
+
                $message = 'correct'  ;
                Alert::success('Done!', 'Ruta almacenada');
                return view('rutas.rutas-form');
@@ -118,7 +118,43 @@ class RutasController extends Controller
      */
     public function show(Rutas $rutas)
     {
-        //
+        $data = DB::table('rutas_tbl')->join('producto_rutas_tbl','rutas_tbl.id','=','producto_rutas_tbl.id_rutas_tbl')
+                                            ->select('rutas_tbl.*','producto_rutas_tbl.nombre_prod','producto_rutas_tbl.cant_prod','producto_rutas_tbl.cod_prod')
+                                            ->get();
+
+        return datatables()->of($data)->toJson();
+    }
+    public function data()
+    {
+       $data = DB::table('rutas_tbl')
+                //->join('producto_rutas_tbl','rutas_tbl.id', '=' , 'producto_rutas_tbl.id_rutas_tbl')
+                //->groupBy('rutas_tbl.id')
+                ->get();
+
+
+       foreach ($data as $column){
+           $data2 = DB::table('producto_rutas_tbl')->where('id_rutas_tbl',$column->id)->get();
+           $ajax_data[] = [
+               'id' => $column->id,
+               'numero_guia' => $column->numero_guia,
+               'vehiculo' => $column->vehiculo,
+               'nombre_contact' => $column->nombre_contact,
+               'phn_contact' => $column->phn_contact,
+               'email_contact' => $column->email_contact,
+               'direccion_contact' => $column->direccion_contact,
+               'sucursal' => $column->sucursal,
+               'fecha_despacho' => $column->fecha_despacho,
+               'fecha_registro' => $column->created_at,
+               'productos' => [
+                   $data2
+               ]
+
+           ];
+
+       }
+
+        //return $ajax_data ;
+       return datatables()->of($ajax_data)->toJson();
     }
 
     /**

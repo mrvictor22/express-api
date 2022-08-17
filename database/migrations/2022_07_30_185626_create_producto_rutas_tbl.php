@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('id_rutas_tbl');
             $table->string('nombre_prod', 250);
             $table->integer('cant_prod');
-            $table->integer('cod_prod');
+            $table->string('cod_prod');
             $table->timestamps();
         });
     }
