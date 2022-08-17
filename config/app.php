@@ -163,6 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        yajra\Datatables\DatatablesServiceProvider::class,
 
 
         /*
@@ -192,7 +193,7 @@ return [
     */
 
     'aliases' => [
-
+        'Datatables' => yajra\Datatables\Datatables::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
