@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use App\Exports\RutasExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RutasController extends Controller
 {
@@ -189,5 +191,11 @@ class RutasController extends Controller
     public function destroy(Rutas $rutas)
     {
         //
+    }
+
+    public function csv_export()
+    {
+        return Excel::download(new RutasExport, 'rutas.csv');
+
     }
 }

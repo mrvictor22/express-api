@@ -70,7 +70,7 @@
     </div>
     <!--end row-->
 
-    <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div id="data-modal" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body text-center p-5">
@@ -113,6 +113,16 @@
             $('#user-table').DataTable({
                 processing: true,
                 serverSide: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        text: 'Exportar CSV',
+                        titleAttr: 'export_csv',
+                        action: function ( e, dt, button, config ) {
+                            window.location = '{{route('rutas.export-csv')}}';
+                        }
+                    }
+                ],
                 order: [],
                 ajax: {
                     type: "GET",
@@ -137,7 +147,7 @@
                     { data: 'id' ,
                         "render": function (data, type, row) {
                             return  '<div class="dropdown d-inline-block"><button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="ri-more-fill align-middle"></i></button><ul class="dropdown-menu dropdown-menu-end">'
-                                +'<li><a href="#!" class="dropdown-item"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> Ver</a></li>'
+                                +'<li><a href=".bs-example-modal-center" class="dropdown-item"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> Ver</a></li>'
                                 +'<li><a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>'
                                 +'<li>'
                                     +'<a class="dropdown-item remove-item-btn">'
@@ -151,6 +161,10 @@
                         }
                     }
                 ]
+            });
+
+            $('.img').click(function() {
+
             });
         });
     </script>

@@ -11,9 +11,9 @@
             Formulario nueva ruta
         @endslot
     @endcomponent
-    
- 
-    
+
+
+
 <div class="row">
     <div class="col-lg-12">
 
@@ -41,64 +41,25 @@
                             <!--end col-->
                             <div class="col-lg-6">
                                 <div>
-                                    <label for="vehiculoInput" class="form-label">Vehiculo</label>
-                                    <input type="text" class="form-control" id="vehiculoInput" name="vehiculoInput">
-                                </div>
-                            </div>
-                            <!--end col-->
-                            <div class="col-lg-11">
-                                <div class="row gy-4" id="one">
-
-                                    <table>
-                                        <tr>
-                                          <td>
-                                                Nombre producto
-                                                <input type="text" class="form-control" id="n_itemInput" name="DetailsName[0]">
-                                            
-                                        </td>
-                                          <td>
-                                            <div>
-                                                 Cantidad  
-                                                <input type="text" class="form-control" id="n_itemamount"name="DetailsAmount[0]">
-                                                   
-                                               
-                                            </div>
-                                        </td>
-                                          <td>
-                                                Codigo
-                                                <input type="text" class="form-control" id="c_itemInput" name="DetailsCode[0]">
-                                            
-                                            </td>
-                                         
-                                        </tr>
-                                      </table>
-
-                                  
-                                        
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-sm-1">
-                                    <div class="d-grid gap-2">
-                                        <button id="button" type="button" class="btn rounded-pill btn-dark waves-effect waves-light">Nuevo producto</button>
-                                    </div>
-                                   
-                                </div>
-                            </div>
-                            
-                            {{-- End col --}}
-                            
-                           
-
-                            <!--end col-->
-                            <br>
-                        <div class="row align-items-center g-3">   
-                            <div class="col-lg-4">
-                                <div>
                                     <label for="nombre_contact_id" class="form-label">Nombre de Contacto</label>
                                     <input type="text" class="form-control" id="nombre_contact_id" name="nombre_contact">
                                 </div>
                             </div>
+                            <!--end col-->
+
+
+
+
+                            <!--end col-->
+                            <br>
+                        <div class="row align-items-center g-3">
+                            <div class="col-lg-4">
+                                <div>
+                                    <label for="direccion_contact_id" class="form-label">Direccion</label>
+                                    <input type="text" class="form-control" id="direccion_contact_id" name="direccion_contact">
+                                </div>
+                            </div>
+
                             <!--end col-->
                             <div class="col-lg-4">
                                 <div>
@@ -122,11 +83,11 @@
                         </div>
                         <!--end row-->
                         <br>
-                        <div class="row align-items-center g-3">   
+                        <div class="row align-items-center g-3">
                             <div class="col-lg-4">
                                 <div>
-                                    <label for="direccion_contact_id" class="form-label">Direccion</label>
-                                    <input type="text" class="form-control" id="direccion_contact_id" name="direccion_contact">
+                                    <label for="vehiculoInput" class="form-label">Vehiculo</label>
+                                    <input type="text" class="form-control" id="vehiculoInput" name="vehiculoInput">
                                 </div>
                             </div>
                             <!--end col-->
@@ -140,7 +101,7 @@
                             <div class="col-md-4">
                                 <div>
                                     <label class="form-label mb-0">Fecha y Hora de despacho</label>
-                                    
+
                                     <input type="text" class="form-control" data-provider="flatpickr" name='fecha_despacho'
                                         data-date-format="d.m.y" data-enable-time>
                                 </div>
@@ -149,8 +110,49 @@
 
                         </div>
                         <!--end row-->
+                            <div class="col-lg-11">
+                                <div class="row gy-4" id="one">
+
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                Nombre producto
+                                                <input type="text" class="form-control" id="n_itemInput" name="DetailsName[0]">
+
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    Cantidad
+                                                    <input type="text" class="form-control" id="n_itemamount"name="DetailsAmount[0]">
+
+
+                                                </div>
+                                            </td>
+                                            <td>
+                                                Codigo
+                                                <input type="text" class="form-control" id="c_itemInput" name="DetailsCode[0]">
+
+                                            </td>
+
+                                        </tr>
+                                    </table>
+
+
+
+                                </div>
+
+                            </div>
+                            <div class="col-sm-1">
+                                <div class="d-grid gap-2">
+                                    <button id="button" type="button" class="btn rounded-pill btn-dark waves-effect waves-light">Nuevo producto</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        {{-- End col --}}
                         <br>
-                        <div class="row align-items-center g-3">   
+                        <div class="row align-items-center g-3">
                             <div class="col">
 
                             </div>
@@ -182,7 +184,7 @@ $('#button').click(function(){
        // $('#one').clone().insertAfter("#one");
        var clone = $('table tr:first').clone();
        var index = $('table tr').length;
-       var input = clone.find('input'); 
+       var input = clone.find('input');
        input.each(function( noIndex ) {
              //alert( index + ": " + $( this ).prop('name') );
             var oldName = $( this ).prop('name');
@@ -193,15 +195,15 @@ $('#button').click(function(){
            $( this ).val('');
        });
     //    $('#button').text('length: '+ input.length);
-      
-       $('table').append(clone); 
+
+       $('table').append(clone);
        });
 
 
 
-        
-        
-   
+
+
+
 
 });
 
