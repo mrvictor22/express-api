@@ -772,7 +772,7 @@
                                 alt="Header Avatar">
                             <span class="text-start ms-xl-2">
                                 <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{Auth::user()->name}}</span>
-                                <span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
+                                <span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text"></span>
                             </span>
                         </span>
                     </button>
@@ -795,10 +795,10 @@
                         <a class="dropdown-item" href="pages-profile"><i
                                 class="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle">Balance : <b>$5971.67</b></span></a> --}}
-                        <a class="dropdown-item" href="pages-profile-settings"><span
-                                class="badge bg-soft-success text-success mt-1 float-end">New</span><i
-                                class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span
-                                class="align-middle">Settings</span></a>
+{{--                        <a class="dropdown-item" href="pages-profile-settings"><span--}}
+{{--                                class="badge bg-soft-success text-success mt-1 float-end">New</span><i--}}
+{{--                                class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span--}}
+{{--                                class="align-middle">Settings</span></a>--}}
                         {{-- <a class="dropdown-item" href="auth-lockscreen-basic"><i
                                 class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Lock screen</span></a> --}}
                         <a class="dropdown-item " href="javascript:void();"

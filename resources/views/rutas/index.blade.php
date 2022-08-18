@@ -52,7 +52,7 @@
                                         <th>Sucursal</th>
                                         <th>Fecha de despacho</th>
                                         <th>Fecha de registro</th>
-                                        <th>Acciones</th>
+{{--                                        <th>Acciones</th>--}}
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -143,23 +143,19 @@
                     { data: 'nombre_contact' },
                     { data: 'sucursal' },
                     { data: 'fecha_despacho' },
-                    { data: 'fecha_registro' },
-                    { data: 'id' ,
-                        "render": function (data, type, row) {
-                            return  '<div class="dropdown d-inline-block"><button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="ri-more-fill align-middle"></i></button><ul class="dropdown-menu dropdown-menu-end">'
-                                +'<li><a href=".bs-example-modal-center" class="dropdown-item"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> Ver</a></li>'
-                                +'<li><a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>'
-                                +'<li>'
-                                    +'<a class="dropdown-item remove-item-btn">'
-                                        +'<i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete'
-                                    +'</a>'
-                                +'</li>'
-                            +'</ul>'
-                        +'</div>'
-
-
-                        }
-                    }
+                    { data: 'fecha_registro' }
+                    //{ data: 'id' ,
+                    //    "render": function (data, type, row) {
+                    //        return  '<div class="dropdown d-inline-block"><button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="ri-more-fill align-middle"></i></button><ul class="dropdown-menu dropdown-menu-end">'
+                    //            +'<li><a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> Ver</a></li>'
+                    //            //+'<li><a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>'
+                    //            //+'<li>'+'<a class="dropdown-item remove-item-btn">'+'<i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete'+'</a>' +'</li>'
+                    //        +'</ul>'
+                    //    +'</div>'
+//
+//
+                    //    }
+                    //}
                 ]
             });
 
