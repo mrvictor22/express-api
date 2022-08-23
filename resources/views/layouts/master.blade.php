@@ -1,5 +1,5 @@
 <!doctype html >
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-layout="vertical" data-topbar="light" data-sidebar-size="lg" data-sidebar-image="none" data-layout-mode="dark" data-layout-position="scrollable" data-sidebar="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-layout="vertical" data-topbar="light" data-sidebar-size="lg" data-sidebar-image="none" data-layout-mode="light" data-layout-position="scrollable" data-sidebar="dark">
 
 <head>
     <meta charset="utf-8" />
@@ -10,6 +10,8 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ URL::asset('assets/images/favicon.ico')}}">
     @include('layouts.head-css')
+    <!-- Sweet Alert css-->
+<link href="{{ URL::asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
 </head>
 
 @section('body')
@@ -40,6 +42,11 @@
 
     <!-- JAVASCRIPT -->
     @include('layouts.vendor-scripts')
+    <!-- Sweet Alerts js -->
+<script src="{{ URL::asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+<!-- Sweet alert init js-->
+<script src="{{ URL::asset('assets/js/pages/sweetalerts.init.js') }}"></script>
+@include('sweetalert::alert')
 </body>
 
 </html>
