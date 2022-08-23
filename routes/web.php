@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RutasController;
+use App\Exports\RutasExport;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +17,15 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Auth::routes();
+Route::get('ajax_user', [\App\Http\Controllers\UserController::class, 'userdata'])->name('config.ajaxindex');
+Route::get('ajax_rutas', [\App\Http\Controllers\RutasController::class, 'data'])->name('rutas.ajaxindex');
 Route::get('routes-form' , [\App\Http\Controllers\RutasController::class, 'form'])->name('test');
+Route::post('routes-form', [\App\Http\Controllers\RutasController::class, 'store'])->name('routes-form.store');
+Route::get('rutas/export/', [RutasController::class, 'csv_export'])->name('rutas.export-csv');
+
+Route::resource('config',UserController::class );
+Route::resource('rutas',RutasController::class );
+
 //Language Translation
 Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
 
