@@ -22,6 +22,7 @@ Route::get('ajax_rutas', [\App\Http\Controllers\RutasController::class, 'data'])
 Route::get('routes-form' , [\App\Http\Controllers\RutasController::class, 'form'])->name('test');
 Route::post('routes-form', [\App\Http\Controllers\RutasController::class, 'store'])->name('routes-form.store');
 Route::get('rutas/export/', [RutasController::class, 'csv_export'])->name('rutas.export-csv');
+Route::get('rutas/api/', [RutasController::class, 'to_api'])->name('rutas.call-api');
 
 Route::resource('config',UserController::class );
 Route::resource('rutas',RutasController::class );

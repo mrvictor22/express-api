@@ -13,6 +13,8 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
 use App\Exports\RutasExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Http;
+use Symfony\Polyfill\Intl\Idn\Info;
 
 class RutasController extends Controller
 {
@@ -67,7 +69,7 @@ class RutasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
         $ruta_save = new Rutas;
         $productos_ruta = new RutasProductos;
 
@@ -105,11 +107,47 @@ class RutasController extends Controller
 
 
 
-
-
                $message = 'correct'  ;
                Alert::success('Done!', 'Ruta almacenada');
                return view('rutas.rutas-form');
+    }
+
+    public function to_api()
+    {
+        $data = [
+                "truck_identifier" => "P999912",
+                "date"             => "2022-08-23",
+                "dispatches"=> [
+
+                                            "identifier" => "PRUEBA122Express Salvador",
+                                            "min_delivery_time"=> "2022-08-16 09:00:00",
+                                            "max_delivery_time"=> "2022-08-16 20:00:00",
+                                            "contact_name"=> "Sujeto 1",
+                                            "contact_address"=> "Av. Apoquindo 5550, Las Condes, Chile",
+                                            "contact_phone"=> "56996325874",
+                                            "contact_email"=> "sujeto1@example.com",
+                                            "items"=> [
+
+                                                    "code" => "727775",
+                                                    "description"=> "Refrigerador Single DoorX 176 Litros RS-23DR",
+                                                    "quantity"=> "1",
+                                                    "unit_price"=> "189990"
+
+                                            ]
+
+                                ]
+
+        ];
+
+        $coded = json_encode($data);
+        info($coded);
+
+        $response = Http::withHeaders(['X-AUTH-TOKEN' => 'fae3a44c63ab2487f03a2664e801197e56f9886167fb26e47b3b89f19fce0403'])
+            ->withOptions(['verify' => false])
+            ->withBody($coded, 'application/json')
+            ->post(env('BEETRAK_URL'));
+
+        info($response->throw());
     }
 
     /**
