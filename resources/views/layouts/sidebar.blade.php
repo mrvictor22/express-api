@@ -36,12 +36,19 @@
 {{--                Rutas menu--}}
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarRutas" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarRutas">
-                        <i class="bx bxs-car"></i> <span>Formulario Ruta</span>
+                        <i class="bx bxs-car"></i> <span>Gestión de Rutas</span>
                     </a>
                     <div class="collapse menu-dropdown" id="sidebarRutas">
                         <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                            <a href="{{route('test')}}" class="nav-link">Rutas</a>
+                            <a href="{{route('test')}}" class="nav-link">Formulario nueva ruta</a>
+                        </li>
+                        </ul>
+                    </div>
+                    <div class="collapse menu-dropdown" id="sidebarRutas">
+                        <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a href="{{route('rutas.index')}}" class="nav-link">Lista Rutas</a>
                         </li>
                         </ul>
                     </div>

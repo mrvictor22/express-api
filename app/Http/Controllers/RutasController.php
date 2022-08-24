@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use App\Exports\RutasExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Http;
+use Symfony\Polyfill\Intl\Idn\Info;
 
 class RutasController extends Controller
 {
@@ -24,10 +28,10 @@ class RutasController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+  //  public function __construct()
+  //  {
+  //      $this->middleware('auth');
+  //  }
     /**
      * Show the application dashboard.
      *
@@ -35,7 +39,7 @@ class RutasController extends Controller
      */
     public function index()
     {
-//        return view('rutas-form');
+        return view('rutas.index');
 
     }
     public function form()
@@ -65,7 +69,7 @@ class RutasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
         $ruta_save = new Rutas;
         $productos_ruta = new RutasProductos;
 
@@ -83,12 +87,12 @@ class RutasController extends Controller
                $last_id = $ruta_save->id;
             // $name =  count($request->DetailsName);
             $count =  count($request->DetailsName);
-            
+
             // info($name);
             // info($request->DetailsName);
 
-            for ($i=0; $i < $count ; $i++) { 
-                
+            for ($i=0; $i < $count ; $i++) {
+
                 $prod_names = $request->DetailsName[$i];
                 $prod_amounts = $request->DetailsAmount[$i];
                 $prod_codes = $request->DetailsCode[$i];
@@ -101,13 +105,49 @@ class RutasController extends Controller
                 $productos_ruta->save();
             }
 
-          
-            
 
-            
+
                $message = 'correct'  ;
                Alert::success('Done!', 'Ruta almacenada');
                return view('rutas.rutas-form');
+    }
+
+    public function to_api()
+    {
+        $data = [
+                "truck_identifier" => "P999912",
+                "date"             => "2022-08-23",
+                "dispatches"=> [
+
+                                            "identifier" => "PRUEBA122Express Salvador",
+                                            "min_delivery_time"=> "2022-08-16 09:00:00",
+                                            "max_delivery_time"=> "2022-08-16 20:00:00",
+                                            "contact_name"=> "Sujeto 1",
+                                            "contact_address"=> "Av. Apoquindo 5550, Las Condes, Chile",
+                                            "contact_phone"=> "56996325874",
+                                            "contact_email"=> "sujeto1@example.com",
+                                            "items"=> [
+
+                                                    "code" => "727775",
+                                                    "description"=> "Refrigerador Single DoorX 176 Litros RS-23DR",
+                                                    "quantity"=> "1",
+                                                    "unit_price"=> "189990"
+
+                                            ]
+
+                                ]
+
+        ];
+
+        $coded = json_encode($data);
+        info($coded);
+
+        $response = Http::withHeaders(['X-AUTH-TOKEN' => 'fae3a44c63ab2487f03a2664e801197e56f9886167fb26e47b3b89f19fce0403'])
+            ->withOptions(['verify' => false])
+            ->withBody($coded, 'application/json')
+            ->post(env('BEETRAK_URL'));
+
+        info($response->throw());
     }
 
     /**
@@ -118,7 +158,43 @@ class RutasController extends Controller
      */
     public function show(Rutas $rutas)
     {
-        //
+        $data = DB::table('rutas_tbl')->join('producto_rutas_tbl','rutas_tbl.id','=','producto_rutas_tbl.id_rutas_tbl')
+                                            ->select('rutas_tbl.*','producto_rutas_tbl.nombre_prod','producto_rutas_tbl.cant_prod','producto_rutas_tbl.cod_prod')
+                                            ->get();
+
+        return datatables()->of($data)->toJson();
+    }
+    public function data()
+    {
+       $data = DB::table('rutas_tbl')
+                //->join('producto_rutas_tbl','rutas_tbl.id', '=' , 'producto_rutas_tbl.id_rutas_tbl')
+                //->groupBy('rutas_tbl.id')
+                ->get();
+
+
+       foreach ($data as $column){
+           $data2 = DB::table('producto_rutas_tbl')->where('id_rutas_tbl',$column->id)->get();
+           $ajax_data[] = [
+               'id' => $column->id,
+               'numero_guia' => $column->numero_guia,
+               'vehiculo' => $column->vehiculo,
+               'nombre_contact' => $column->nombre_contact,
+               'phn_contact' => $column->phn_contact,
+               'email_contact' => $column->email_contact,
+               'direccion_contact' => $column->direccion_contact,
+               'sucursal' => $column->sucursal,
+               'fecha_despacho' => $column->fecha_despacho,
+               'fecha_registro' => $column->created_at,
+               'productos' => [
+                   $data2
+               ]
+
+           ];
+
+       }
+
+        //return $ajax_data ;
+       return datatables()->of($ajax_data)->toJson();
     }
 
     /**
@@ -153,5 +229,11 @@ class RutasController extends Controller
     public function destroy(Rutas $rutas)
     {
         //
+    }
+
+    public function csv_export()
+    {
+        return Excel::download(new RutasExport, 'rutas.csv');
+
     }
 }
