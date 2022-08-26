@@ -15,6 +15,8 @@ use App\Exports\RutasExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Http;
 use Symfony\Polyfill\Intl\Idn\Info;
+use Illuminate\Support\Collection;
+use Carbon\Carbon;
 
 class RutasController extends Controller
 {
@@ -104,43 +106,55 @@ class RutasController extends Controller
                 $productos_ruta->cod_prod = $prod_codes;
                 $productos_ruta->save();
             }
+            $data = [
+                'vehiculo' => $request->vehiculoInput,
+                'f_despacho' => $request->fecha_despacho,
+                'guia'      => $request->guiaInput,
+                'nombre_contacto' => $request->nombre_contact,
+                'telefono_contacto' => $request->phn_contact,
+                'dir_contacto' => $request->direccion_contact,
+                'email_contacto' => $request->email_contact
 
-
+            ];
+            $this->to_api($data);
 
                $message = 'correct'  ;
                Alert::success('Done!', 'Ruta almacenada');
                return view('rutas.rutas-form');
     }
 
-    public function to_api()
+    public function to_api($param)
     {
-        $data = [
-                "truck_identifier" => "P999912",
-                "date"             => "2022-08-23",
-                "dispatches"=> [
+        $object = (object) $param ;
+        $dt = $object->f_despacho;
 
-                                            "identifier" => "PRUEBA122Express Salvador",
-                                            "min_delivery_time"=> "2022-08-16 09:00:00",
-                                            "max_delivery_time"=> "2022-08-16 20:00:00",
-                                            "contact_name"=> "Sujeto 1",
-                                            "contact_address"=> "Av. Apoquindo 5550, Las Condes, Chile",
-                                            "contact_phone"=> "56996325874",
-                                            "contact_email"=> "sujeto1@example.com",
-                                            "items"=> [
+        info($dt);
+
+        $data = [
+                "truck_identifier" => $object->vehiculo,
+                "date"             => $object->f_despacho,
+                "dispatches"=> [[
+
+                                            "identifier" => $object->guia,
+                                            "contact_name"=> $object->nombre_contacto,
+                                            "contact_address"=> $object->dir_contacto,
+                                            "contact_phone"=> $object->telefono_contacto,
+                                            "contact_email"=> $object->email_contacto,
+                                            "items"=> [[
 
                                                     "code" => "727775",
                                                     "description"=> "Refrigerador Single DoorX 176 Litros RS-23DR",
                                                     "quantity"=> "1",
                                                     "unit_price"=> "189990"
 
-                                            ]
+                                            ]]
 
-                                ]
+                                ]]
 
         ];
 
         $coded = json_encode($data);
-        info($coded);
+//        info($coded);
 
         $response = Http::withHeaders(['X-AUTH-TOKEN' => 'fae3a44c63ab2487f03a2664e801197e56f9886167fb26e47b3b89f19fce0403'])
             ->withOptions(['verify' => false])
@@ -148,6 +162,8 @@ class RutasController extends Controller
             ->post(env('BEETRAK_URL'));
 
         info($response->throw());
+
+        return $response->throw();
     }
 
     /**

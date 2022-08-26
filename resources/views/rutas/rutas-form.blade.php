@@ -103,7 +103,7 @@
                                     <label class="form-label mb-0">Fecha y Hora de despacho</label>
 
                                     <input type="text" class="form-control" data-provider="flatpickr" name='fecha_despacho'
-                                        data-date-format="d.m.y" data-enable-time>
+                                        data-date-format="Y-m-d" >
                                 </div>
                             </div>
                             <!--end col-->
