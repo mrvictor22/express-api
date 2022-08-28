@@ -23,6 +23,7 @@ Route::get('routes-form' , [\App\Http\Controllers\RutasController::class, 'form'
 Route::post('routes-form', [\App\Http\Controllers\RutasController::class, 'store'])->name('routes-form.store');
 Route::get('rutas/export/', [RutasController::class, 'csv_export'])->name('rutas.export-csv');
 Route::get('rutas/api/', [RutasController::class, 'to_api'])->name('rutas.call-api');
+Route::get('rutas/trucks/', [RutasController::class, 'get_vehiculos'])->name('rutas.call-trucks');
 
 Route::resource('config',UserController::class );
 Route::resource('rutas',RutasController::class );

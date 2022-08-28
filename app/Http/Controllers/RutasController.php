@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Http;
 use Symfony\Polyfill\Intl\Idn\Info;
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
-
+use App\Models\Vehiculos;
 class RutasController extends Controller
 {
     /**
@@ -46,6 +46,7 @@ class RutasController extends Controller
     }
     public function form()
     {
+        $this->get_vehiculos();
         return view('rutas.rutas-form');
 
     }
@@ -105,7 +106,15 @@ class RutasController extends Controller
                 $productos_ruta->cant_prod = $prod_amounts;
                 $productos_ruta->cod_prod = $prod_codes;
                 $productos_ruta->save();
+
+                $prod[] = [
+                    "code" => $prod_codes,
+                    "description"=> $prod_names,
+                    "quantity"=> $prod_amounts,
+                    "unit_price"=> "0"
+                ];
             }
+//            info($prod);
             $data = [
                 'vehiculo' => $request->vehiculoInput,
                 'f_despacho' => $request->fecha_despacho,
@@ -113,7 +122,8 @@ class RutasController extends Controller
                 'nombre_contacto' => $request->nombre_contact,
                 'telefono_contacto' => $request->phn_contact,
                 'dir_contacto' => $request->direccion_contact,
-                'email_contacto' => $request->email_contact
+                'email_contacto' => $request->email_contact,
+                'productos' => $prod
 
             ];
             $this->to_api($data);
@@ -128,7 +138,7 @@ class RutasController extends Controller
         $object = (object) $param ;
         $dt = $object->f_despacho;
 
-        info($dt);
+//        info($dt);
 
         $data = [
                 "truck_identifier" => $object->vehiculo,
@@ -140,30 +150,50 @@ class RutasController extends Controller
                                             "contact_address"=> $object->dir_contacto,
                                             "contact_phone"=> $object->telefono_contacto,
                                             "contact_email"=> $object->email_contacto,
-                                            "items"=> [[
-
-                                                    "code" => "727775",
-                                                    "description"=> "Refrigerador Single DoorX 176 Litros RS-23DR",
-                                                    "quantity"=> "1",
-                                                    "unit_price"=> "189990"
-
-                                            ]]
+                                            "items"=>  $object->productos
 
                                 ]]
 
         ];
 
         $coded = json_encode($data);
-//        info($coded);
+        info($coded);
 
         $response = Http::withHeaders(['X-AUTH-TOKEN' => 'fae3a44c63ab2487f03a2664e801197e56f9886167fb26e47b3b89f19fce0403'])
             ->withOptions(['verify' => false])
             ->withBody($coded, 'application/json')
             ->post(env('BEETRAK_URL'));
 
-        info($response->throw());
+//        info($response->throw());
 
         return $response->throw();
+    }
+
+    public function get_vehiculos()
+    {
+        $response = Http::withHeaders(['X-AUTH-TOKEN' => 'fae3a44c63ab2487f03a2664e801197e56f9886167fb26e47b3b89f19fce0403'])
+            ->withOptions(['verify' => false])
+            ->get(env('BEETRAK_TRUCKS_URL'));
+
+
+
+
+//        info($response->json()['response']['trucks']);
+        $v = $response->json()['response']['trucks'];
+      foreach ($v as $objeto)
+      {
+          $a[] = [ 'id' => $objeto,
+                    'text' => $objeto];
+//            info($a);
+            DB::table('vehiculos_tbl')->insertOrIgnore(['vehiculo' => $objeto]);
+
+      }
+
+
+
+    $data = [ 'results' => $a];
+        $coded = json_encode($data);
+    return $coded;
     }
 
     /**
