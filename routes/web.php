@@ -24,6 +24,7 @@ Route::post('routes-form', [\App\Http\Controllers\RutasController::class, 'store
 Route::get('rutas/export/', [RutasController::class, 'csv_export'])->name('rutas.export-csv');
 Route::get('rutas/api/', [RutasController::class, 'to_api'])->name('rutas.call-api');
 Route::get('rutas/trucks/', [RutasController::class, 'get_vehiculos'])->name('rutas.call-trucks');
+Route::get('rutas/qr-print/{ruta}', [RutasController::class, 'qr'])->name('ruta.print-qr');
 
 Route::resource('config',UserController::class );
 Route::resource('rutas',RutasController::class );

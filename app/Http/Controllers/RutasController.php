@@ -244,6 +244,24 @@ class RutasController extends Controller
     }
 
     /**
+     * Show the form for generate the specified resource.
+     *
+     * @param  \App\Models\Rutas  $rutas
+     * @return \Illuminate\Http\Response
+     */
+    public function qr($rutas)
+    {
+        $ruta_id = $rutas;
+        $guia = DB::table('rutas_tbl')->where('id' , $ruta_id)->get();
+        $id_guia = "";
+        foreach ( $guia as $object)
+        {
+          $id_guia =  $object->numero_guia;
+        }
+        return view('rutas.qr-print',compact('ruta_id','guia', 'id_guia'));
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Rutas  $rutas
