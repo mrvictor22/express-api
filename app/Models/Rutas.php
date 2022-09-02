@@ -18,6 +18,7 @@ class Rutas extends Model
         'email_contact',
         'direccion_contact',
         'sucursal',
+        'mode',
         'fecha_despacho',
         'debud_request'
     ];
