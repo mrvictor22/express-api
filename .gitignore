@@ -16,8 +16,8 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
-
-
+.idea/codestream.xml
+server.php
 
 
 storage/framework/views/
