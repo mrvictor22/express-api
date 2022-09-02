@@ -84,6 +84,7 @@ class RutasController extends Controller
                $ruta_save->email_contact    = $request->email_contact;
                $ruta_save->direccion_contact = $request->direccion_contact;
                $ruta_save->sucursal         = $request->sucursal_contact;
+               $ruta_save->mode         = $request->mode;
                $ruta_save->fecha_despacho   = $request->fecha_despacho;
                $ruta_save->debug_request = $request;
                $ruta_save->save();
@@ -119,6 +120,7 @@ class RutasController extends Controller
                 'vehiculo' => $request->vehiculoInput,
                 'f_despacho' => $request->fecha_despacho,
                 'guia'      => $request->guiaInput,
+                'mode'      => $request->mode,
                 'nombre_contacto' => $request->nombre_contact,
                 'telefono_contacto' => $request->phn_contact,
                 'dir_contacto' => $request->direccion_contact,
@@ -146,6 +148,7 @@ class RutasController extends Controller
                 "dispatches"=> [[
 
                                             "identifier" => $object->guia,
+                                            "mode" => $object->mode,
                                             "contact_name"=> $object->nombre_contacto,
                                             "contact_address"=> $object->dir_contacto,
                                             "contact_phone"=> $object->telefono_contacto,
@@ -215,6 +218,7 @@ class RutasController extends Controller
        $data = DB::table('rutas_tbl')
                 //->join('producto_rutas_tbl','rutas_tbl.id', '=' , 'producto_rutas_tbl.id_rutas_tbl')
                 //->groupBy('rutas_tbl.id')
+                ->orderBy('id','DESC')
                 ->get();
 
 
