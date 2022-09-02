@@ -73,7 +73,7 @@
                                     <label for="iconInput" class="form-label">Email Contacto</label>
                                     <div class="form-icon">
                                         <input type="email" class="form-control form-control-icon"
-                                               id="iconInput" placeholder="example@gmail.com" name="email_contact">
+                                               id="iconInput" placeholder="example@gmail.com" name="email_contact" required>
                                         <i class="ri-mail-unread-line"></i>
                                     </div>
                                 </div>
@@ -84,27 +84,40 @@
                         <!--end row-->
                         <br>
                         <div class="row align-items-center g-3">
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <div>
                                     <label for="vehiculoInput" class="form-label">Vehiculo</label>
 {{--                                    <input type="text" class="form-control" id="vehiculoInput" name="vehiculoInput">--}}
-                                    <select class="js-data-example-ajax" name="vehiculoInput"></select>
+                                    <select class="js-data-example-ajax " name="vehiculoInput"></select>
                                 </div>
                             </div>
                             <!--end col-->
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
                                 <div>
                                     <label for="sucursal_contact_id" class="form-label">Sucursal</label>
                                     <input type="text" class="form-control" id="sucursal_contact_id" name="sucursal_contact">
                                 </div>
                             </div>
                             <!--end col-->
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div>
                                     <label class="form-label mb-0">Fecha y Hora de despacho</label>
 
                                     <input type="text" class="form-control" data-provider="flatpickr" name='fecha_despacho'
                                         data-date-format="Y-m-d" >
+                                </div>
+                            </div>
+                            <!--end col-->
+                            <div class="col-md-3">
+                                <div>
+                                    <label class="form-label mb-0">Modo</label>
+                                    <select class="form-select" name="mode" required>
+                                        <option value="" selected disabled hidden>Elige el modo</option>
+                                        <option value="0">Por defecto</option>
+                                        <option value="1">Solo recogida</option>
+                                        <option value="2">Recogida y entrega</option>
+                                        <option value="3">Recogida y entrega inmediata</option>
+                                    </select>
                                 </div>
                             </div>
                             <!--end col-->
