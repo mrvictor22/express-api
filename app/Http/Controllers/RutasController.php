@@ -261,8 +261,14 @@ class RutasController extends Controller
         foreach ( $guia as $object)
         {
           $id_guia =  $object->numero_guia;
+          $telefono = $object->phn_contact;
+          $destino = $object->direccion_contact;
+          $nombre_contact = $object->nombre_contact;
+          $tipo_entrega = $object->mode;
+          $sucursal = $object->sucursal;
+          $fecha_despacho = $object->fecha_despacho;
         }
-        return view('rutas.qr-print',compact('ruta_id','guia', 'id_guia'));
+        return view('rutas.qr-print',compact('ruta_id','telefono','sucursal','fecha_despacho', 'id_guia','destino','nombre_contact','tipo_entrega'));
     }
 
     /**
