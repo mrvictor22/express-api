@@ -100,64 +100,118 @@ class RutasController extends Controller
                 $prod_names = $request->DetailsName[$i];
                 $prod_amounts = $request->DetailsAmount[$i];
                 $prod_codes = $request->DetailsCode[$i];
+                if ($prod_names == '' || $prod_amounts == '' || $prod_codes == '')
+                {
+                    $prod_names = null;
+                    $prod_amounts = null;
+                    $prod_codes = null;
+                } else
+                {
+                    $productos_ruta = new RutasProductos;
+                    $productos_ruta->id_rutas_tbl = $last_id;
+                    $productos_ruta->nombre_prod = $prod_names;
+                    $productos_ruta->cant_prod = $prod_amounts;
+                    $productos_ruta->cod_prod = $prod_codes;
+                    $productos_ruta->save();
 
-                $productos_ruta = new RutasProductos;
-                $productos_ruta->id_rutas_tbl = $last_id;
-                $productos_ruta->nombre_prod = $prod_names;
-                $productos_ruta->cant_prod = $prod_amounts;
-                $productos_ruta->cod_prod = $prod_codes;
-                $productos_ruta->save();
+                    $prod[] = [
+                        "code" => $prod_codes,
+                        "description"=> $prod_names,
+                        "quantity"=> $prod_amounts,
+                        "unit_price"=> "0"
+                    ];
+                }
 
-                $prod[] = [
-                    "code" => $prod_codes,
-                    "description"=> $prod_names,
-                    "quantity"=> $prod_amounts,
-                    "unit_price"=> "0"
-                ];
+
+
             }
 //            info($prod);
-            $data = [
-                'vehiculo' => $request->vehiculoInput,
-                'f_despacho' => $request->fecha_despacho,
-                'guia'      => $request->guiaInput,
-                'mode'      => $request->mode,
-                'nombre_contacto' => $request->nombre_contact,
-                'telefono_contacto' => $request->phn_contact,
-                'dir_contacto' => $request->direccion_contact,
-                'email_contacto' => $request->email_contact,
-                'productos' => $prod
+            if (empty($prod))
+            {
+                $prod = 0;
 
-            ];
-            $this->to_api($data);
+                $data = [
+                    'vehiculo' => $request->vehiculoInput,
+                    'f_despacho' => $request->fecha_despacho,
+                    'guia'      => $request->guiaInput,
+                    'mode'      => $request->mode,
+                    'nombre_contacto' => $request->nombre_contact,
+                    'telefono_contacto' => $request->phn_contact,
+                    'dir_contacto' => $request->direccion_contact,
+                    'email_contacto' => $request->email_contact
+                     ];
+                $this->to_api($data, $prod);
+            } else
+            {
+                $whith_prod = 1;
+                $data = [
+                    'vehiculo' => $request->vehiculoInput,
+                    'f_despacho' => $request->fecha_despacho,
+                    'guia'      => $request->guiaInput,
+                    'mode'      => $request->mode,
+                    'nombre_contacto' => $request->nombre_contact,
+                    'telefono_contacto' => $request->phn_contact,
+                    'dir_contacto' => $request->direccion_contact,
+                    'email_contacto' => $request->email_contact,
+                    'productos' => $prod ];
+
+                $this->to_api($data,$whith_prod );
+            }
+
+
 
                $message = 'correct'  ;
                Alert::success('Done!', 'Ruta almacenada');
                return view('rutas.rutas-form');
     }
 
-    public function to_api($param)
+    public function to_api($param,$with_prod)
     {
         $object = (object) $param ;
         $dt = $object->f_despacho;
 
 //        info($dt);
 
-        $data = [
+
+        if ($with_prod == 0)
+        {
+            $data = [
                 "truck_identifier" => $object->vehiculo,
                 "date"             => $object->f_despacho,
                 "dispatches"=> [[
 
-                                            "identifier" => $object->guia,
-                                            "mode" => $object->mode,
-                                            "contact_name"=> $object->nombre_contacto,
-                                            "contact_address"=> $object->dir_contacto,
-                                            "contact_phone"=> $object->telefono_contacto,
-                                            "contact_email"=> $object->email_contacto,
-                                            "items"=>  $object->productos
+                    "identifier" => $object->guia,
+                    "mode" => $object->mode,
+                    "contact_name"=> $object->nombre_contacto,
+                    "contact_address"=> $object->dir_contacto,
+                    "contact_phone"=> $object->telefono_contacto,
+                    "contact_email"=> $object->email_contacto
 
-                                ]]
+                ]]
 
-        ];
+            ];
+        }
+        else
+        {
+            $productos = $object->productos;
+            $data = [
+                "truck_identifier" => $object->vehiculo,
+                "date"             => $object->f_despacho,
+                "dispatches"=> [[
+
+                    "identifier" => $object->guia,
+                    "mode" => $object->mode,
+                    "contact_name"=> $object->nombre_contacto,
+                    "contact_address"=> $object->dir_contacto,
+                    "contact_phone"=> $object->telefono_contacto,
+                    "contact_email"=> $object->email_contacto,
+                    "items"=>  $productos
+
+                ]]
+
+            ];
+        }
+
 
         $coded = json_encode($data);
         info($coded);
@@ -261,8 +315,14 @@ class RutasController extends Controller
         foreach ( $guia as $object)
         {
           $id_guia =  $object->numero_guia;
+          $telefono = $object->phn_contact;
+          $destino = $object->direccion_contact;
+          $nombre_contact = $object->nombre_contact;
+          $tipo_entrega = $object->mode;
+          $sucursal = $object->sucursal;
+          $fecha_despacho = $object->fecha_despacho;
         }
-        return view('rutas.qr-print',compact('ruta_id','guia', 'id_guia'));
+        return view('rutas.qr-print',compact('ruta_id','telefono','sucursal','fecha_despacho', 'id_guia','destino','nombre_contact','tipo_entrega'));
     }
 
     /**
