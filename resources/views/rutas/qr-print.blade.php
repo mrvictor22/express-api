@@ -28,8 +28,15 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        /*padding-left: 25%;*/
     }
     @media print {
+        .card-body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /*padding-left: 25%;*/
+        }
         table {
             border: 4px solid black;
             border-collapse: collapse;
@@ -38,20 +45,27 @@
             border: 4px solid black;
             border-collapse: collapse;
         }
+        .hidden-print {
+            display: none !important;
+        }
     }
+
+
 </style>
 
-<div class="card-body" id="printableArea">
+<div class="card-body" id="printableArea" >
     <div class="row">
         @if( $id_guia)
 
-            <table class="tg">
+            <table class="tg" style="border: 4px solid black;border-collapse: collapse;">
                 <thead>
-                <tr>
-                    <td colspan="2" style="text-align: center"><img src="{{ URL::asset('assets/images/ssss.png')}}"  width="255" ></td></tr>
-                <tr>
+                <tr style="border: 4px solid black; border-collapse: collapse;">
+                    <td colspan="2" style="text-align: center; border: 4px solid black;border-collapse: collapse;">
+                        <img src="{{ URL::asset('assets/images/ssss.png')}}"  width="255" ></td>
+                </tr>
+                <tr style="border: 4px solid black;border-collapse: collapse;">
 
-                    <td class="tg-0lax">
+                    <td class="tg-0lax" style="border: 4px solid black;border-collapse: collapse;">
                         <h3>Guia:</h3>
                         <ul>
                             <li>Numero de guia: {{$id_guia}}  </li>
@@ -64,10 +78,10 @@
                            <li>Nombre de contacto: {{$nombre_contact}}  </li>
                            <li>Telefono: {{$telefono}}  </li>
                            <li>Dirección: {{$destino}}  </li>
-                       
+
                        </ul>
                     </td>
-                    <td class="tg-0lax">{!! QrCode::size(200)->generate($id_guia) !!} <br>
+                    <td class="tg-0lax" style="border: 4px solid black;border-collapse: collapse;">{!! QrCode::size(200)->generate($id_guia) !!} <br>
 
 
                     </td>
@@ -82,20 +96,17 @@
     <br>
     <a></a>
     <div class="row">
-        <input type="button" onclick="printableDiv('printableArea')" value="Imprimir etiqueta" />
+        <input class="hidden-print" type="button" onclick="printableDiv('printableArea')" value="Imprimir etiqueta" />
     </div>
 @endsection
 @section('script')
 <script>
     function printableDiv(printableAreaDivId) {
-        var printContents = document.getElementById(printableAreaDivId).innerHTML;
-        var originalContents = document.body.innerHTML;
 
-        document.body.innerHTML = printContents;
 
         window.print();
 
-        document.body.innerHTML = originalContents;
+
     }
 </script>
 @endsection

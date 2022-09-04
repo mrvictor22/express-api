@@ -35,7 +35,7 @@
                             <div class="col-lg-6">
                                 <div>
                                     <label for="guiaInput" class="form-label">Número Guía</label>
-                                    <input type="text" class="form-control" id="guiaInput" name="guiaInput">
+                                    <input type="text" class="form-control" id="guiaInput" name="guiaInput" required>
                                 </div>
                             </div>
                             <!--end col-->
@@ -73,7 +73,7 @@
                                     <label for="iconInput" class="form-label">Email Contacto</label>
                                     <div class="form-icon">
                                         <input type="email" class="form-control form-control-icon"
-                                               id="iconInput" placeholder="example@gmail.com" name="email_contact" required>
+                                               id="iconInput" placeholder="example@gmail.com" name="email_contact" >
                                         <i class="ri-mail-unread-line"></i>
                                     </div>
                                 </div>
@@ -131,20 +131,20 @@
                                         <tr>
                                             <td>
                                                 Nombre producto
-                                                <input type="text" class="form-control" id="n_itemInput" name="DetailsName[0]">
+                                                <input type="text" class="form-control" id="n_itemInput" name="DetailsName[0]" >
 
                                             </td>
                                             <td>
                                                 <div>
                                                     Cantidad
-                                                    <input type="text" class="form-control" id="n_itemamount"name="DetailsAmount[0]">
+                                                    <input type="text" class="form-control" id="n_itemamount"name="DetailsAmount[0]" >
 
 
                                                 </div>
                                             </td>
                                             <td>
                                                 Codigo
-                                                <input type="text" class="form-control" id="c_itemInput" name="DetailsCode[0]">
+                                                <input type="text" class="form-control" id="c_itemInput" name="DetailsCode[0]" >
 
                                             </td>
 
