@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('direccion_contact', 250)->nullable();
             $table->string('sucursal', 250)->nullable();
             $table->string('mode', 250)->nullable();
-            $table->integer('creado_por');
+            $table->string('creado_por',255);
             $table->text('debug_request', 250)->nullable();
             $table->date('fecha_despacho');
             $table->timestamps();
