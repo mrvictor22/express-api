@@ -24,7 +24,7 @@
             <div class="card">
                 <div class="card-header align-items-center d-flex">
                     <h4 class="card-title mb-0 flex-grow-1">Ingreso de datos</h4>
-
+                    <p class="text-muted">Todos los elementos marcados con * son obligatorios</p>
                 </div><!-- end card header -->
                 <div class="card-body">
                     <form method="POST" action="{{route('routes-form.store')}}" >
@@ -34,7 +34,7 @@
 
                             <div class="col-lg-6">
                                 <div>
-                                    <label for="guiaInput" class="form-label">Número Guía</label>
+                                    <label for="guiaInput" class="form-label">Número Guía</label> <label class="text-muted">*</label>
                                     <input type="text" class="form-control" id="guiaInput" name="guiaInput" required>
 
                                 </div>
@@ -87,9 +87,9 @@
                         <div class="row align-items-center g-3">
                             <div class="col-lg-3">
                                 <div>
-                                    <label for="vehiculoInput" class="form-label">Vehiculo</label>
+                                    <label for="vehiculoInput" class="form-label">Vehiculo</label><label class="text-muted">*</label>
 {{--                                    <input type="text" class="form-control" id="vehiculoInput" name="vehiculoInput">--}}
-                                    <select class="js-data-example-ajax " name="vehiculoInput"></select>
+                                    <select class="js-data-example-ajax " name="vehiculoInput" required></select>
                                 </div>
                             </div>
                             <!--end col-->
@@ -102,16 +102,16 @@
                             <!--end col-->
                             <div class="col-md-3">
                                 <div>
-                                    <label class="form-label mb-0">Fecha y Hora de despacho</label>
+                                    <label class="form-label mb-0">Fecha de despacho</label><label class="text-muted">*</label>
 
-                                    <input type="text" class="form-control" data-provider="flatpickr" name='fecha_despacho'
-                                        data-date-format="Y-m-d" >
+                                    <input id="date" type="text" class="form-control date-input"  name='fecha_despacho'
+                                        data-date-format="Y-m-d" required>
                                 </div>
                             </div>
                             <!--end col-->
                             <div class="col-md-3">
                                 <div>
-                                    <label class="form-label mb-0">Modo</label>
+                                    <label class="form-label mb-0">Modo</label><label class="text-muted">*</label>
                                     <select class="form-select" name="mode" required>
                                         <option value="" selected disabled hidden>Elige el modo</option>
                                         <option value="0">Por defecto</option>
@@ -251,6 +251,6 @@ $('#button').click(function(){
            },
            minimumResultsForSearch: -1
        });
-
+       const fp = flatpickr(".date-input", {allowInput:true});
 </script>
 @endsection
