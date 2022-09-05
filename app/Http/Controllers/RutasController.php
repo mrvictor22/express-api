@@ -18,6 +18,7 @@ use Symfony\Polyfill\Intl\Idn\Info;
 use Illuminate\Support\Collection;
 use Carbon\Carbon;
 use App\Models\Vehiculos;
+use App\Models\User;
 class RutasController extends Controller
 {
     /**
@@ -39,6 +40,19 @@ class RutasController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public $id;
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+            $this->id = Auth::user()->id;
+
+            return $next($request);
+        });
+
+    }
+
     public function index()
     {
         return view('rutas.index');
@@ -47,6 +61,10 @@ class RutasController extends Controller
     public function form()
     {
         $this->get_vehiculos();
+//        $Id_usuario = $this->id;
+//        $nombre = User::find($Id_usuario);
+//
+//        dd($nombre->name);
         return view('rutas.rutas-form');
 
     }
@@ -75,7 +93,8 @@ class RutasController extends Controller
 
         $ruta_save = new Rutas;
         $productos_ruta = new RutasProductos;
-
+        $Id_usuario = $this->id;
+        $nombre = User::find($Id_usuario);
         //Save data
                $ruta_save->numero_guia      = $request->guiaInput;
                $ruta_save->vehiculo         = $request->vehiculoInput;
@@ -85,6 +104,7 @@ class RutasController extends Controller
                $ruta_save->direccion_contact = $request->direccion_contact;
                $ruta_save->sucursal         = $request->sucursal_contact;
                $ruta_save->mode         = $request->mode;
+               $ruta_save->creado_por         = $nombre->name;
                $ruta_save->fecha_despacho   = $request->fecha_despacho;
                $ruta_save->debug_request = $request;
                $ruta_save->save();
@@ -289,6 +309,7 @@ class RutasController extends Controller
                'sucursal' => $column->sucursal,
                'fecha_despacho' => $column->fecha_despacho,
                'fecha_registro' => $column->created_at,
+               'creado_por' => $column->creado_por,
                'productos' => [
                    $data2
                ]

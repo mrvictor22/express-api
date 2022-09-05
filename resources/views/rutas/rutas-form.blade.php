@@ -36,6 +36,7 @@
                                 <div>
                                     <label for="guiaInput" class="form-label">Número Guía</label>
                                     <input type="text" class="form-control" id="guiaInput" name="guiaInput" required>
+
                                 </div>
                             </div>
                             <!--end col-->
