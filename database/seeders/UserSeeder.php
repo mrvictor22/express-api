@@ -16,12 +16,95 @@ class UserSeeder extends Seeder
     public function run()
     {
         //
+//        User::create([
+//            'name' => 'user1',
+//            'email'=> 'invitado@mail.com',
+//            'avatar' => 'avatar-1.jpg',
+//            'password'=>bcrypt('express22')
+//        ])->assignRole('admin');
+//
+//usuario: lagranvia
+//claave: lagranvia1
+//
+//usuario: galerias
+//claave: galerias2
+//
+//usuario: metrocentro
+//claave: metrocentro3
+//
+//usuario: plazamundo
+//claave: plazamundo4
+//
+//usuario: santaana
+//claave: santaana5
+//
+//usuario: sanmiguel
+//claave: sanmiguel6
+//
+//usuario: ffc
+//claave: ffc7
+//
+//usuario: invitado
+//claave: invitado8
+
+
         User::create([
-            'name' => 'user1',
-            'email'=> 'invitado@mail.com',
+            'name' => 'lagranvia',
+            'email'=> 'lagranvia@mail.com',
             'avatar' => 'avatar-1.jpg',
-            'password'=>bcrypt('express22')
-        ])->assignRole('admin');
+            'password'=>bcrypt('lagranvia1')
+        ])->assignRole('basic_user');
+
+        User::create([
+            'name' => 'galerias',
+            'email'=> 'galerias@mail.com',
+            'avatar' => 'avatar-1.jpg',
+            'password'=>bcrypt('galerias2')
+        ])->assignRole('basic_user');
+
+        User::create([
+            'name' => 'metrocentro',
+            'email'=> 'metrocentro@mail.com',
+            'avatar' => 'avatar-1.jpg',
+            'password'=>bcrypt('metrocentro3')
+        ])->assignRole('basic_user');
+
+        User::create([
+            'name' => 'plazamundo',
+            'email'=> 'plazamundo@mail.com',
+            'avatar' => 'avatar-1.jpg',
+            'password'=>bcrypt('plazamundo4')
+        ])->assignRole('basic_user');
+
+        User::create([
+            'name' => 'santaana',
+            'email'=> 'santaana@mail.com',
+            'avatar' => 'avatar-1.jpg',
+            'password'=>bcrypt('santaana5')
+        ])->assignRole('basic_user');
+
+        User::create([
+            'name' => 'sanmiguel',
+            'email'=> 'sanmiguel@mail.com',
+            'avatar' => 'avatar-1.jpg',
+            'password'=>bcrypt('sanmiguel6')
+        ])->assignRole('basic_user');
+
+        User::create([
+            'name' => 'ffc',
+            'email'=> 'ffc@mail.com',
+            'avatar' => 'avatar-1.jpg',
+            'password'=>bcrypt('ffc7')
+        ])->assignRole('basic_user');
+
+        User::create([
+            'name' => 'invitado8',
+            'email'=> 'invitado8@mail.com',
+            'avatar' => 'avatar-1.jpg',
+            'password'=>bcrypt('invitado8')
+        ])->assignRole('basic_user');
+
+
 
     }
 }
