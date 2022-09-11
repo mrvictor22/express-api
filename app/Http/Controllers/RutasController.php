@@ -289,9 +289,13 @@ class RutasController extends Controller
     }
     public function data()
     {
+        $Id_usuario = $this->id;
+        $nombre = User::find($Id_usuario);
+
        $data = DB::table('rutas_tbl')
                 //->join('producto_rutas_tbl','rutas_tbl.id', '=' , 'producto_rutas_tbl.id_rutas_tbl')
                 //->groupBy('rutas_tbl.id')
+                ->where('creado_por' , $nombre->name)
                 ->orderBy('id','DESC')
                 ->get();
 
@@ -317,6 +321,8 @@ class RutasController extends Controller
            ];
 
        }
+
+
 
         //return $ajax_data ;
        return datatables()->of($ajax_data)->toJson();
