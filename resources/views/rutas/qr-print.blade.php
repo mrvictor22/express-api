@@ -35,7 +35,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 14px;
+            font-size: 18px;
             /*padding-left: 25%;*/
         }
         table {
@@ -78,7 +78,8 @@
 
                            <li>Nombre de contacto: {{$nombre_contact}}  </li>
                            <li>Telefono: {{$telefono}}  </li>
-                           <li>Dirección: {{$destino}}  </li>
+                           <li>Dirección: <br>
+                               {{$destino}}  </li>
 
                        </ul>
                     </td>
