@@ -45,6 +45,8 @@
         th, td {
             border: 4px solid black;
             border-collapse: collapse;
+            justify-content: center;
+            align-items: center;
         }
         .hidden-print {
             display: none !important;
@@ -82,7 +84,7 @@
 
                        </ul>
                     </td>
-                    <td class="tg-0lax" style="border: 4px solid black;border-collapse: collapse;">{!! QrCode::size(200)->generate($id_guia) !!} <br>
+                    <td class="tg-0lax" style="border: 4px solid black;border-collapse: collapse;">{!! QrCode::size(250)->generate($id_guia) !!} <br>
 
 
                     </td>
