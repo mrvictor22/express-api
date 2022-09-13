@@ -78,8 +78,7 @@
 
                            <li>Nombre de contacto: {{$nombre_contact}}  </li>
                            <li>Telefono: {{$telefono}}  </li>
-                           <li>Dirección: <br>
-                               {{$destino}}  </li>
+                           <li>Dirección:{{$destino}}</li>
 
                        </ul>
                     </td>
