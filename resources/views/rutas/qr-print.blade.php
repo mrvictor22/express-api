@@ -85,7 +85,8 @@
                        </ul>
                     </td>
                     <td class="tg-0lax" style="border: 4px solid black;border-collapse: collapse; justify-content: center; align-items: center;">
-                        {!! QrCode::size(390)->generate($id_guia) !!}
+                        <iframe width="400px" height="390px" src="{{$google_API.$id_guia }}" title="QR"></iframe>
+
                     </td>
                 </tr>
 
