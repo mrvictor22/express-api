@@ -35,7 +35,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 25px;
+            font-size: 30px;
             /*padding-left: 25%;*/
         }
         table {
@@ -84,7 +84,7 @@
 
                        </ul>
                     </td>
-                    <td class="tg-0lax" style="border: 4px solid black;border-collapse: collapse;">{!! QrCode::size(250)->generate($id_guia) !!} <br>
+                    <td class="tg-0lax" style="border: 4px solid black;border-collapse: collapse; justify-content: center; align-items: center;">{!! QrCode::size(390)->generate($id_guia) !!} <br>
 
 
                     </td>
