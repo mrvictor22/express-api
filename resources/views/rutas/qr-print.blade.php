@@ -35,7 +35,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 18px;
+            font-size: 25px;
             /*padding-left: 25%;*/
         }
         table {
@@ -68,7 +68,7 @@
                 </tr>
                 <tr style="border: 4px solid black;border-collapse: collapse;">
 
-                    <td class="tg-0lax" style="border: 4px solid black;border-collapse: collapse;">
+                    <td class="tg-0lax" style="border: 4px solid black;border-collapse: collapse; width: 50%">
                         <h3>Guia:</h3>
                         <ul>
                             <li>Numero de guia: {{$id_guia}}  </li>
