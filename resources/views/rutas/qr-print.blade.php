@@ -24,6 +24,9 @@
         border: 4px solid black;
         border-collapse: collapse;
     }
+    #qr-iframe{
+        border-color: white;
+    }
     .card-body{
         display: flex;
         justify-content: center;
@@ -39,14 +42,17 @@
             /*padding-left: 25%;*/
         }
         table {
-            border: 4px solid black;
+            border: 1px solid black;
             border-collapse: collapse;
         }
         th, td {
-            border: 4px solid black;
+            border: 1px solid black;
             border-collapse: collapse;
             justify-content: center;
             align-items: center;
+        }
+        #qr-iframe{
+            border-color: white;
         }
         .hidden-print {
             display: none !important;
@@ -84,8 +90,9 @@
 
                        </ul>
                     </td>
-                    <td class="tg-0lax" style="border: 4px solid black;border-collapse: collapse; justify-content: center; align-items: center;">
-                        <iframe width="300px" height="300px" src="{{$google_API.$id_guia }}" title="QR"></iframe>
+                    <td class="tg-0lax" style="border: 0px solid black;border-collapse: collapse; justify-content: center; align-items: center; display: flex">
+
+                        <iframe width="300px" height="300px" src="{{$google_API.$id_guia }}" title="QR" id="qr-iframe"></iframe>
 
                     </td>
                 </tr>
