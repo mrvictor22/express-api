@@ -348,7 +348,7 @@ class RutasController extends Controller
           $tipo_entrega = $object->mode;
           $sucursal = $object->sucursal;
           $fecha_despacho = $object->fecha_despacho;
-          $google_API = "https://chart.googleapis.com/chart?chs=390x390&cht=qr&chl=";
+          $google_API = "https://chart.googleapis.com/chart?chs=290x290&cht=qr&chl=";
         }
         return view('rutas.qr-print',compact('ruta_id','telefono','google_API','sucursal','fecha_despacho', 'id_guia','destino','nombre_contact','tipo_entrega'));
     }

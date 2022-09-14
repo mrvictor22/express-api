@@ -85,7 +85,7 @@
                        </ul>
                     </td>
                     <td class="tg-0lax" style="border: 4px solid black;border-collapse: collapse; justify-content: center; align-items: center;">
-                        <iframe width="400px" height="390px" src="{{$google_API.$id_guia }}" title="QR"></iframe>
+                        <iframe width="300px" height="300px" src="{{$google_API.$id_guia }}" title="QR"></iframe>
 
                     </td>
                 </tr>
