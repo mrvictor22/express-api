@@ -115,7 +115,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center">
-                        <p class="mb-0 text-muted">&copy; <script>document.write(new Date().getFullYear())</script> Express System. Desarrollado con <i class="mdi mdi-heart text-danger"></i> by Jb Development</p>
+                        <p class="mb-0 text-muted">&copy; <script>document.write(new Date().getFullYear())</script> Express System. Desarrollado con <i class="mdi mdi-heart text-danger"></i> by <a href="http://jbdevelopmentsv.com/">Jb Development</a></p>
                     </div>
                 </div>
             </div>
