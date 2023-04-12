@@ -1,1 +1,167 @@
-(()=>{window.addEventListener("scroll",(function(e){var t;e.preventDefault(),(t=document.getElementById("navbar"))&&(document.body.scrollTop>=50||document.documentElement.scrollTop>=50?t.classList.add("is-sticky"):t.classList.remove("is-sticky"))}));var e=document.querySelectorAll(".nav-item"),t=document.getElementById("navbarSupportedContent");if(e&&t){window.addEventListener("load",(function(){window.dispatchEvent(new Event("resize"))})),window.addEventListener("resize",(function(){var i=document.documentElement.clientWidth;new bootstrap.Collapse(t,{toggle:!1}),i<980?Array.from(e).forEach((function(e){e.addEventListener("click",(function(){n()}))})):n()}))}function n(){document.documentElement.clientWidth<980?bsCollapse.toggle():bsCollapse=""}var i,o,l,r;new Swiper(".trusted-client-slider",{spaceBetween:30,loop:"true",slidesPerView:1,autoplay:{delay:1e3,disableOnInteraction:!1},breakpoints:{576:{slidesPerView:2},768:{slidesPerView:3},1024:{slidesPerView:4}}});i=document.getElementById("plan-switch"),o=document.getElementsByClassName("month"),l=document.getElementsByClassName("annual"),r=0,Array.from(o).forEach((function(e){1==i.checked?(l[r].style.display="block",e.style.display="none"):0==i.checked&&(l[r].style.display="none",e.style.display="block"),r++}));new Swiper(".client-review-swiper",{loop:!1,autoplay:{delay:2500,disableOnInteraction:!1},navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"},pagination:{clickable:!0,el:".swiper-pagination"}});!function(){var e=document.querySelectorAll(".counter-value");if(e){var t=function(e){return e.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",")};e&&Array.from(e).forEach((function(e){!function n(){var i=+e.getAttribute("data-target"),o=+e.innerText,l=i/250;l<1&&(l=1),o<i?(e.innerText=(o+l).toFixed(0),setTimeout(n,1)):e.innerText=t(i),t(e.innerText)}()}))}}()})();
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!********************************************!*\
+  !*** ./resources/js/pages/landing.init.js ***!
+  \********************************************/
+/*
+Template Name: Velzon - Admin & Dashboard Template
+Author: Themesbrand
+Website: https://Themesbrand.com/
+Contact: Themesbrand@gmail.com
+File: landing Js File
+*/
+//  Window scroll sticky class add
+function windowScroll() {
+  var navbar = document.getElementById("navbar");
+
+  if (navbar) {
+    if (document.body.scrollTop >= 50 || document.documentElement.scrollTop >= 50) {
+      navbar.classList.add("is-sticky");
+    } else {
+      navbar.classList.remove("is-sticky");
+    }
+  }
+}
+
+window.addEventListener('scroll', function (ev) {
+  ev.preventDefault();
+  windowScroll();
+}); // Collapse Menu
+
+var navLinks = document.querySelectorAll('.nav-item');
+var menuToggle = document.getElementById('navbarSupportedContent');
+
+if (navLinks && menuToggle) {
+  var _bsCollapse = '';
+  window.addEventListener('load', function () {
+    window.dispatchEvent(new Event('resize'));
+  });
+  window.addEventListener('resize', function () {
+    var windowSize = document.documentElement.clientWidth;
+    _bsCollapse = new bootstrap.Collapse(menuToggle, {
+      toggle: false
+    });
+
+    if (windowSize < 980) {
+      Array.from(navLinks).forEach(function (link) {
+        link.addEventListener('click', function () {
+          toggleMenu();
+        });
+      });
+    } else {
+      toggleMenu();
+    }
+  });
+}
+
+function toggleMenu() {
+  var windowSize = document.documentElement.clientWidth;
+
+  if (windowSize < 980) {
+    bsCollapse.toggle();
+  } else {
+    bsCollapse = '';
+  }
+} // trusted-client-slider
+
+
+var swiper = new Swiper(".trusted-client-slider", {
+  spaceBetween: 30,
+  loop: 'true',
+  slidesPerView: 1,
+  autoplay: {
+    delay: 1000,
+    disableOnInteraction: false
+  },
+  breakpoints: {
+    576: {
+      slidesPerView: 2
+    },
+    768: {
+      slidesPerView: 3
+    },
+    1024: {
+      slidesPerView: 4
+    }
+  }
+}); // pricing
+
+function check() {
+  var checkBox = document.getElementById("plan-switch");
+  var month = document.getElementsByClassName("month");
+  var annual = document.getElementsByClassName("annual");
+  var i = 0;
+  Array.from(month).forEach(function (mon) {
+    if (checkBox.checked == true) {
+      annual[i].style.display = "block";
+      mon.style.display = "none";
+    } else if (checkBox.checked == false) {
+      annual[i].style.display = "none";
+      mon.style.display = "block";
+    }
+
+    i++;
+  });
+}
+
+check(); // client-review-swiper
+
+var swiper = new Swiper(".client-review-swiper", {
+  loop: false,
+  autoplay: {
+    delay: 2500,
+    disableOnInteraction: false
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev"
+  },
+  pagination: {
+    clickable: true,
+    el: ".swiper-pagination"
+  }
+}); // counter-value
+
+function counter() {
+  var counter = document.querySelectorAll('.counter-value');
+
+  if (counter) {
+    var numberWithCommas = function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+
+    var speed = 250; // The lower the slower
+
+    counter && Array.from(counter).forEach(function (counter_value) {
+      function updateCount() {
+        var target = +counter_value.getAttribute('data-target');
+        var count = +counter_value.innerText;
+        var inc = target / speed;
+
+        if (inc < 1) {
+          inc = 1;
+        } // Check if target is reached
+
+
+        if (count < target) {
+          // Add inc to count and output in counter_value
+          counter_value.innerText = (count + inc).toFixed(0); // Call function every ms
+
+          setTimeout(updateCount, 1);
+        } else {
+          counter_value.innerText = numberWithCommas(target);
+        }
+
+        numberWithCommas(counter_value.innerText);
+      }
+
+      ;
+      updateCount();
+    });
+  }
+}
+
+;
+counter();
+/******/ })()
+;
