@@ -111,7 +111,7 @@ class UserSeeder extends Seeder
 //        ])->assignRole('basic_user');
         User::create([
             'name' => 'KiutDiva',
-            'email'=> 'KiutDiva@mail.com',
+            'email'=> 'kiutdiva@mail.com',
             'avatar' => 'avatar-1.jpg',
             'password'=>bcrypt('KiutDiva2023')
         ])->assignRole('basic_user');
