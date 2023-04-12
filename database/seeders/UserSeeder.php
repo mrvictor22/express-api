@@ -103,11 +103,29 @@ class UserSeeder extends Seeder
 //            'avatar' => 'avatar-1.jpg',
 //            'password'=>bcrypt('invitado8')
 //        ])->assignRole('basic_user');
+//        User::create([
+//            'name' => 'marketplace',
+//            'email'=> 'marketplace@mail.com',
+//            'avatar' => 'avatar-1.jpg',
+//            'password'=>bcrypt('marketplace9')
+//        ])->assignRole('basic_user');
         User::create([
-            'name' => 'marketplace',
-            'email'=> 'marketplace@mail.com',
+            'name' => 'KiutDiva',
+            'email'=> 'kiutdiva@mail.com',
             'avatar' => 'avatar-1.jpg',
-            'password'=>bcrypt('marketplace9')
+            'password'=>bcrypt('KiutDiva2023')
+        ])->assignRole('basic_user');
+        User::create([
+            'name' => 'MintStore',
+            'email'=> 'mintStore@mail.com',
+            'avatar' => 'avatar-1.jpg',
+            'password'=>bcrypt('MintStore2023')
+        ])->assignRole('basic_user');
+        User::create([
+            'name' => 'MuchaMujer',
+            'email'=> 'muchamujer@mail.com',
+            'avatar' => 'avatar-1.jpg',
+            'password'=>bcrypt('MuchaMujer2023')
         ])->assignRole('basic_user');
 
 
