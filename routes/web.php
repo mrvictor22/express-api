@@ -25,6 +25,8 @@ Route::get('rutas/export/', [RutasController::class, 'csv_export'])->name('rutas
 Route::get('rutas/api/', [RutasController::class, 'to_api'])->name('rutas.call-api');
 Route::get('rutas/trucks/', [RutasController::class, 'get_vehiculos'])->name('rutas.call-trucks');
 Route::get('rutas/qr-print/{ruta}', [RutasController::class, 'qr'])->name('ruta.print-qr');
+Route::get('/generar-numero-guia', [RutasController::class, 'generarNumeroGuia']);
+
 
 Route::resource('config',UserController::class );
 Route::resource('rutas',RutasController::class );

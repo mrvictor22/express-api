@@ -392,4 +392,35 @@ class RutasController extends Controller
         return Excel::download(new RutasExport, 'rutas.csv');
 
     }
+
+    function generarNumeroGuia() {
+        // Obtener el último número de guía registrado
+        $ultimoNumeroGuia = DB::table('rutas_tbl')->max('numero_guia');
+
+        // Si no hay registros, empezar desde A0001
+        if (!$ultimoNumeroGuia || $ultimoNumeroGuia == 'A0001'){
+            $numeroGuia = 'A0001';
+        } else {
+            // Obtener la letra y el número del último número de guía registrado
+            $letra = substr($ultimoNumeroGuia, 0, 1);
+            $numero = intval(substr($ultimoNumeroGuia, 1));
+
+            // Si el número es menor a 9999, aumentarlo en 1. Si es igual a 9999, cambiar de letra y empezar desde 0001.
+            if ($numero < 9999) {
+                $numero++;
+            } else {
+                $letra++;
+                $numero = 1;
+            }
+
+            // Formatear el número de guía con ceros a la izquierda y la letra correspondiente
+            $numeroGuia = $letra . sprintf('%04d', $numero);
+        }
+
+        // Retornar el número de guía generado en formato JSON
+        $response = ['numeroGuia' => $numeroGuia];
+        return response()->json($response);
+    }
+
+
 }
