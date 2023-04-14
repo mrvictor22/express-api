@@ -394,33 +394,50 @@ class RutasController extends Controller
     }
 
     function generarNumeroGuia() {
-        // Obtener el último número de guía registrado
-        $ultimoNumeroGuia = DB::table('rutas_tbl')->max('numero_guia');
+        $letras = range('A', 'Z');
+        $numeroGuia = '';
 
-        // Si no hay registros, empezar desde A0001
-        if (!$ultimoNumeroGuia || $ultimoNumeroGuia == 'A0001'){
-            $numeroGuia = 'A0001';
-        } else {
-            // Obtener la letra y el número del último número de guía registrado
-            $letra = substr($ultimoNumeroGuia, 0, 1);
-            $numero = intval(substr($ultimoNumeroGuia, 1));
+        // Generar una letra aleatoria
+        $letraAleatoria = $letras[array_rand($letras)];
+        $numeroGuia .= $letraAleatoria;
 
-            // Si el número es menor a 9999, aumentarlo en 1. Si es igual a 9999, cambiar de letra y empezar desde 0001.
-            if ($numero < 9999) {
-                $numero++;
-            } else {
-                $letra++;
-                $numero = 1;
-            }
+        // Generar 5 números aleatorios
+        $numerosAleatorios = array_map(function() {
+            return mt_rand(0, 9);
+        }, range(1, 5));
 
-            // Formatear el número de guía con ceros a la izquierda y la letra correspondiente
-            $numeroGuia = $letra . sprintf('%04d', $numero);
+        // Concatenar los números aleatorios al número de guía
+        $numeroGuia .= implode('', $numerosAleatorios);
+
+        // Verificar que el número de guía no exista previamente
+        $guiaExistente = DB::table('rutas_tbl')->where('numero_guia', $numeroGuia)->exists();
+
+        // Si el número de guía existe previamente, generar otro número de guía
+        while ($guiaExistente) {
+            // Generar una letra aleatoria
+            $letraAleatoria = $letras[array_rand($letras)];
+            $numeroGuia[0] = $letraAleatoria;
+
+            // Generar 5 números aleatorios
+            $numerosAleatorios = array_map(function() {
+                return mt_rand(0, 9);
+            }, range(1, 5));
+
+            // Concatenar los números aleatorios al número de guía
+            $numeroGuia = $letraAleatoria . implode('', $numerosAleatorios);
+
+            // Verificar si el número de guía existe previamente
+            $guiaExistente = DB::table('rutas_tbl')->where('numero_guia', $numeroGuia)->exists();
         }
+
+        // Guardar el número de guía generado en la base de datos
+        DB::table('rutas_tbl')->insert(['numero_guia' => $numeroGuia]);
 
         // Retornar el número de guía generado en formato JSON
         $response = ['numeroGuia' => $numeroGuia];
         return response()->json($response);
     }
+
 
 
 }
