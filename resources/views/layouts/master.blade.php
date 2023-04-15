@@ -12,6 +12,8 @@
     @include('layouts.head-css')
     <!-- Sweet Alert css-->
 <link href="{{ URL::asset('assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- icon scss -->
+    <link rel="stylesheet" href="{{ URL::asset('resources/scss/icon.scss') }}">
 </head>
 
 @section('body')
