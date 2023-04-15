@@ -36,8 +36,8 @@
                                 <div class="form-group">
                                     <label for="guiaInput" class="form-label">Número Guía</label><label class="text-muted">*</label>
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class='bx bx-revision bx-xs' id="auto-gen"></i></span>
+                                        <div class="input-group-prepend" id="auto-gen">
+                                            <span class="input-group-text"><i class='bx bx-revision bx-xs' ></i></span>
                                         </div>
                                         <input type="text" class="form-control" id="guiaInput" name="guiaInput" required>
                                     </div>
