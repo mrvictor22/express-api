@@ -392,4 +392,52 @@ class RutasController extends Controller
         return Excel::download(new RutasExport, 'rutas.csv');
 
     }
+
+    function generarNumeroGuia() {
+        $letras = range('A', 'Z');
+        $numeroGuia = '';
+
+        // Generar una letra aleatoria
+        $letraAleatoria = $letras[array_rand($letras)];
+        $numeroGuia .= $letraAleatoria;
+
+        // Generar 5 números aleatorios
+        $numerosAleatorios = array_map(function() {
+            return mt_rand(0, 9);
+        }, range(1, 5));
+
+        // Concatenar los números aleatorios al número de guía
+        $numeroGuia .= implode('', $numerosAleatorios);
+
+        // Verificar que el número de guía no exista previamente
+        $guiaExistente = DB::table('rutas_tbl')->where('numero_guia', $numeroGuia)->exists();
+
+        // Si el número de guía existe previamente, generar otro número de guía
+        while ($guiaExistente) {
+            // Generar una letra aleatoria
+            $letraAleatoria = $letras[array_rand($letras)];
+            $numeroGuia[0] = $letraAleatoria;
+
+            // Generar 5 números aleatorios
+            $numerosAleatorios = array_map(function() {
+                return mt_rand(0, 9);
+            }, range(1, 5));
+
+            // Concatenar los números aleatorios al número de guía
+            $numeroGuia = $letraAleatoria . implode('', $numerosAleatorios);
+
+            // Verificar si el número de guía existe previamente
+            $guiaExistente = DB::table('rutas_tbl')->where('numero_guia', $numeroGuia)->exists();
+        }
+
+        // Guardar el número de guía generado en la base de datos
+        DB::table('rutas_tbl')->insert(['numero_guia' => $numeroGuia]);
+
+        // Retornar el número de guía generado en formato JSON
+        $response = ['numeroGuia' => $numeroGuia];
+        return response()->json($response);
+    }
+
+
+
 }

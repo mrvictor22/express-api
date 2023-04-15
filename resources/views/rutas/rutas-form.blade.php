@@ -33,12 +33,18 @@
                         <div class="row gy-4">
 
                             <div class="col-lg-6">
-                                <div>
-                                    <label for="guiaInput" class="form-label">Número Guía</label> <label class="text-muted">*</label>
-                                    <input type="text" class="form-control" id="guiaInput" name="guiaInput" required>
+                                <div class="form-group">
+                                    <label for="guiaInput" class="form-label">Número Guía</label><label class="text-muted">*</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend" id="auto-gen">
+                                            <span class="input-group-text"><i class='bx bx-revision bx-xs' ></i></span>
+                                        </div>
+                                        <input type="text" class="form-control" id="guiaInput" name="guiaInput" required>
+                                    </div>
 
                                 </div>
                             </div>
+
                             <!--end col-->
                             <div class="col-lg-6">
                                 <div>
@@ -252,5 +258,26 @@ $('#button').click(function(){
            minimumResultsForSearch: -1
        });
        const fp = flatpickr(".date-input", {allowInput:true});
-</script>
+
+       // Obtener elementos HTML
+       const input = document.getElementById("guiaInput");
+       const icono = document.getElementById("auto-gen");
+
+       // Agregar evento de clic al icono
+       icono.addEventListener("click", function() {
+// Hacer una llamada Ajax a la ruta de generar número de guía
+           $.ajax({
+               type: "GET",
+               url: "/generar-numero-guia",
+               dataType: "json",
+           }).done(function(response) {
+// Asignar el número de guía generado al valor del input
+               input.value = response.numeroGuia;
+           }).fail(function(jqXHR, textStatus, errorThrown) {
+               console.log(textStatus + ': ' + errorThrown);
+           });
+       });
+
+
+    </script>
 @endsection
