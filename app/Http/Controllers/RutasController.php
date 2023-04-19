@@ -173,7 +173,9 @@ class RutasController extends Controller
                     'telefono_contacto' => $request->phn_contact,
                     'dir_contacto' => $request->direccion_contact,
                     'email_contacto' => $request->email_contact,
-                    'productos' => $prod ];
+                    'productos' => $prod,
+                    'sucursal' => 'express test'
+                     ];
 
                 $this->to_api($data,$whith_prod );
             }
@@ -206,6 +208,11 @@ class RutasController extends Controller
                     "contact_address"=> $object->dir_contacto,
                     "contact_phone"=> $object->telefono_contacto,
                     "contact_email"=> $object->email_contacto
+                    ,
+                    "groups" => [[
+                        "category" => "Sucursal",
+                        "name" => $object->sucursal
+                    ]]
 
                 ]]
 
@@ -226,8 +233,14 @@ class RutasController extends Controller
                     "contact_phone"=> $object->telefono_contacto,
                     "contact_email"=> $object->email_contacto,
                     "items"=>  $productos
+                    ,
+                    "groups" => [[
+                        "category" => "Sucursal",
+                        "name" => $object->sucursal
+                    ]]
 
                 ]]
+
 
             ];
         }
