@@ -102,7 +102,12 @@
                             <div class="col-lg-3">
                                 <div>
                                     <label for="sucursal_contact_id" class="form-label">Sucursal</label>
-                                    <input type="text" class="form-control" id="sucursal_contact_id" name="sucursal_contact">
+                                    <select class="form-select" id="sucursal_contact_id" name="sucursal_contact" required>
+                                        <option value="">Seleccione una sucursal</option>
+                                        <option value="express_test">Express Test</option>
+                                        <option value="metrocentro">Metrocentro</option>
+                                        <option value="prueba">Prueba</option>
+                                    </select>
                                 </div>
                             </div>
                             <!--end col-->
