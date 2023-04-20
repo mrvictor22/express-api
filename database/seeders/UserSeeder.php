@@ -16,12 +16,12 @@ class UserSeeder extends Seeder
     public function run()
     {
         //
-//        User::create([
-//            'name' => 'user1',
-//            'email'=> 'invitado@mail.com',
-//            'avatar' => 'avatar-1.jpg',
-//            'password'=>bcrypt('express22')
-//        ])->assignRole('admin');
+        User::create([
+            'name' => 'user1',
+            'email'=> 'invitado@mail.com',
+            'avatar' => 'avatar-1.jpg',
+            'password'=>bcrypt('express22')
+        ])->assignRole('admin');
 //
 //usuario: lagranvia
 //claave: lagranvia1
@@ -109,24 +109,24 @@ class UserSeeder extends Seeder
 //            'avatar' => 'avatar-1.jpg',
 //            'password'=>bcrypt('marketplace9')
 //        ])->assignRole('basic_user');
-        User::create([
-            'name' => 'KiutDiva',
-            'email'=> 'kiutdiva@mail.com',
-            'avatar' => 'avatar-1.jpg',
-            'password'=>bcrypt('KiutDiva2023')
-        ])->assignRole('basic_user');
-        User::create([
-            'name' => 'MintStore',
-            'email'=> 'mintStore@mail.com',
-            'avatar' => 'avatar-1.jpg',
-            'password'=>bcrypt('MintStore2023')
-        ])->assignRole('basic_user');
-        User::create([
-            'name' => 'MuchaMujer',
-            'email'=> 'muchamujer@mail.com',
-            'avatar' => 'avatar-1.jpg',
-            'password'=>bcrypt('MuchaMujer2023')
-        ])->assignRole('basic_user');
+//        User::create([
+//            'name' => 'KiutDiva',
+//            'email'=> 'kiutdiva@mail.com',
+//            'avatar' => 'avatar-1.jpg',
+//            'password'=>bcrypt('KiutDiva2023')
+//        ])->assignRole('basic_user');
+//        User::create([
+//            'name' => 'MintStore',
+//            'email'=> 'mintStore@mail.com',
+//            'avatar' => 'avatar-1.jpg',
+//            'password'=>bcrypt('MintStore2023')
+//        ])->assignRole('basic_user');
+//        User::create([
+//            'name' => 'MuchaMujer',
+//            'email'=> 'muchamujer@mail.com',
+//            'avatar' => 'avatar-1.jpg',
+//            'password'=>bcrypt('MuchaMujer2023')
+//        ])->assignRole('basic_user');
 
 
     }
