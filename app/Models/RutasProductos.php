@@ -16,6 +16,10 @@ class RutasProductos extends Model
         'nombre_prod',
         'cant_prod',
         'cod_prod'
-        
+
     ];
+    public function ruta()
+    {
+        return $this->belongsTo(Rutas::class, 'id_rutas_tbl');
+    }
 }

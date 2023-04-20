@@ -332,25 +332,16 @@ class RutasController extends Controller
      * Show the form for generate the specified resource.
      *
      * @param  \App\Models\Rutas  $rutas
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function qr($rutas)
     {
         $ruta_id = $rutas;
-        $guia = DB::table('rutas_tbl')->where('id' , $ruta_id)->get();
-        $id_guia = "";
-        foreach ( $guia as $object)
-        {
-          $id_guia =  $object->numero_guia;
-          $telefono = $object->phn_contact;
-          $destino = $object->direccion_contact;
-          $nombre_contact = $object->nombre_contact;
-          $tipo_entrega = $object->mode;
-          $sucursal = $object->sucursal;
-          $fecha_despacho = $object->fecha_despacho;
-          $google_API = "https://chart.googleapis.com/chart?chs=290x290&cht=qr&chl=";
-        }
-        return view('rutas.qr-print',compact('ruta_id','telefono','google_API','sucursal','fecha_despacho', 'id_guia','destino','nombre_contact','tipo_entrega'));
+        $ruta = Rutas::with('productos')->findOrFail($ruta_id);
+
+        $google_API = "https://chart.googleapis.com/chart?chs=290x290&cht=qr&chl=";
+        info($ruta);
+        return view('rutas.qr-print', ['ruta' => $ruta,'google_API' => $google_API]);
     }
 
     /**

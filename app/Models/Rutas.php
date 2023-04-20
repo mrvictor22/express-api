@@ -23,4 +23,9 @@ class Rutas extends Model
         'fecha_despacho',
         'debud_request'
     ];
+
+    public function productos()
+    {
+        return $this->hasMany(RutasProductos::class, 'id_rutas_tbl');
+    }
 }
