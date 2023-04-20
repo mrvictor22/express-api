@@ -98,6 +98,10 @@
     .contact-info > div {
         margin: 0 10px;
     }
+    #logo {
+        opacity: 0.5;
+    }
+
 
 </style>
 
@@ -107,7 +111,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md text-center">
-                            <img src="{{ URL::asset('assets/images/ssss.png')}}"  width="255" >
+                            <img id="logo" src="{{ URL::asset('assets/images/ssss.png')}}"  width="255" >
                         </div>
                     </div>
                     <div class="row contact-info">
