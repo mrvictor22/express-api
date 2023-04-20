@@ -20,13 +20,6 @@
     @endcomponent
 
 <style>
-    table, th, td {
-        border: 4px solid black;
-        border-collapse: collapse;
-    }
-    #qr-iframe{
-        border-color: white;
-    }
     .card-body{
         display: flex;
         justify-content: center;
@@ -41,22 +34,72 @@
             font-size: 30px;
             /*padding-left: 25%;*/
         }
-        table {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            justify-content: center;
-            align-items: center;
-        }
-        #qr-iframe{
-            border-color: white;
-        }
         .hidden-print {
             display: none !important;
         }
+    }
+
+    /* Estilos para el contenido de la etiqueta */
+    #etiqueta {
+        width: 100%;
+        padding: 0.1cm;
+        font-size: 12px;
+        line-height: 1.2;
+        border: 1px solid #000;
+        text-align: center;
+    }
+
+    /* Estilos para el QR code */
+    /*#qr {*/
+    /*    margin-top: 0.5cm;*/
+    /*    margin-bottom: 0.5cm;*/
+    /*    display: inline-block;*/
+    /*    border: 1px solid #000;*/
+    /*    padding: 0.5cm;*/
+    /*    width: 30%;*/
+    /*}*/
+    h3 {
+        text-align: center;
+    }
+
+    hr {
+        border-top: 1px solid #bbb;
+        width: 80%;
+        margin: 20px auto;
+    }
+    .emisor {
+        width: 50%;
+        float: left;
+    }
+
+    .remitente {
+        width: 45%;
+        float: right;
+    }
+    .productos{
+        /*width: 50%;*/
+        text-align: center;
+    }
+    .qr{
+        width: 45%;
+        float: right;
+    }
+    table {
+        border-collapse: collapse;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+    }
+    .contact-info {
+        display: flex;
+        justify-content: center;
+    }
+    .contact-info > div {
+        margin: 0 10px;
+    }
+    #logo {
+        opacity: 0.5;
     }
 
 
@@ -64,50 +107,88 @@
 
 <div class="card-body" id="printableArea" >
     <div class="row">
-        @if( $id_guia)
+            <div id="etiqueta">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md text-center">
+                            <img id="logo" src="{{ URL::asset('assets/images/ssss.png')}}"  width="255" >
+                        </div>
+                    </div>
+                    <div class="row contact-info">
+                        <div class="col-md text-center">
+                            <p>Telefonos: 74595990 / 22894200</p>
+                        </div>
+                        <div class="col-md text-center">
+                            <p>Envios a todo el Salvador</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md emisor">
+                            <h3>Información del Emisor</h3>
+                            <!-- Aquí va la información del emisor -->
+                            <p>Nombre: [REEMPLAZAR]</p>
+                            <p>Dirección: [REEMPLAZAR]</p>
+                            <p>Teléfono: [REEMPLAZAR]</p>
+                            <p>SUCURSAL: {{$ruta->sucursal}}</p>
+                            <p>FECHA DESPACHO: {{$ruta->fecha_despacho}}</p>
+                        </div>
+                        <div class="col-md remitente">
+                            <h3>Información del Remitente</h3>
+                            <!-- Aquí va la información del remitente -->
+                            <p>Nombre: {{$ruta->nombre_contact}}</p>
+                            <p>Dirección: {{$ruta->direccion_contact}}</p>
+                            <p>Teléfono: {{$ruta->phn_contact}}</p>
+                        </div>
+                    </div>
+                    <h3>Información del Paquete</h3>
+                    <h1>ID de guía: {{$ruta->numero_guia}}</h1>
+                    <div class="row">
+                        <div class="col productos">
+                            <!-- Aquí iría la información de los productos -->
+                            <p><strong>Información de los productos:</strong></p>
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Cantidad</th>
+                                        <th>Código</th>
+                                        <th>Monto a cobrar</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($ruta->productos as $producto)
+                                        <tr>
+                                            <td>{{ $producto->nombre_prod }}</td>
+                                            <td>{{ $producto->cant_prod }}</td>
+                                            <td>{{ $producto->cod_prod }}</td>
+                                            <td>{{ $producto->monto_cobrar }}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            <hr>
+                        </div>
+                        <div class="col qr">
+                                <!-- QR code con el ID de guía -->
+                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{$ruta->numero_guia}}">
+                        </div>
 
-            <table class="tg" style="border: 4px solid black;border-collapse: collapse;">
-                <thead>
-                <tr style="border: 4px solid black; border-collapse: collapse;">
-                    <td colspan="2" style="text-align: center; border: 4px solid black;border-collapse: collapse;">
-                        <img src="{{ URL::asset('assets/images/ssss.png')}}"  width="255" ></td>
-                </tr>
-                <tr style="border: 4px solid black;border-collapse: collapse;">
+                </div>
 
-                    <td class="tg-0lax" style="border: 4px solid black;border-collapse: collapse; width: 50%">
-                        <h3>Guia:</h3>
-                        <ul>
-                            <li>Numero de guia: {{$id_guia}}  </li>
-                            <li>Sucursal: {{$sucursal}}  </li>
-                            <li>Fecha despacho: {{$fecha_despacho}}  </li>
-                        </ul>
-                        <h3>Destino:</h3>
-                       <ul>
 
-                           <li>Nombre de contacto: {{$nombre_contact}}  </li>
-                           <li>Telefono: {{$telefono}}  </li>
-                           <li>Dirección:{{$destino}}</li>
 
-                       </ul>
-                    </td>
-                    <td class="tg-0lax" style="border: 0px solid black;border-collapse: collapse; justify-content: center; align-items: center; display: flex">
+            </div>
 
-                        <iframe width="300px" height="300px" src="{{$google_API.$id_guia }}" title="QR" id="qr-iframe"></iframe>
-
-                    </td>
-                </tr>
-
-                </thead>
-            </table>
-        @endif
+                <div class="row">
+                    <input class="hidden-print" type="button" onclick="printableDiv('printableArea')" value="Imprimir etiqueta" />
+                </div>
     </div>
 
 </div>
     <br>
     <a></a>
-    <div class="row">
-        <input class="hidden-print" type="button" onclick="printableDiv('printableArea')" value="Imprimir etiqueta" />
-    </div>
+
 @endsection
 @section('script')
 <script>
