@@ -121,6 +121,8 @@
         <div class="hidden-print">
             <div class="text-center">
                 <button class="btn btn-primary hidden-print" onclick="printableDiv('printableArea')">Imprimir</button>
+                <button class="btn btn-danger hidden-print" onclick="cerrarPestana()">Cerrar</button>
+
             </div>
         </div>
     </div>
@@ -210,11 +212,10 @@
 @section('script')
 <script>
     function printableDiv(printableAreaDivId) {
-
-
         window.print();
-
-
+    }
+    function cerrarPestana() {
+        window.close();
     }
 </script>
 @endsection
