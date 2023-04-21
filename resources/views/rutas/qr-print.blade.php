@@ -37,6 +37,15 @@
         .hidden-print {
             display: none !important;
         }
+
+        #printableArea {
+            margin: 0;
+            padding: 0;
+        }
+        @page {
+            margin: 0;
+            size: 4in 6in; /* Establece el tamaño de la página en 4x6 pulgadas */
+        }
     }
 
     /* Estilos para el contenido de la etiqueta */
@@ -65,7 +74,7 @@
     hr {
         border-top: 1px solid #bbb;
         width: 80%;
-        margin: 20px auto;
+        margin: 1px auto;
     }
     .emisor {
         width: 50%;
@@ -79,6 +88,7 @@
     .productos{
         /*width: 50%;*/
         text-align: center;
+        font-size: 10px;
     }
     .qr{
         width: 45%;
@@ -100,95 +110,94 @@
     }
     #logo {
         opacity: 0.5;
+        margin-top: 4px;
+        margin-bottom: 3%;
     }
 
 
 </style>
 
-<div class="card-body" id="printableArea" >
-    <div class="row">
-            <div id="etiqueta">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md text-center">
-                            <img id="logo" src="{{ URL::asset('assets/images/ssss.png')}}"  width="255" >
-                        </div>
-                    </div>
-                    <div class="row contact-info">
-                        <div class="col-md text-center">
-                            <p>Telefonos: 74595990 / 22894200</p>
-                        </div>
-                        <div class="col-md text-center">
-                            <p>Envios a todo el Salvador</p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md emisor">
-                            <h3>Información del Emisor</h3>
-                            <!-- Aquí va la información del emisor -->
-                            <p>Nombre: [REEMPLAZAR]</p>
-                            <p>Dirección: [REEMPLAZAR]</p>
-                            <p>Teléfono: [REEMPLAZAR]</p>
-                            <p>SUCURSAL: {{$ruta->sucursal}}</p>
-                            <p>FECHA DESPACHO: {{$ruta->fecha_despacho}}</p>
-                        </div>
-                        <div class="col-md remitente">
-                            <h3>Información del Remitente</h3>
-                            <!-- Aquí va la información del remitente -->
-                            <p>Nombre: {{$ruta->nombre_contact}}</p>
-                            <p>Dirección: {{$ruta->direccion_contact}}</p>
-                            <p>Teléfono: {{$ruta->phn_contact}}</p>
-                        </div>
-                    </div>
-                    <h3>Información del Paquete</h3>
-                    <h1>ID de guía: {{$ruta->numero_guia}}</h1>
-                    <div class="row">
-                        <div class="col productos">
-                            <!-- Aquí iría la información de los productos -->
-                            <p><strong>Información de los productos:</strong></p>
-                                <table>
-                                    <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Cantidad</th>
-                                        <th>Código</th>
-                                        <th>Monto a cobrar</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($ruta->productos as $producto)
-                                        <tr>
-                                            <td>{{ $producto->nombre_prod }}</td>
-                                            <td>{{ $producto->cant_prod }}</td>
-                                            <td>{{ $producto->cod_prod }}</td>
-                                            <td>{{ $producto->monto_cobrar }}</td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            <hr>
-                        </div>
-                        <div class="col qr">
-                                <!-- QR code con el ID de guía -->
-                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{$ruta->numero_guia}}">
-                        </div>
-
-                </div>
-
-
-
-            </div>
-
+    <div class="card-body" id="printableArea">
+        <div id="etiqueta">
+            <div class="container">
                 <div class="row">
-                    <input class="hidden-print" type="button" onclick="printableDiv('printableArea')" value="Imprimir etiqueta" />
+                    <div class="col-md-12 text-center">
+                        <img id="logo" src="{{ URL::asset('assets/images/ssss.png')}}" width="175" />
+                    </div>
                 </div>
-    </div>
+                <div class="row contact-info">
+                    <div class="col-sm text-center">
+                        <p>Telefonos: 74595990 / 22894200</p>
+                    </div>
+                    <div class="col-sm text-center">
+                        <p>Envios a todo el Salvador</p>
+                    </div>
+                </div>
+                <hr>
+                <h6>Información del Paquete</h6>
+                <h6>ID de guía: {{$ruta->numero_guia}}</h6>
+                <div class="row">
+                    <div class="col-md qr">
+                        <!-- QR code con el ID de guía -->
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{$ruta->numero_guia}}" />
+                    </div>
+                    <div class="col remitente">
+                        <h6>Información del Remitente</h6>
+                        <!-- Aquí va la información del remitente -->
+                        <p>Nombre: {{$ruta->nombre_contact}}</p>
+                        <p>Dirección: {{$ruta->direccion_contact}}</p>
+                        <p>Teléfono: {{$ruta->phn_contact}}</p>
+                    </div>
+                    <div class="col-md productos">
+                        <!-- Aquí iría la información de los productos -->
+                        <p><strong>Información de los productos:</strong></p>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Cantidad</th>
+                                <th>Código</th>
+                                <th>Monto a cobrar</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($ruta->productos as $producto)
+                                <tr>
+                                    <td>{{ $producto->nombre_prod }}</td>
+                                    <td>{{ $producto->cant_prod }}</td>
+                                    <td>{{ $producto->cod_prod }}</td>
+                                    <td>{{ $producto->monto_cobrar }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <input class="hidden-print" type="button" onclick="printableDiv('printableArea')" value="Imprimir etiqueta" />
+            </div>
+        </div>
 
-</div>
-    <br>
-    <a></a>
-
+{{--        <div class="row">--}}
+{{--            <div class="col-md-6 emisor">--}}
+{{--                <h5>Información del Emisor</h5>--}}
+{{--                <!-- Aquí va la información del emisor -->--}}
+{{--                <p>Nombre: [REEMPLAZAR]</p>--}}
+{{--                <p>Dirección: [REEMPLAZAR]</p>--}}
+{{--                <p>Teléfono: [REEMPLAZAR]</p>--}}
+{{--                <p>SUCURSAL: {{$ruta->sucursal}}</p>--}}
+{{--                <p>FECHA DESPACHO: {{$ruta->fecha_despacho}}</p>--}}
+{{--            </div>--}}
+{{--            <div class="col-md-6 remitente">--}}
+{{--                <h5>Información del Remitente</h5>--}}
+{{--                <!-- Aquí va la información del remitente -->--}}
+{{--                <p>Nombre: {{$ruta->nombre_contact}}</p>--}}
+{{--                <p>Dirección: {{$ruta->direccion_contact}}</p>--}}
+{{--                <p>Teléfono: {{$ruta->phn_contact}}</p>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 @endsection
 @section('script')
 <script>
