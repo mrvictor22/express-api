@@ -50,7 +50,8 @@
 
     /* Estilos para el contenido de la etiqueta */
     #etiqueta {
-        width: 100%;
+        width: 4in;
+        height: 6in;
         padding: 0.1cm;
         font-size: 12px;
         line-height: 1.2;
@@ -116,7 +117,13 @@
 
 
 </style>
-
+    <div class="row">
+        <div class="hidden-print">
+            <div class="text-center">
+                <button class="btn btn-primary hidden-print" onclick="printableDiv('printableArea')">Imprimir</button>
+            </div>
+        </div>
+    </div>
     <div class="card-body" id="printableArea">
         <div id="etiqueta">
             <div class="container">
@@ -175,10 +182,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <input class="hidden-print" type="button" onclick="printableDiv('printableArea')" value="Imprimir etiqueta" />
-            </div>
         </div>
+
+
+
+
 
 {{--        <div class="row">--}}
 {{--            <div class="col-md-6 emisor">--}}
