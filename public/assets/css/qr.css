@@ -1,0 +1,170 @@
+.card-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos para el contenido de la etiqueta */
+#etiqueta {
+    width: 6in;
+    height: 4in;
+    padding: 0.1cm;
+    font-size: 12px;
+    line-height: 1.2;
+    text-align: left;
+}
+
+h3 {
+    text-align: center;
+}
+
+hr {
+    border-top: 1px solid #bbb;
+    width: 80%;
+    margin: 1px auto;
+}
+
+.emisor {
+    width: 50%;
+    float: left;
+    font-size: 10px;
+}
+
+.remitente {
+    width: 45%;
+    float: right;
+    font-size: 10px;
+}
+.remitente.narrow {
+    max-width: 40%;
+}
+
+
+.productos {
+    text-align: center;
+    font-size: 10px;
+    line-height: 1.2;
+    margin-top: -5% !important;
+}
+
+.qr {
+    width: 45%;
+    float: right;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+table,
+th,
+td {
+    border: 1px solid black !important
+}
+
+.contact-info {
+    display: flex;
+}
+
+.contact-info>div {
+    margin: 0 10px;
+}
+
+#logo {
+    opacity: 0.5;
+    margin-top: 4px;
+    margin-bottom: 3%;
+}
+
+@media print {
+    .card-body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Estilos para el contenido de la etiqueta */
+    #etiqueta {
+        width: 6in;
+        height: 4in;
+        padding: 0.1cm;
+        font-size: 12px;
+        line-height: 1.2;
+        text-align: left;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    hr {
+        border-top: 1px solid #bbb;
+        width: 80%;
+        margin: 1px auto;
+    }
+
+    .emisor {
+        width: 50%;
+        float: left;
+        font-size: 10px;
+    }
+
+    .remitente {
+        width: 45% ;
+        float: right;
+        font-size: 10px;
+    }
+    .remitente.narrow {
+        max-width: 30%;
+    }
+
+
+    .productos {
+        text-align: center;
+        font-size: 10px;
+        line-height: 1.2;
+        margin-top: -5% !important;
+    }
+    .productos.narrow {
+        max-width: 40%;
+    }
+
+    .qr {
+        width: 45%;
+        float: right;
+        text-align: center;
+    }
+    .qr.narrow {
+        max-width: 30%;
+    }
+
+    table {
+        border-collapse: collapse;
+        border: 1px solid black;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid black !important;
+    }
+
+    .contact-info {
+        display: flex;
+    }
+
+    .contact-info>div {
+        margin: 0 10px;
+    }
+
+    #logo {
+        opacity: 0.5;
+        margin-top: 4px;
+        margin-bottom: 3%;
+    }
+    .hidden-print {
+        display: none !important;
+    }
+}
