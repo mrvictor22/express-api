@@ -145,19 +145,24 @@ class UserSeeder extends Seeder
 //            'avatar' => 'avatar-1.jpg',
 //            'password'=>bcrypt('unikastore2023')
 //        ])->assignRole('basic_user');
+//        User::create([
+//            'name' => 'Velail Studio',
+//            'email'=> 'velailstudio@mail.com',
+//            'avatar' => 'avatar-1.jpg',
+//            'password'=>bcrypt('velailstudio2023')
+//        ])->assignRole('basic_user');
+//        User::create([
+//            'name' => 'Place It ',
+//            'email'=> 'placeit@mail.com',
+//            'avatar' => 'avatar-1.jpg',
+//            'password'=>bcrypt('placeit2023')
+//        ])->assignRole('basic_user');
         User::create([
-            'name' => 'Velail Studio',
-            'email'=> 'velailstudio@mail.com',
+            'name' => 'ONE CLICK',
+            'email'=> 'oneclick@mail.com',
             'avatar' => 'avatar-1.jpg',
-            'password'=>bcrypt('velailstudio2023')
+            'password'=>bcrypt('oneclick2023')
         ])->assignRole('basic_user');
-        User::create([
-            'name' => 'Place It ',
-            'email'=> 'placeit@mail.com',
-            'avatar' => 'avatar-1.jpg',
-            'password'=>bcrypt('placeit2023')
-        ])->assignRole('basic_user');
-
 
     }
 }
