@@ -31,16 +31,36 @@
     </div>
     <div class="card-body" id="printableArea">
         <div id="etiqueta">
+            <div class="container">
                 <div class="row">
-                    <div class="col-md-12 text-center">
-                        <img id="logo" src="{{ URL::asset('assets/images/ssss.png')}}" width="175" />
+                    <div class="col text-center">
+                        <img id="logo" src="{{ URL::asset('assets/images/ssss.png')}}" width="125" />
                     </div>
-                </div>
-                <div class="row contact-info">
-                    <div class="col-sm text-center">
-                        <p>Telefonos: 74595990 / 22894200</p>
+                    <div class="col contact-info text-center">
+                        <div class="row">
+                            ENVIOS A TODO EL SALVADOR
+                            <br>
+                            <br>Telefonos: <br> 74595990 / 22894200
+                            <br>
+                        </div>
+                        <div class="row">
+                            col
+                        </div>
+
                     </div>
+                    <div class="col qr narrow">
+                        <!-- QR code con el ID de guía -->
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data={{$ruta->numero_guia}}" />
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col"></div>
+                    <div class="col"><h6>ID de guía: {{$ruta->numero_guia}}</h6></div>
+                    <div class="col"></div>
+
                 </div>
+
+            </div>
+
                 <div class="row">
                     <h6>ID de guía: {{$ruta->numero_guia}}</h6>
                 </div>
@@ -78,10 +98,7 @@
                         </table>
                         <hr>
                     </div>
-                    <div class="col-sm qr narrow">
-                        <!-- QR code con el ID de guía -->
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data={{$ruta->numero_guia}}" />
-                    </div>
+
                 </div>
 
         </div>
