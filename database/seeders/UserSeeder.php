@@ -157,12 +157,49 @@ class UserSeeder extends Seeder
 //            'avatar' => 'avatar-1.jpg',
 //            'password'=>bcrypt('placeit2023')
 //        ])->assignRole('basic_user');
+//        User::create([
+//            'name' => 'ONE CLICK',
+//            'email'=> 'oneclick@mail.com',
+//            'avatar' => 'avatar-1.jpg',
+//            'password'=>bcrypt('oneclick2023')
+//        ])->assignRole('basic_user');
         User::create([
-            'name' => 'ONE CLICK',
-            'email'=> 'oneclick@mail.com',
+            'name' => 'DANILO ESCOBAR',
+            'email'=> 'daniloescobar@mail.com',
             'avatar' => 'avatar-1.jpg',
-            'password'=>bcrypt('oneclick2023')
+            'password'=>bcrypt('daniloescobar2023')
         ])->assignRole('basic_user');
+        User::create([
+            'name' => 'CHIDO',
+            'email'=> 'chido@mail.com',
+            'avatar' => 'avatar-1.jpg',
+            'password'=>bcrypt('chido2023')
+        ])->assignRole('basic_user');
+        User::create([
+            'name' => 'ESAU MARTINEZ',
+            'email'=> 'esaumartinez@mail.com',
+            'avatar' => 'avatar-1.jpg',
+            'password'=>bcrypt('esaumartinez2023')
+        ])->assignRole('basic_user');
+        User::create([
+            'name' => 'RONELY STORE',
+            'email'=> 'ronelystore@mail.com',
+            'avatar' => 'avatar-1.jpg',
+            'password'=>bcrypt('ronelystore2023')
+        ])->assignRole('basic_user');
+        User::create([
+            'name' => 'MIA VOGA',
+            'email'=> 'miavoga@mail.com',
+            'avatar' => 'avatar-1.jpg',
+            'password'=>bcrypt('miavoga2023')
+        ])->assignRole('basic_user');
+        User::create([
+            'name' => 'Piqueando Online',
+            'email'=> 'piqueando@mail.com',
+            'avatar' => 'avatar-1.jpg',
+            'password'=>bcrypt('piqueando2023')
+        ])->assignRole('basic_user');
+
 
     }
 }
