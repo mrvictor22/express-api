@@ -36,68 +36,49 @@
                     <div class="col text-center">
                         <img id="logo" src="{{ URL::asset('assets/images/ssss.png')}}" width="125" />
                     </div>
-                    <div class="col contact-info text-center">
-                        <div class="row">
+                    <div class="col contact-info text-nowrap text-center text-uppercase font-weight-bold">
                             ENVIOS A TODO EL SALVADOR
-                            <br>
-                            <br>Telefonos: <br> 74595990 / 22894200
-                            <br>
-                        </div>
+                            <br> <i class='bx bxl-whatsapp'></i>74595990 / 22894200<i class='bx bx-phone' ></i>
                         <div class="row">
-                            col
-                        </div>
+                            <div class="col contact-info text-nowrap text-center text-uppercase font-weight-bold guia">
+                                <b>ID de guía: {{$ruta->numero_guia}}</b>
+                            </div>
 
+                        </div>
                     </div>
+
                     <div class="col qr narrow">
                         <!-- QR code con el ID de guía -->
                         <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data={{$ruta->numero_guia}}" />
                     </div>
-                    <div class="w-100"></div>
-                    <div class="col"></div>
-                    <div class="col"><h6>ID de guía: {{$ruta->numero_guia}}</h6></div>
-                    <div class="col"></div>
+
 
                 </div>
 
             </div>
 
-                <div class="row">
-                    <h6>ID de guía: {{$ruta->numero_guia}}</h6>
-                </div>
-                <div class="row">
-                    <div class="col-sm remitente narrow">
-                        <h6>Recibe:</h6>
+                <div class="row seccion-2">
+                    <div class="col remitente narrow text-justify">
+                        <h6>Envia</h6>
+                        Sucursal: {{$ruta->creado_por}}<br>
+
+                        <br> <h6>Recibe</h6>
                         <!-- Aquí va la información del remitente -->
-                        <p>Nombre: {{$ruta->nombre_contact}}</p>
+                        <p>Nombre de contacto: {{$ruta->nombre_contact}}</p>
                         <p>Dirección: {{$ruta->direccion_contact}}</p>
                         <p>Teléfono: {{$ruta->phn_contact}}</p>
-                        <h6>Envia:{{$ruta->creado_por}}</h6>
+
                     </div>
-                    <div class="col-sm productos narrow">
+                    <div class="col productos narrow text-left">
                         <!-- Aquí iría la información de los productos -->
-                        <p><strong>Información de los productos:</strong></p>
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Cantidad</th>
-                                <th>Código</th>
-                                <th>Monto a cobrar</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($ruta->productos as $producto)
-                                <tr>
-                                    <td>{{ $producto->nombre_prod }}</td>
-                                    <td>{{ $producto->cant_prod }}</td>
-                                    <td>{{ $producto->cod_prod }}</td>
-                                    <td>{{ $producto->monto_cobrar }}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                        <h6>Articulos:</h6>
+                        {{ count($ruta->productos) }} <br>
+                        <h6>Total a Cobrar</h6>
+                        {{ $ruta->productos->sum('monto_cobrar') }}<br>
+
                         <hr>
                     </div>
+
 
                 </div>
 
