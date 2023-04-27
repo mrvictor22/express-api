@@ -79,6 +79,9 @@ td {
     margin-top: 4px;
     margin-bottom: 3%;
 }
+.seccion-1{
+    margin-top: 3% !important;
+}
 
 @media print {
     .card-body {
@@ -88,6 +91,9 @@ td {
     }
     .seccion-2{
         margin-top: -5% !important;
+    }
+    .seccion-1{
+        margin-top: 3% !important;
     }
 
     /* Estilos para el contenido de la etiqueta */

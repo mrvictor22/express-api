@@ -31,7 +31,7 @@
     </div>
     <div class="card-body" id="printableArea">
         <div id="etiqueta">
-            <div class="container">
+            <div class="container seccion-1">
                 <div class="row">
                     <div class="col text-center">
                         <img id="logo" src="{{ URL::asset('assets/images/ssss.png')}}" width="125" />
