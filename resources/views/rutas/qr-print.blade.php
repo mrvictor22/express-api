@@ -67,17 +67,14 @@
                         <p>Nombre de contacto: {{$ruta->nombre_contact}}</p>
                         <p>Dirección: {{$ruta->direccion_contact}}</p>
                         <p>Teléfono: {{$ruta->phn_contact}}</p>
-
-                    </div>
-                    <div class="col productos narrow text-left">
                         <!-- Aquí iría la información de los productos -->
                         <h6>Articulos:</h6>
                         {{ count($ruta->productos) }} <br>
                         <h6>Total a Cobrar</h6>
                         {{ $ruta->productos->sum('monto_cobrar') }}<br>
 
-                        <hr>
                     </div>
+
 
 
                 </div>
