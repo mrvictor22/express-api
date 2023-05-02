@@ -29,7 +29,7 @@ hr {
     font-size: 15px;
 }
 .seccion-2{
-    margin-top: -5% !important;
+    margin-top: -15% !important;
 }
 
 .remitente {
@@ -38,7 +38,7 @@ hr {
     font-size: 15px;
 }
 .remitente.narrow {
-    max-width: 40%;
+
 }
 .guia{
     margin-top: 15% !important;
@@ -80,7 +80,7 @@ td {
     margin-bottom: 3%;
 }
 .seccion-1{
-    margin-top: 5% !important;
+    margin-top: 1% !important;
 }
 
 @media print {
@@ -90,10 +90,10 @@ td {
         align-items: center;
     }
     .seccion-2{
-        margin-top: -10% !important;
+        margin-top: -15% !important;
     }
     .seccion-1{
-        margin-top: 5% !important;
+        margin-top: 1% !important;
     }
 
     /* Estilos para el contenido de la etiqueta */
