@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        $avatar = 'avatar-1.jpg';
         //
 //        User::create([
 //            'name' => 'user1',
@@ -163,42 +164,103 @@ class UserSeeder extends Seeder
 //            'avatar' => 'avatar-1.jpg',
 //            'password'=>bcrypt('oneclick2023')
 //        ])->assignRole('basic_user');
+//        User::create([
+//            'name' => 'DANILO ESCOBAR',
+//            'email'=> 'daniloescobar@mail.com',
+//            'avatar' => 'avatar-1.jpg',
+//            'password'=>bcrypt('daniloescobar2023')
+//        ])->assignRole('basic_user');
+//        User::create([
+//            'name' => 'CHIDO',
+//            'email'=> 'chido@mail.com',
+//            'avatar' => 'avatar-1.jpg',
+//            'password'=>bcrypt('chido2023')
+//        ])->assignRole('basic_user');
+//        User::create([
+//            'name' => 'ESAU MARTINEZ',
+//            'email'=> 'esaumartinez@mail.com',
+//            'avatar' => 'avatar-1.jpg',
+//            'password'=>bcrypt('esaumartinez2023')
+//        ])->assignRole('basic_user');
+//        User::create([
+//            'name' => 'RONELY STORE',
+//            'email'=> 'ronelystore@mail.com',
+//            'avatar' => 'avatar-1.jpg',
+//            'password'=>bcrypt('ronelystore2023')
+//        ])->assignRole('basic_user');
+//        User::create([
+//            'name' => 'MIA VOGA',
+//            'email'=> 'miavoga@mail.com',
+//            'avatar' => 'avatar-1.jpg',
+//            'password'=>bcrypt('miavoga2023')
+//        ])->assignRole('basic_user');
+//        User::create([
+//            'name' => 'Piqueando Online',
+//            'email'=> 'piqueando@mail.com',
+//            'avatar' => 'avatar-1.jpg',
+//            'password'=>bcrypt('piqueando2023')
+//        ])->assignRole('basic_user');
+
+
+
+
+
         User::create([
-            'name' => 'DANILO ESCOBAR',
-            'email'=> 'daniloescobar@mail.com',
-            'avatar' => 'avatar-1.jpg',
-            'password'=>bcrypt('daniloescobar2023')
+            'name' => 'littlekids',
+            'email' => 'littlekids@example.com',
+            'avatar' => $avatar,
+            'password' => bcrypt('littlekids2023'),
         ])->assignRole('basic_user');
+
         User::create([
-            'name' => 'CHIDO',
-            'email'=> 'chido@mail.com',
-            'avatar' => 'avatar-1.jpg',
-            'password'=>bcrypt('chido2023')
+            'name' => 'JMSport',
+            'email' => 'jmsport@example.com',
+            'avatar' => $avatar,
+            'password' => bcrypt('jmsport2023'),
         ])->assignRole('basic_user');
+
         User::create([
-            'name' => 'ESAU MARTINEZ',
-            'email'=> 'esaumartinez@mail.com',
-            'avatar' => 'avatar-1.jpg',
-            'password'=>bcrypt('esaumartinez2023')
+            'name' => 'Wizards',
+            'email' => 'wizards@example.com',
+            'avatar' => $avatar,
+            'password' => bcrypt('wizards2023'),
         ])->assignRole('basic_user');
+
         User::create([
-            'name' => 'RONELY STORE',
-            'email'=> 'ronelystore@mail.com',
-            'avatar' => 'avatar-1.jpg',
-            'password'=>bcrypt('ronelystore2023')
+            'name' => 'Bazar Melissa',
+            'email' => 'bazarmelissa@example.com',
+            'avatar' => $avatar,
+            'password' => bcrypt('bazarmelissa2023'),
         ])->assignRole('basic_user');
+
         User::create([
-            'name' => 'MIA VOGA',
-            'email'=> 'miavoga@mail.com',
-            'avatar' => 'avatar-1.jpg',
-            'password'=>bcrypt('miavoga2023')
+            'name' => 'La Manzanita',
+            'email' => 'lamanzanita@example.com',
+            'avatar' => $avatar,
+            'password' => bcrypt('lamanzanita2023'),
         ])->assignRole('basic_user');
+
         User::create([
-            'name' => 'Piqueando Online',
-            'email'=> 'piqueando@mail.com',
-            'avatar' => 'avatar-1.jpg',
-            'password'=>bcrypt('piqueando2023')
+            'name' => 'WoodartSv',
+            'email' => 'woodartsv@example.com',
+            'avatar' => $avatar,
+            'password' => bcrypt('woodartsv2023'),
         ])->assignRole('basic_user');
+
+        User::create([
+            'name' => 'Cygnus',
+            'email' => 'cygnus@example.com',
+            'avatar' => $avatar,
+            'password' => bcrypt('cygnus2023'),
+        ])->assignRole('basic_user');
+
+        User::create([
+            'name' => 'Balu-Vogue',
+            'email' => 'balu-vogue@example.com',
+            'avatar' => $avatar,
+            'password' => bcrypt('balu-vogue2023'),
+        ])->assignRole('basic_user');
+
 
 
     }
