@@ -105,10 +105,10 @@
         elementoGuia.classList.remove('grande');
     }
 
-    var usuariosPermitidos = ['user1', 'lagranvia', 'galerias', 'metrocentro', 'plazamundo', 'santaana', 'sanmiguel', 'ffc', 'marketplace'];
+    var usuariosNoPermitidos = ['user1', 'lagranvia', 'galerias', 'metrocentro', 'plazamundo', 'santaana', 'sanmiguel', 'ffc', 'marketplace'];
     var usr = '{{ $ruta->creado_por }}';
 
-    if (usuariosPermitidos.includes(usr)) {
+    if (usuariosNoPermitidos.includes(usr)) {
         eliminarElemento();
     }
 
