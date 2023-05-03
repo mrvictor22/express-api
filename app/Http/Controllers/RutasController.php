@@ -148,8 +148,11 @@ class RutasController extends Controller
 
 
             }
+        if (isset($prod)) {
             info($prod);
-            if (empty($prod))
+        }
+
+        if (empty($prod))
             {
                 $prod = 0;
 
