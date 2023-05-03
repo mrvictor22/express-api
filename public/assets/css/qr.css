@@ -69,18 +69,17 @@ td {
 }
 
 .contact-info {
-
+margin-top: 2% !important;
 }
 
 
 
-#logo {
+.logo {
     opacity: 0.5;
-    margin-top: 4px;
-    margin-bottom: 3%;
+
 }
 .seccion-1{
-   
+
 }
 
 @media print {
@@ -164,17 +163,16 @@ td {
     }
 
     .contact-info {
-
+margin-top: 2% !important;
     }
 
     .contact-info>div {
         margin: 0 10px;
     }
 
-    #logo {
+    .logo {
         opacity: 0.5;
-        margin-top: 4px;
-        margin-bottom: 3%;
+       
     }
     .hidden-print {
         display: none !important;
