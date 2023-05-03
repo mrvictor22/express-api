@@ -17,12 +17,7 @@ class UserSeeder extends Seeder
     {
         $avatar = 'avatar-1.jpg';
         //
-//        User::create([
-//            'name' => 'user1',
-//            'email'=> 'invitado@mail.com',
-//            'avatar' => 'avatar-1.jpg',
-//            'password'=>bcrypt('express22')
-//        ])->assignRole('admin');
+       
 //
 //usuario: lagranvia
 //claave: lagranvia1

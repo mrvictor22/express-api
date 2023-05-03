@@ -8,6 +8,7 @@
     <!--datatable responsive css-->
     <link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('assets/css/qr.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
     @component('components.breadcrumb')
@@ -19,104 +20,75 @@
         @endslot
     @endcomponent
 
-<style>
-    table, th, td {
-        border: 4px solid black;
-        border-collapse: collapse;
-    }
-    #qr-iframe{
-        border-color: white;
-    }
-    .card-body{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /*padding-left: 25%;*/
-    }
-    @media print {
-        .card-body{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 30px;
-            /*padding-left: 25%;*/
-        }
-        table {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            justify-content: center;
-            align-items: center;
-        }
-        #qr-iframe{
-            border-color: white;
-        }
-        .hidden-print {
-            display: none !important;
-        }
-    }
-
-
-</style>
-
-<div class="card-body" id="printableArea" >
     <div class="row">
-        @if( $id_guia)
+        <div class="hidden-print">
+            <div class="text-center">
+                <button class="btn btn-primary hidden-print" onclick="printableDiv('printableArea')">Imprimir</button>
+                <button class="btn btn-danger hidden-print" onclick="cerrarPestana()">Cerrar</button>
 
-            <table class="tg" style="border: 4px solid black;border-collapse: collapse;">
-                <thead>
-                <tr style="border: 4px solid black; border-collapse: collapse;">
-                    <td colspan="2" style="text-align: center; border: 4px solid black;border-collapse: collapse;">
-                        <img src="{{ URL::asset('assets/images/ssss.png')}}"  width="255" ></td>
-                </tr>
-                <tr style="border: 4px solid black;border-collapse: collapse;">
-
-                    <td class="tg-0lax" style="border: 4px solid black;border-collapse: collapse; width: 50%">
-                        <h3>Guia:</h3>
-                        <ul>
-                            <li>Numero de guia: {{$id_guia}}  </li>
-                            <li>Sucursal: {{$sucursal}}  </li>
-                            <li>Fecha despacho: {{$fecha_despacho}}  </li>
-                        </ul>
-                        <h3>Destino:</h3>
-                       <ul>
-
-                           <li>Nombre de contacto: {{$nombre_contact}}  </li>
-                           <li>Telefono: {{$telefono}}  </li>
-                           <li>Dirección:{{$destino}}</li>
-
-                       </ul>
-                    </td>
-                    <td class="tg-0lax" style="border: 0px solid black;border-collapse: collapse; justify-content: center; align-items: center; display: flex">
-
-                        <iframe width="300px" height="300px" src="{{$google_API.$id_guia }}" title="QR" id="qr-iframe"></iframe>
-
-                    </td>
-                </tr>
-
-                </thead>
-            </table>
-        @endif
+            </div>
+        </div>
     </div>
+    <div class="card-body" id="printableArea">
+        <div id="etiqueta">
+            <div class="container seccion-1">
+                <div class="row">
+                    <div class="col text-center logo">
+                        <img id="logo" src="{{ URL::asset('assets/images/ssss.png')}}" width="125" />
+                    </div>
+                    <div class="col contact-info text-nowrap text-center text-uppercase font-weight-bold">
+                            ENVIOS A TODO EL SALVADOR
+                            <br> <i class='bx bxl-whatsapp'></i>74595990 / 22894200<i class='bx bx-phone' ></i>
+                        <div class="row">
+                            <div class="col contact-info text-nowrap text-center text-uppercase font-weight-bold guia">
+                                <b>ID de guía: {{$ruta->numero_guia}}</b>
+                            </div>
 
-</div>
-    <br>
-    <a></a>
-    <div class="row">
-        <input class="hidden-print" type="button" onclick="printableDiv('printableArea')" value="Imprimir etiqueta" />
-    </div>
+                        </div>
+                    </div>
+
+                    <div class="col qr narrow">
+                        <!-- QR code con el ID de guía -->
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data={{$ruta->numero_guia}}" />
+                    </div>
+
+
+                </div>
+
+            </div>
+
+                <div class="row seccion-2">
+                    <div class="col remitente narrow text-justify">
+                        <h6>Envia</h6>
+                        Sucursal: {{$ruta->sucursal}}<br>
+
+                        <br> <h6>Recibe</h6>
+                        <!-- Aquí va la información del remitente -->
+                        <p>Nombre de contacto: {{$ruta->nombre_contact}}</p>
+                        <span >Dirección: </span> <span class="direccion">{{$ruta->direccion_contact}}</span>
+                        <p>Teléfono: {{$ruta->phn_contact}}</p>
+                        <!-- Aquí iría la información de los productos -->
+                        <h6>Articulos:</h6>
+                        {{ count($ruta->productos) }} <br>
+                        <h6>Total a Cobrar</h6>
+                        {{ $ruta->productos->sum('monto_cobrar') }}<br>
+
+                    </div>
+
+
+
+                </div>
+
+        </div>
+
 @endsection
 @section('script')
 <script>
     function printableDiv(printableAreaDivId) {
-
-
         window.print();
-
-
+    }
+    function cerrarPestana() {
+        window.close();
     }
 </script>
 @endsection
