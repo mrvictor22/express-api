@@ -33,7 +33,7 @@
         <div id="etiqueta">
             <div class="container seccion-1">
                 <div class="row">
-                    <div class="col text-center">
+                    <div class="col text-center logo">
                         <img id="logo" src="{{ URL::asset('assets/images/ssss.png')}}" width="125" />
                     </div>
                     <div class="col contact-info text-nowrap text-center text-uppercase font-weight-bold">
