@@ -65,7 +65,7 @@
                         <br> <h6>Recibe</h6>
                         <!-- Aquí va la información del remitente -->
                         <p>Nombre de contacto: {{$ruta->nombre_contact}}</p>
-                        <p>Dirección: {{$ruta->direccion_contact}}</p>
+                        <span >Dirección: </span> <span class="direccion">{{$ruta->direccion_contact}}</span>
                         <p>Teléfono: {{$ruta->phn_contact}}</p>
                         <!-- Aquí iría la información de los productos -->
                         <h6>Articulos:</h6>
