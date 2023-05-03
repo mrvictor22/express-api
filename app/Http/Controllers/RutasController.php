@@ -120,11 +120,13 @@ class RutasController extends Controller
                 $prod_names = $request->DetailsName[$i];
                 $prod_amounts = $request->DetailsAmount[$i];
                 $prod_codes = $request->DetailsCode[$i];
-                if ($prod_names == '' || $prod_amounts == '' || $prod_codes == '')
+                $prod_costo = $request->DetailsCost[$i];
+                if ($prod_names == '' || $prod_amounts == '' || $prod_codes == '' || $prod_costo == '')
                 {
                     $prod_names = null;
                     $prod_amounts = null;
                     $prod_codes = null;
+                    $prod_costo = null;
                 } else
                 {
                     $productos_ruta = new RutasProductos;
@@ -132,20 +134,21 @@ class RutasController extends Controller
                     $productos_ruta->nombre_prod = $prod_names;
                     $productos_ruta->cant_prod = $prod_amounts;
                     $productos_ruta->cod_prod = $prod_codes;
+                    $productos_ruta->monto_cobrar = $prod_costo;
                     $productos_ruta->save();
 
                     $prod[] = [
                         "code" => $prod_codes,
                         "description"=> $prod_names,
                         "quantity"=> $prod_amounts,
-                        "unit_price"=> "0"
+                        "unit_price"=> $prod_costo,
                     ];
                 }
 
 
 
             }
-//            info($prod);
+            info($prod);
             if (empty($prod))
             {
                 $prod = 0;

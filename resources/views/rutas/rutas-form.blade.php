@@ -54,10 +54,6 @@
                             </div>
                             <!--end col-->
 
-
-
-
-                            <!--end col-->
                             <br>
                         <div class="row align-items-center g-3">
                             <div class="col-lg-4">
@@ -148,6 +144,15 @@
 
 
                                                 </div>
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    Monto a cobrar
+                                                    <input type="number" class="form-control" id="n_monto_cobrar" name="DetailsCost[0]" placeholder="$" required step="0.01" min="0.01">
+
+
+                                                </div>
+
                                             </td>
                                             <td>
                                                 Codigo
