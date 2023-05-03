@@ -80,7 +80,7 @@ td {
     margin-bottom: 3%;
 }
 .seccion-1{
-    margin-top: 1% !important;
+   
 }
 
 @media print {
@@ -93,7 +93,7 @@ td {
         margin-top: -15% !important;
     }
     .seccion-1{
-        margin-top: 1% !important;
+
     }
 
     /* Estilos para el contenido de la etiqueta */
