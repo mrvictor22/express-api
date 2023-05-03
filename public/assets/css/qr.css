@@ -1,0 +1,184 @@
+.card-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos para el contenido de la etiqueta */
+#etiqueta {
+    width: 6in;
+    height: 4in;
+    padding: 0.1cm;
+    line-height: 1.2;
+
+}
+
+h3 {
+    text-align: center;
+}
+
+hr {
+    border-top: 1px solid #bbb;
+    width: 80%;
+    margin: 1px auto;
+}
+
+.emisor {
+    width: 50%;
+    float: left;
+    font-size: 15px;
+}
+.seccion-2{
+    margin-top: -5% !important;
+}
+
+.remitente {
+
+    float: right;
+    font-size: 15px;
+}
+.remitente.narrow {
+
+}
+.guia{
+    margin-top: 15% !important;
+}
+
+
+.productos {
+    font-size: 15px;
+    line-height: 1.2;
+    text-align: left;
+}
+
+.qr {
+    width: 45%;
+    float: right;
+    text-align: center;
+    margin-top: 3% !important;
+}
+
+table {
+    border-collapse: collapse;
+
+}
+
+table,
+th,
+td {
+
+}
+
+.contact-info {
+margin-top: 3% !important;
+}
+
+
+
+.logo {
+    opacity: 0.5;
+
+}
+.seccion-1{
+
+}
+
+@media print {
+    .card-body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .seccion-2{
+        margin-top: -5% !important;
+    }
+    .seccion-1{
+
+    }
+    .direccion{
+        font-size: 2vw !important;
+    }
+
+    /* Estilos para el contenido de la etiqueta */
+    #etiqueta {
+        width: 6in;
+        height: 4in;
+        padding: 0.1cm;
+        line-height: 1.2;
+        text-align: left;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    hr {
+        border-top: 1px solid #bbb;
+        width: 80%;
+        margin: 1px auto;
+    }
+
+    .emisor {
+        width: 50%;
+        float: left;
+        font-size: 15px;
+    }
+
+    .remitente {
+        float: right;
+        font-size: 15px;
+    }
+    .remitente.narrow {
+
+    }
+
+
+    .productos {
+
+        font-size: 15px;
+        line-height: 1.2;
+        text-align: left;
+    }
+
+
+    .qr {
+        width: 45%;
+        float: right;
+        text-align: center;
+        margin-top: 3% !important;
+    }
+    .qr.narrow {
+        max-width: 30%;
+    }
+    .guia{
+        font-size: 20px !important;
+        margin-top: 15% !important;
+    }
+
+    table {
+        border-collapse: collapse;
+
+    }
+
+    table,
+    th,
+    td {
+
+    }
+
+    .contact-info {
+margin-top: 3% !important;
+    }
+
+    .contact-info>div {
+        margin: 0 10px;
+    }
+
+    .logo {
+        opacity: 0.5;
+
+    }
+    .hidden-print {
+        display: none !important;
+    }
+}
