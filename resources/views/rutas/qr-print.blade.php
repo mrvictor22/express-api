@@ -60,7 +60,7 @@
                 <div class="row seccion-2">
                     <div class="col remitente narrow text-justify">
                         <h6>Envia</h6>
-                        Sucursal: {{$ruta->creado_por}}<br>
+                        Sucursal: {{$ruta->sucursal}}<br>
 
                         <br> <h6>Recibe</h6>
                         <!-- Aquí va la información del remitente -->

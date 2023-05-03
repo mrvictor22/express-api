@@ -29,7 +29,7 @@ hr {
     font-size: 15px;
 }
 .seccion-2{
-    margin-top: -15% !important;
+    margin-top: -5% !important;
 }
 
 .remitente {
@@ -54,7 +54,7 @@ hr {
     width: 45%;
     float: right;
     text-align: center;
-    margin-top: 10% !important;
+    margin-top: 3% !important;
 }
 
 table {
@@ -69,7 +69,7 @@ td {
 }
 
 .contact-info {
-margin-top: 2% !important;
+margin-top: 3% !important;
 }
 
 
@@ -89,7 +89,7 @@ margin-top: 2% !important;
         align-items: center;
     }
     .seccion-2{
-        margin-top: -15% !important;
+        margin-top: -5% !important;
     }
     .seccion-1{
 
@@ -141,7 +141,7 @@ margin-top: 2% !important;
         width: 45%;
         float: right;
         text-align: center;
-        margin-top: 10% !important;
+        margin-top: 3% !important;
     }
     .qr.narrow {
         max-width: 30%;
@@ -163,7 +163,7 @@ margin-top: 2% !important;
     }
 
     .contact-info {
-margin-top: 2% !important;
+margin-top: 3% !important;
     }
 
     .contact-info>div {
@@ -172,7 +172,7 @@ margin-top: 2% !important;
 
     .logo {
         opacity: 0.5;
-       
+
     }
     .hidden-print {
         display: none !important;
