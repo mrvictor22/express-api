@@ -82,6 +82,10 @@ margin-top: 3% !important;
 .seccion-1{
 
 }
+.grande {
+    font-size: 100% !important;
+}
+
 
 @media print {
     .card-body {
@@ -98,6 +102,10 @@ margin-top: 3% !important;
     .direccion{
         font-size: 2vw !important;
     }
+    .grande {
+        font-size: 2vw !important;
+    }
+
 
     /* Estilos para el contenido de la etiqueta */
     #etiqueta {
