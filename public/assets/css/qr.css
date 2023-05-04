@@ -10,7 +10,14 @@
     height: 4in;
     padding: 0.1cm;
     line-height: 1.2;
+    border: 3px solid black;
 
+}
+.direccion{
+    font-size: 15px;
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 h3 {
@@ -100,7 +107,10 @@ margin-top: 3% !important;
 
     }
     .direccion{
-        font-size: 2vw !important;
+        font-size: 15px;
+        max-width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .grande {
         font-size: 2vw !important;
@@ -114,6 +124,7 @@ margin-top: 3% !important;
         padding: 0.1cm;
         line-height: 1.2;
         text-align: left;
+        border: 1px solid black;
     }
 
     h3 {
