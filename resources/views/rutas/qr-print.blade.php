@@ -25,6 +25,10 @@
             <div class="text-center">
                 <button class="btn btn-primary hidden-print" onclick="printableDiv('printableArea')">Imprimir</button>
                 <button class="btn btn-danger hidden-print" onclick="cerrarPestana()">Cerrar</button>
+                <br>
+                <a href="#" onclick="mostrarVideo()">Tutorial de configuración de impresora</a>
+                <br>
+                <div id="video-container"></div>
             </div>
         </div>
     </div>
@@ -110,6 +114,9 @@
 
     if (usuariosNoPermitidos.includes(usr)) {
         eliminarElemento();
+    }
+    function mostrarVideo() {
+        document.getElementById("video-container").innerHTML = '<iframe width="840" height="415" src="https://www.youtube.com/embed/H0rOaEwAQyY?start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
     }
 
 </script>
