@@ -265,30 +265,35 @@ class UserSeeder extends Seeder
 
         $currentYear = date('Y');
 
-        User::create([
-            'name' => 'QUALCOM',
-            'email' => 'qualcom@example.com',
-            'password' => bcrypt('qualcom' . $currentYear),
-        ])->assignRole('basic_user');
+//        User::create([
+//            'name' => 'QUALCOM',
+//            'email' => 'qualcom@example.com',
+//            'password' => bcrypt('qualcom' . $currentYear),
+//        ])->assignRole('basic_user');
+//
+//        User::create([
+//            'name' => 'DALISE BEAUTY SHOP',
+//            'email' => 'dalisebeautyshop@example.com',
+//            'password' => bcrypt('dalisebeautyshop' . $currentYear),
+//        ])->assignRole('basic_user');
+//
+//        User::create([
+//            'name' => 'CYGNUS',
+//            'email' => 'cygnus@example.com',
+//            'password' => bcrypt('cygnus' . $currentYear),
+//        ])->assignRole('basic_user');
+//
+//        User::create([
+//            'name' => 'THE BOOK STOP',
+//            'email' => 'thebookstop@example.com',
+//            'password' => bcrypt('thebookstop' . $currentYear),
+//        ])->assignRole('basic_user');
 
         User::create([
-            'name' => 'DALISE BEAUTY SHOP',
-            'email' => 'dalisebeautyshop@example.com',
-            'password' => bcrypt('dalisebeautyshop' . $currentYear),
+            'name' => 'Bondeport',
+            'email' => 'bondeport@example.com',
+            'password' => bcrypt('bondeport' . $currentYear),
         ])->assignRole('basic_user');
-
-        User::create([
-            'name' => 'CYGNUS',
-            'email' => 'cygnus@example.com',
-            'password' => bcrypt('cygnus' . $currentYear),
-        ])->assignRole('basic_user');
-
-        User::create([
-            'name' => 'THE BOOK STOP',
-            'email' => 'thebookstop@example.com',
-            'password' => bcrypt('thebookstop' . $currentYear),
-        ])->assignRole('basic_user');
-
 
 
 
