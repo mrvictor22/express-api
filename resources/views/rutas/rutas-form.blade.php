@@ -148,7 +148,8 @@
                                             <td>
                                                 <div>
                                                     Monto a cobrar
-                                                    <input type="number" class="form-control" id="n_monto_cobrar" name="DetailsCost[0]" placeholder="$" required step="0.01" min="0.01">
+                                                    <input type="number" class="form-control" id="n_monto_cobrar" name="DetailsCost[0]" placeholder="$"  step="0.01" min="0.01">
+
 
 
                                                 </div>

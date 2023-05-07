@@ -25,7 +25,10 @@
             <div class="text-center">
                 <button class="btn btn-primary hidden-print" onclick="printableDiv('printableArea')">Imprimir</button>
                 <button class="btn btn-danger hidden-print" onclick="cerrarPestana()">Cerrar</button>
-
+                <br>
+                <a href="#" onclick="mostrarVideo()">Tutorial de configuración de impresora</a>
+                <br>
+                <div id="video-container"></div>
             </div>
         </div>
     </div>
@@ -68,10 +71,10 @@
                         <span >Dirección: </span> <span class="direccion">{{$ruta->direccion_contact}}</span>
                         <p>Teléfono: {{$ruta->phn_contact}}</p>
                         <!-- Aquí iría la información de los productos -->
-                        <h6>Articulos:</h6>
-                        {{ count($ruta->productos) }} <br>
-                        <h6>Total a Cobrar</h6>
-                        {{ $ruta->productos->sum('monto_cobrar') }}<br>
+                        <h6 id="z22">Articulos:</h6>
+                        <span id="z22">{{ count($ruta->productos) }}</span> <br>
+                        <h6 id="z22">Total a Cobrar</h6>
+                        <span id="z22">{{ $ruta->productos->sum('monto_cobrar') }}</span><br>
 
                     </div>
 
@@ -90,5 +93,31 @@
     function cerrarPestana() {
         window.close();
     }
+    function eliminarElemento() {
+        var elementos = document.querySelectorAll("#z22");
+        for (var i = 0; i < elementos.length; i++) {
+            elementos[i].parentNode.removeChild(elementos[i]);
+        }
+    }
+
+    var elementoGuia = document.querySelector('.guia b');
+    var numeroGuia = '{{ $ruta->numero_guia }}';
+
+    if (numeroGuia.length > 6) {
+        elementoGuia.classList.add('grande');
+    } else {
+        elementoGuia.classList.remove('grande');
+    }
+
+    var usuariosNoPermitidos = ['user1', 'lagranvia', 'galerias', 'metrocentro', 'plazamundo', 'santaana', 'sanmiguel', 'ffc', 'marketplace'];
+    var usr = '{{ $ruta->creado_por }}';
+
+    if (usuariosNoPermitidos.includes(usr)) {
+        eliminarElemento();
+    }
+    function mostrarVideo() {
+        document.getElementById("video-container").innerHTML = '<iframe width="840" height="415" src="https://www.youtube.com/embed/H0rOaEwAQyY?start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+    }
+
 </script>
 @endsection
