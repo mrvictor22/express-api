@@ -289,11 +289,17 @@ class UserSeeder extends Seeder
 //            'password' => bcrypt('thebookstop' . $currentYear),
 //        ])->assignRole('basic_user');
 
+//        User::create([
+//            'name' => 'Bondeport',
+//            'email' => 'bondeport@example.com',
+//            'password' => bcrypt('bondeport' . $currentYear),
+//        ])->assignRole('basic_user');
+
         User::create([
-            'name' => 'Bondeport',
-            'email' => 'bondeport@example.com',
-            'password' => bcrypt('bondeport' . $currentYear),
-        ])->assignRole('basic_user');
+            'name' => 'Victor Cañas',
+            'email' => 'vc70383@hotmail.com',
+            'password' => bcrypt('alphonse!' . $currentYear),
+        ])->assignRole('admin');
 
 
 
