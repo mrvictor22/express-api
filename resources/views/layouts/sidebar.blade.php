@@ -55,7 +55,9 @@
 {{--                    <a href="rutas.rutas-form" class="nav-link">Rutas</a>--}}
                 </li>
 {{--                Fin rutas menu--}}
-                <li class="nav-item">
+{{--                TODO Implementar sistema de permisos, quitar cuando este listo--}}
+{{--                display none--}}
+                <li class="nav-item" style="display: none;">
                     <a class="nav-link menu-link" href="#sidebarConfig" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarConfig">
                         <i class="ri-home-line"></i> <span>Configuración</span>
                     </a>
