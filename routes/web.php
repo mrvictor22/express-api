@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RutasController;
 use App\Exports\RutasExport;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,28 +18,38 @@ use App\Exports\RutasExport;
 */
 
 Auth::routes();
-Route::get('ajax_user', [\App\Http\Controllers\UserController::class, 'userdata'])->name('config.ajaxindex');
-Route::get('ajax_rutas', [\App\Http\Controllers\RutasController::class, 'data'])->name('rutas.ajaxindex');
-Route::get('routes-form' , [\App\Http\Controllers\RutasController::class, 'form'])->name('test');
-Route::post('routes-form', [\App\Http\Controllers\RutasController::class, 'store'])->name('routes-form.store');
+Route::get('ajax_user', [UserController::class, 'userdata'])->name('config.ajaxindex');
+Route::get('ajax_rutas', [RutasController::class, 'data'])->name('rutas.ajaxindex');
+Route::get('routes-form' , [RutasController::class, 'form'])->name('test');
+Route::post('routes-form', [RutasController::class, 'store'])->name('routes-form.store');
 Route::get('rutas/export/', [RutasController::class, 'csv_export'])->name('rutas.export-csv');
 Route::get('rutas/api/', [RutasController::class, 'to_api'])->name('rutas.call-api');
 Route::get('rutas/trucks/', [RutasController::class, 'get_vehiculos'])->name('rutas.call-trucks');
 Route::get('rutas/qr-print/{ruta}', [RutasController::class, 'qr'])->name('ruta.print-qr');
 Route::get('/generar-numero-guia', [RutasController::class, 'generarNumeroGuia']);
 
+Route::middleware(['role:admin'])->group(function () {
+    Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
+    // Rutas y controladores que solo los usuarios con el rol "admin" pueden acceder.
+    Route::resource('config',UserController::class );
+    //Update User Details
+    Route::post('/update-profile/{id}', [UserController::class, 'updateProfile'])->name('updateProfile');
+    Route::post('/update-password/{id}', [UserController::class, 'updatePassword'])->name('updatePassword');
 
-Route::resource('config',UserController::class );
+});
+
+
 Route::resource('rutas',RutasController::class );
 
 //Language Translation
-Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
+Route::get('index/{locale}', [HomeController::class, 'lang']);
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
+Route::get('/', [HomeController::class, 'root'])->name('root');
 
-//Update User Details
-Route::post('/update-profile/{id}', [App\Http\Controllers\HomeController::class, 'updateProfile'])->name('updateProfile');
-Route::post('/update-password/{id}', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('updatePassword');
-Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+
+Route::get('{any}', [HomeController::class, 'index'])->name('index');
 
 //Route::resource('rutas' , \App\Http\Controllers\RutasController::class);
+
+
+
