@@ -22,8 +22,8 @@
             <!--end col-->
             <div class="col">
                 <div class="p-2">
-                    <h3 class="text-white mb-1">Anna Adame</h3>
-                    <p class="text-white-75">Owner & Founder</p>
+                    <h3 class="text-white mb-1">{{ $user->name }} </h3>
+                    <p class="text-white-75 text-uppercase">{{ $user->roles->first()->name }}</p>
                     <div class="hstack text-white-50 gap-1">
                         <div class="me-2"><i
                                 class="ri-map-pin-user-line me-1 text-white-75 fs-16 align-middle"></i>California,
@@ -38,14 +38,14 @@
                 <div class="row text text-white-50 text-center">
                     <div class="col-lg-6 col-4">
                         <div class="p-2">
-                            <h4 class="text-white mb-1">24.3K</h4>
-                            <p class="fs-14 mb-0">Followers</p>
+                            <h4 class="text-white mb-1">{{$count}}</h4>
+                            <p class="fs-14 mb-0">Total de rutas creadas</p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-4">
                         <div class="p-2">
-                            <h4 class="text-white mb-1">1.3K</h4>
-                            <p class="fs-14 mb-0">Following</p>
+                            <h4 class="text-white mb-1">{{$prods}}</h4>
+                            <p class="fs-14 mb-0">Total de productos enviados</p>
                         </div>
                     </div>
                 </div>

@@ -17,12 +17,13 @@ class CheckRole
     public function handle(Request $request, Closure $next, ...$roles)
     {
         // Comprueba si el usuario actual tiene uno de los roles especificados
-        if (! $request->user() || ! in_array($request->user()->role, $roles)) {
-            return response()->view('error.auth-404-basic', [], 404);
+        if (! $request->user() || ! $request->user()->hasAnyRole($roles)) {
+            abort(404);
         }
 
         return $next($request);
     }
+
 
 
 }

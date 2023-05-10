@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rutas;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -70,10 +71,14 @@ class UserController extends Controller
     #Funtion to show the update form for users
     public function showProfile()
     {
-//        $user = User::find($id);
-        return view('users.profile');
-
+        $user = auth()->user();
+        $count = Rutas::where('creado_por', $user->name)->count();
+        $prods = Rutas::join('producto_rutas_tbl', 'rutas_tbl.id', '=', 'producto_rutas_tbl.id_rutas_tbl')
+            ->where('rutas_tbl.creado_por', $user->name)
+            ->sum('producto_rutas_tbl.cant_prod');
+        return view('users.profile', compact('user', 'count', 'prods'));
     }
+
 
 
 
