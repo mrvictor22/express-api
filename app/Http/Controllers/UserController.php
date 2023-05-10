@@ -35,11 +35,12 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
+        //Redirect to user create form resources/views/users/create-profile.blade.php
+        return view('users.create-profile');
 
     }
 

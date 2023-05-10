@@ -19,6 +19,8 @@
         @endslot
     @endcomponent
 
+    @inject('role', 'Spatie\Permission\Models\Role')
+    @inject('permission', 'Spatie\Permission\Models\Permission')
 
 
 <div class="row">
@@ -30,6 +32,15 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header align-items-center d-flex">
+                    @role('admin')
+                    @if(auth()->user()->can('admin.create'))
+                        <!-- Mostrar contenido que solo los usuarios con el rol "admin" y el permiso "admin.create" pueden ver -->
+                        <div class="flex-grow-1">
+                            <button type="button" class="btn rounded-pill btn-primary waves-effect waves-light" onclick="window.location.href='{{ route('config.create') }}'">Crear nuevo usuario</button>
+                        </div>
+                    @endif
+                    @endrole
+
                 </div><!-- end card header -->
                 <div class="card-body">
 
