@@ -28,6 +28,15 @@ Route::get('rutas/trucks/', [RutasController::class, 'get_vehiculos'])->name('ru
 Route::get('rutas/qr-print/{ruta}', [RutasController::class, 'qr'])->name('ruta.print-qr');
 Route::get('/generar-numero-guia', [RutasController::class, 'generarNumeroGuia']);
 
+Route::middleware(['role:admin'])->group(function () {
+    Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
+    // Rutas y controladores que solo los usuarios con el rol "admin" pueden acceder.
+    Route::resource('config',UserController::class );
+    //Update User Details
+    Route::post('/update-profile/{id}', [UserController::class, 'updateProfile'])->name('updateProfile');
+    Route::post('/update-password/{id}', [UserController::class, 'updatePassword'])->name('updatePassword');
+
+});
 
 
 Route::resource('rutas',RutasController::class );
@@ -43,11 +52,4 @@ Route::get('{any}', [HomeController::class, 'index'])->name('index');
 //Route::resource('rutas' , \App\Http\Controllers\RutasController::class);
 
 
-Route::middleware(['role:admin'])->group(function () {
-    // Rutas y controladores que solo los usuarios con el rol "admin" pueden acceder.
-    Route::resource('config',UserController::class );
-    //Update User Details
-    Route::post('/update-profile/{id}', [UserController::class, 'updateProfile'])->name('updateProfile');
-    Route::post('/update-password/{id}', [UserController::class, 'updatePassword'])->name('updatePassword');
-    Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
-});
+

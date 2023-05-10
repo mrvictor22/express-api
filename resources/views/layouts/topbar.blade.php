@@ -779,9 +779,11 @@
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
                         <h6 class="dropdown-header">Hola!</h6>
+                        @if (auth()->user()->hasRole('admin'))
                          <a class="dropdown-item" href="{{route('profile')}}"><i
                                 class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle">Profile</span></a>
+                        @endif
                         <a class="dropdown-item" href="apps-chat"><i
                                 class="mdi mdi-message-text-outline text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle">Messages</span></a>
