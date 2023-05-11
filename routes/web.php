@@ -32,6 +32,8 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
     // Rutas y controladores que solo los usuarios con el rol "admin" pueden acceder.
     Route::resource('config',UserController::class );
+    #Ruta para eliminar usuarios
+    Route::delete('config/eliminar/{id}', [UserController::class, 'destroy'])->name('config.eliminar');
     #Ruta para almacenar usuarios
     Route::post('config/new_user', [UserController::class, 'store'])->name('config.guardar');
     //Update User Details

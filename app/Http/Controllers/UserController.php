@@ -27,12 +27,16 @@ class UserController extends Controller
 
     public function userdata()
     {
-        $users = DB::table('users')->distinct()->get();
+        $userId = Auth::id();
+        $userIds = DB::table('users')->pluck('id')->filter(function ($id) use ($userId) {
+            return $id != $userId;
+        })->toArray();
 
+        $users = DB::table('users')->whereIn('id', $userIds)->distinct()->get();
 
         return datatables()->of($users)->toJson();
-        //return "AJAX OK";
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -135,11 +139,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user): \Illuminate\Http\RedirectResponse
+    public function destroy($id): \Illuminate\Http\RedirectResponse
     {
         try {
             DB::beginTransaction();
 
+            $user = User::findOrFail($id);
             $user->permissions()->detach(); // quitar todos los permisos del usuario
             $user->roles()->detach(); // quitar todos los roles del usuario
             $user->delete(); // eliminar el usuario
@@ -155,6 +160,7 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'Error al eliminar el usuario');
         }
     }
+
 
     public function updateProfile(Request $request, $id)
     {
