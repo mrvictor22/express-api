@@ -22,6 +22,7 @@
     @inject('role', 'Spatie\Permission\Models\Role')
     @inject('permission', 'Spatie\Permission\Models\Permission')
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <div class="row">
     <div class="col-lg-12">
@@ -91,13 +92,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="{{ URL::asset('assets/js/pages/datatables.init.js') }}"></script>
 
     <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 
     <script>
+
         $(document).ready(function () {
+
             $('#user-table').DataTable({
                 processing: true,
                 serverSide: true,
@@ -119,22 +124,59 @@
                     { data: 'name' },
                     { data: 'email' },
                     { data: 'created_at' },
-                    { data: 'id' ,
-                       "render": function (data, type, row) {
-                        let url = "{{route('config.edit',['config' => ":id" ])}}";
-                        url = url.replace(':id', row.id);
-                           return  '<div class="dropdown d-inline-block"><button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="ri-more-fill align-middle"></i></button><ul class="dropdown-menu dropdown-menu-end">'
-                               // +'<li><a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> Ver</a></li>'
-                               +'<li><a href="'+url+'" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>'
-                               //+'<li>'+'<a class="dropdown-item remove-item-btn">'+'<i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete'+'</a>' +'</li>'
-                           +'</ul>'
-                       +'</div>'
-
-
-                       }
+                    {
+                        data: 'id' ,
+                        "render": function (data, type, row) {
+                            let url = "{{route('config.edit',['config' => ":id" ])}}";
+                            url = url.replace(':id', row.id);
+                            let deleteUrl = "{{route('config.destroy', ['config' => ":id"])}}";
+                            deleteUrl = deleteUrl.replace(':id', row.id);
+                            let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                            return '<div class="dropdown d-inline-block">'
+                                + '<button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">'
+                                + '<i class="ri-more-fill align-middle"></i></button><ul class="dropdown-menu dropdown-menu-end">'
+                                + '<li><a href="' + url + '" class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>'
+                                + '<li>'
+                                + '<button class="dropdown-item remove-item-btn" onclick="event.preventDefault(); deleteItem(' + row.id + ', \'' + csrfToken + '\', \'' + deleteUrl + '\')">'
+                                + '<i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete'
+                                + '</button>'
+                                + '</li>'
+                                + '</ul>'
+                                + '</div>';
+                        }
                     }
                 ]
             });
         });
+        function deleteItem(id, token, url) {
+            Swal({
+                title: "¿Está seguro?",
+                text: "¡Una vez eliminado, no podrá recuperar este usuario!",
+                icon: "warning",
+                buttons: ["Cancelar", "Sí, eliminar"],
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        let deleteUrl = url.replace(':id', id);
+                        let data = {_method: 'DELETE', _token: token};
+                        axios.post(deleteUrl, data)
+                            .then(function(response){
+                                Swal("¡Usuario eliminado exitosamente!", {
+                                    icon: "success",
+                                }).then(() => {
+                                    window.location.reload();
+                                });
+                            })
+                            .catch(function(error){
+                                Swal("¡No se pudo eliminar el usuario!", {
+                                    icon: "error",
+                                });
+                            });
+                    } else {
+                        Swal("¡Acción cancelada!");
+                    }
+                });
+        }
     </script>
 @endsection
