@@ -44,10 +44,12 @@
 
     <!-- JAVASCRIPT -->
     @include('layouts.vendor-scripts')
-    <!-- Sweet Alerts js -->
-<script src="{{ URL::asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+<!-- SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Sweet alert init js-->
 <script src="{{ URL::asset('assets/js/pages/sweetalerts.init.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 @include('sweetalert::alert')
 </body>
 

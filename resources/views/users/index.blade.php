@@ -24,6 +24,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+
 <div class="row">
     <div class="col-lg-12">
 
@@ -49,6 +50,7 @@
                         <div class="card">
 
                             <div class="card-body">
+                                <meta name="csrf-token" content="{{ csrf_token() }}">
                                 <table id="user-table" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                                     <thead>
                                     <tr>
@@ -95,11 +97,14 @@
     <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
     <script src="{{ URL::asset('assets/js/pages/datatables.init.js') }}"></script>
 
     <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 
     <script>
+        let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        console.log(csrfToken);
 
         $(document).ready(function () {
 
@@ -129,7 +134,7 @@
                         "render": function (data, type, row) {
                             let url = "{{route('config.edit',['config' => ":id" ])}}";
                             url = url.replace(':id', row.id);
-                            let deleteUrl = "{{route('config.destroy', ['config' => ":id"])}}";
+                            let deleteUrl = "{{route('config.eliminar', ['id' => ':id'])}}";
                             deleteUrl = deleteUrl.replace(':id', row.id);
                             let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
                             return '<div class="dropdown d-inline-block">'
@@ -149,34 +154,44 @@
             });
         });
         function deleteItem(id, token, url) {
-            Swal({
+            Swal.fire({
                 title: "¿Está seguro?",
                 text: "¡Una vez eliminado, no podrá recuperar este usuario!",
                 icon: "warning",
-                buttons: ["Cancelar", "Sí, eliminar"],
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Eliminar!',
+                denyButtonText: `!No, cancelar!`,
                 dangerMode: true,
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        let deleteUrl = url.replace(':id', id);
-                        let data = {_method: 'DELETE', _token: token};
-                        axios.post(deleteUrl, data)
-                            .then(function(response){
-                                Swal("¡Usuario eliminado exitosamente!", {
-                                    icon: "success",
-                                }).then(() => {
-                                    window.location.reload();
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                            let deleteUrl = url.replace(':id', id);
+                            let data = {_method: 'DELETE', _token: token};
+                            console.log(deleteUrl);
+                            console.log(data);
+                            axios.post(deleteUrl, data)
+                                .then(function(response){
+                                    //log the response
+                                    console.log(response);
+                                    Swal.fire("¡Usuario eliminado exitosamente!", {
+                                        icon: "success",
+                                    }).then(() => {
+                                        window.location.reload();
+                                    });
+                                })
+                                .catch(function(error){
+                                    Swal.fire("¡No se pudo eliminar el usuario!", {
+                                        icon: "error",
+                                    });
                                 });
-                            })
-                            .catch(function(error){
-                                Swal("¡No se pudo eliminar el usuario!", {
-                                    icon: "error",
-                                });
-                            });
-                    } else {
-                        Swal("¡Acción cancelada!");
-                    }
-                });
+
+
+                } else if (result.isDenied) {
+                    Swal.fire('Changes are not saved', '', 'info')
+                }
+        });
+
         }
     </script>
 @endsection
