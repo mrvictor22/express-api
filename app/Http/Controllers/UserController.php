@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -39,21 +41,63 @@ class UserController extends Controller
      */
     public function create()
     {
-        //Redirect to user create form resources/views/users/create-profile.blade.php
-        return view('users.create-profile');
+        $roles = Role::all(); // Obtener todos los roles disponibles
 
+        return view('users.create-profile', compact('roles')); // Enviar los roles a la vista
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
-        //
+        try {
+            $request->validate([
+                'firstname' => 'required',
+                'email' => 'required|email'
+            ]);
+
+            // verificar si el usuario ya existe
+            $user = User::where('name' , $request->firstname)->orWhere('lastname' ,$request->lastname)->orWhere('email' ,$request->email)->first();
+            info($user);
+            if ($user) {
+                info('El usuario ya existe');
+                Alert::error('Error!', 'El usuario ya existe');
+                return redirect()->back();
+            }
+
+            // si el usuario no existe, crearlo
+            $password = $request->password ?: 'welcome1';
+            $password = Hash::make($password);
+
+            $user = new User;
+            $user->name = $request->firstname;
+            $user->lastname = $request->lastname;
+            $user->phone_number = $request->phonenumber;
+            $user->email = $request->email;
+            $user->password = $password;
+            $user->Empresa = $request->empresa;
+            $user->Ciudad = $request->city;
+            $user->Direccion = $request->direccion;
+            $user->descripcion = $request->description;
+            $user->save();
+
+            $user->roles()->attach($request->role);
+
+            Alert::success('Done!', 'Usuario almacenado');
+            return redirect()->route('config.index');
+
+        } catch (\Exception $e) {
+            info($e->getMessage());
+            return redirect()->back()->with('error', 'Error al crear el usuario');
+        }
     }
+
+
+
 
     /**
      * Display the specified resource.
@@ -91,10 +135,27 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user): \Illuminate\Http\RedirectResponse
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $user->permissions()->detach(); // quitar todos los permisos del usuario
+            $user->roles()->detach(); // quitar todos los roles del usuario
+            $user->delete(); // eliminar el usuario
+
+            DB::commit();
+
+            Alert::success('Done!', 'Usuario eliminado');
+            return redirect()->route('config.index');
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            info($e->getMessage());
+            return redirect()->back()->with('error', 'Error al eliminar el usuario');
+        }
     }
+
     public function updateProfile(Request $request, $id)
     {
         $request->validate([
