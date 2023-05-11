@@ -37,6 +37,23 @@ class UserController extends Controller
         return datatables()->of($users)->toJson();
     }
 
+    public function checkData($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            abort(404);
+        }
+        // Verificar si el usuario autenticado tiene el rol de administrador y el permiso correspondiente
+        if (Auth::user()->hasRole('admin') && Auth::user()->can('admin.read')) {
+            return response()->json($user);
+        }else{
+            // Devolver un error de acceso denegado en json
+            return response()->json(['error' => 'Access denied'], 403);
+        }
+    }
+
+
 
     /**
      * Show the form for creating a new resource.

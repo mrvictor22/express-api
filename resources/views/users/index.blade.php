@@ -130,7 +130,7 @@
                     { data: 'email' },
                     { data: 'created_at' },
                     {
-                        data: 'id' ,
+                        data: 'id',
                         "render": function (data, type, row) {
                             let url = "{{route('config.edit',['config' => ":id" ])}}";
                             url = url.replace(':id', row.id);
@@ -144,6 +144,11 @@
                                 + '<li>'
                                 + '<button class="dropdown-item remove-item-btn" onclick="event.preventDefault(); deleteItem(' + row.id + ', \'' + csrfToken + '\', \'' + deleteUrl + '\')">'
                                 + '<i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete'
+                                + '</button>'
+                                + '</li>'
+                                + '<li>'
+                                + '<button class="dropdown-item view-item-btn" data-ver="' + row.id + '" data-info=\'' + JSON.stringify(row) + '\'>'
+                                + '<i class="ri-eye-fill align-bottom me-2 text-muted"></i> View'
                                 + '</button>'
                                 + '</li>'
                                 + '</ul>'
@@ -193,5 +198,42 @@
         });
 
         }
+        $(document).on('click', '.view-item-btn', function() {
+            let userId = $(this).data('ver');
+            let userInfo = $(this).data('info');
+            let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            let url = "{{route('config.ver', ['id' => ':id'])}}";
+            url = url.replace(':id', userId);
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                success: function(response) {
+                    Swal.fire({
+                        title: 'Información del usuario',
+                        html: '<b>Nombre:</b> ' + response.name + '<br>' +
+                            '<b>Apellidos:</b> ' + response.lastname + '<br>' +
+                            '<b>Telefono:</b> ' + response.phone_number + '<br>' +
+                            '<b>Email:</b> ' + response.email + '<br>' +
+                            '<b>Empresa:</b> ' + response.Empresa + '<br>' +
+                            '<b>Ciudad:</b> ' + response.Ciudad + '<br>' +
+                            '<b>Ciudad:</b> ' + response.Direccion + '<br>' +
+                            '<b>Fecha de registro:</b> ' + response.created_at + '<br>' +
+                            '<b>Información Extra:</b> ' + response.descripcion + '<br>',
+                        confirmButtonText: 'OK'
+                    });
+                },
+                error: function(response) {
+                    Swal.fire({
+                        title: 'Error',
+                        text: response.responseJSON.error,
+                        icon: 'error'
+                    });
+                }
+            });
+        });
     </script>
 @endsection

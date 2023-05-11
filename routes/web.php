@@ -36,6 +36,8 @@ Route::middleware(['role:admin'])->group(function () {
     Route::delete('config/eliminar/{id}', [UserController::class, 'destroy'])->name('config.eliminar');
     #Ruta para almacenar usuarios
     Route::post('config/new_user', [UserController::class, 'store'])->name('config.guardar');
+    #Ruta para ver usuarios en modal para la funcion checkData
+    Route::get('config/ver/{id}', [UserController::class, 'checkData'])->name('config.ver');
     //Update User Details
     Route::post('/update-profile/{id}', [UserController::class, 'updateProfile'])->name('updateProfile');
     Route::post('/update-password/{id}', [UserController::class, 'updatePassword'])->name('updatePassword');
