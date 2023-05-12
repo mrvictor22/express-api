@@ -145,6 +145,15 @@ class UserController extends Controller
         return view('users.profile', compact('user', 'count', 'prods'));
     }
 
+    #Funcion para redireccionar a la pantalla de perfil de usuario y enviar toda la informacion del usuario
+    public function edit($id)
+    {
+        $user = User::find($id);
+        $roles = Role::all();
+        $userRole = $user->roles->pluck('id')->toArray();
+        return view('users.edit-profile', compact('user', 'roles', 'userRole'));
+    }
+
 
 
 

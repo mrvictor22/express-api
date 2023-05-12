@@ -132,7 +132,7 @@
                     {
                         data: 'id',
                         "render": function (data, type, row) {
-                            let url = "{{route('config.edit',['config' => ":id" ])}}";
+                            let url = "{{route('config.edit',['config' => ':id' ])}}";
                             url = url.replace(':id', row.id);
                             let deleteUrl = "{{route('config.eliminar', ['id' => ':id'])}}";
                             deleteUrl = deleteUrl.replace(':id', row.id);
