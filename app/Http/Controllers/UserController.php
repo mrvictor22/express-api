@@ -79,7 +79,8 @@ class UserController extends Controller
             $request->validate([
                 'firstname' => 'required',
                 'email' => 'required|email',
-                'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'avatar' => 'nullable|mimes:jpg,jpeg,png,bmp,tiff|max:25600', // 25MB = 25600KB
+
             ]);
 
             // verificar si el usuario ya existe
@@ -98,6 +99,11 @@ class UserController extends Controller
             $password = Hash::make($password);
 
             $user = new User;
+            if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+                $avatarName = time() . '.' . $request->avatar->getClientOriginalExtension();
+                $request->avatar->move(public_path('images'), $avatarName);
+                $user->avatar = $avatarName;
+            }
             $user->name = $request->firstname;
             $user->lastname = $request->lastname;
             $user->phone_number = $request->phonenumber;
@@ -108,13 +114,8 @@ class UserController extends Controller
             $user->Direccion = $request->direccion;
             $user->descripcion = $request->description;
 
-            // Si se cargó una imagen, guardarla en el directorio /public/images
-            if ($request->hasFile('avatar')) {
-                $image = $request->file('photo');
-                $imageName = time() . '_' . $image->getClientOriginalName();
-                $image->move(public_path('images'), $imageName);
-                $user->avatar = $imageName;
-            }
+
+
 
             $user->save();
 
@@ -125,6 +126,10 @@ class UserController extends Controller
 
         } catch (\Exception $e) {
             info($e->getMessage());
+            info($e->getCode());
+            info($e->getFile());
+            info($e->getLine());
+            info($e->getTraceAsString());
             return redirect()->back()->with('error', 'Error al crear el usuario');
         }
     }

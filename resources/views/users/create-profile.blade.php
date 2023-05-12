@@ -34,7 +34,7 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="personalDetails" role="tabpanel">
                             <p class="text-muted">*Si no registras una contraseña, se usara "welcome1" como contraseña predeterminada</p>
-                            <form method="POST" action="{{route('config.guardar')}}">
+                            <form method="POST" enctype="multipart/form-data" action="{{route('config.guardar')}}">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -127,7 +127,7 @@
                                         <!-- Default File Input Example -->
                                         <div>
                                             <label for="formFile" class="form-label">Foto de perfil (Opcional)</label>
-                                            <input class="form-control" type="file" id="formFile" name="avatar">
+                                            <input class="form-control" type="file" id="formFile" name="avatar" >
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
