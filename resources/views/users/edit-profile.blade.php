@@ -37,7 +37,7 @@
                                 <div class="card-body ">
                                     <div class="text-center">
                                         <div class="profile-user">
-                                            <img src="@if (Auth::user()->avatar != '') {{ URL::asset('images/' . Auth::user()->avatar) }}@else{{ URL::asset('assets/images/users/avatar-1.jpg') }} @endif"
+                                            <img src="@if ($user->avatar != '') {{ URL::asset('images/' . $user->avatar) }}@else{{ URL::asset('assets/images/users/avatar-1.jpg') }} @endif"
                                                  class="  rounded-circle avatar-xl img-thumbnail user-profile-image"
                                                  alt="user-profile-image">
                                             <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
@@ -56,8 +56,8 @@
                             </div>
                         <div class="tab-pane active" id="personalDetails" role="tabpanel">
                             <p class="text-muted">*Si no registras una contraseña, se usara "welcome1" como contraseña predeterminada</p>
-                            <form method="POST" action="{{route('config.guardar')}}">
-                                @csrf
+                            <form method="POST" enctype="multipart/form-data" action="{{ route('updateProfile', $user->id) }}">
+                            @csrf
 
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -139,14 +139,16 @@
                                         <div class="mb-3">
                                             <label for="roleInput" class="form-label">Rol</label>
                                             <select class="form-select select2" id="roleInput" name="role">
+                                                <option value="" disabled selected>Elige el rol para este usuario</option>
                                                 @foreach($roles as $role)
-                                                    <option value="{{ $role->id }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>
+                                                    <option value="{{ $role->id }}">
                                                         {{ $role->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
+
 
 
                                 </div>

@@ -209,40 +209,40 @@ class UserController extends Controller
     public function updateProfile(Request $request, $id)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'firstname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email'],
-            'avatar' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'avatar' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:25600'],
         ]);
 
-        $user = User::find($id);
-        $user->name = $request->get('name');
-        $user->email = $request->get('email');
+        $password = $request->password ?: 'welcome1';
+        $password = Hash::make($password);
 
-        if ($request->file('avatar')) {
-            $avatar = $request->file('avatar');
-            $avatarName = time() . '.' . $avatar->getClientOriginalExtension();
-            $avatarPath = public_path('/images/');
-            $avatar->move($avatarPath, $avatarName);
-            $user->avatar =  $avatarName;
+        $user = User::find($id);
+        $user->name = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->phone_number = $request->phonenumber;
+        $user->email = $request->email;
+        $user->password = $password;
+        $user->Empresa = $request->empresa;
+        $user->Ciudad = $request->city;
+        $user->Direccion = $request->direccion;
+        $user->descripcion = $request->description;
+
+        if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+            $avatarName = time() . '.' . $request->avatar->getClientOriginalExtension();
+            $request->avatar->move(public_path('images'), $avatarName);
+            $user->avatar = $avatarName;
         }
+        $user->syncRoles($request->role); // Actualiza el rol del usuario
 
         $user->update();
         if ($user) {
-            Session::flash('message', 'User Details Updated successfully!');
-            Session::flash('alert-class', 'alert-success');
-            return response()->json([
-                'isSuccess' => true,
-                'Message' => "User Details Updated successfully!"
-            ], 200); // Status code here
-//            return redirect()->back();
+            Alert::success('Done!', 'Usuario Actualizado');
+            return redirect()->route('config.index');
+
         } else {
-            Session::flash('message', 'Something went wrong!');
-            Session::flash('alert-class', 'alert-danger');
-            return response()->json([
-                'isSuccess' => true,
-                'Message' => "Something went wrong!"
-            ], 200); // Status code here
-//            return redirect()->back();
+            Alert::error('Error!', 'Algo salio mal');
+            return redirect()->route('config.index');
 
         }
     }

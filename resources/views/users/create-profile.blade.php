@@ -116,6 +116,7 @@
                                         <div class="mb-3">
                                             <label for="roleInput" class="form-label">Rol</label>
                                             <select class="form-select select2" id="roleInput" name="role">
+                                                <option value="" disabled selected>Elige el rol para este usuario</option>
                                                 @foreach($roles as $role)
                                                     <option value="{{ $role->id }}">{{ $role->name }}</option>
                                                 @endforeach
