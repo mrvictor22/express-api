@@ -33,6 +33,7 @@
                 <div class="card-body p-4">
                     <div class="tab-content">
                         <div class="col-xxl-12 ">
+                            <form method="POST" enctype="multipart/form-data" action="{{ route('updateProfile', $user->id) }}">
                             <div class="card ">
                                 <div class="card-body ">
                                     <div class="text-center">
@@ -41,7 +42,7 @@
                                                  class="  rounded-circle avatar-xl img-thumbnail user-profile-image"
                                                  alt="user-profile-image">
                                             <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
-                                                <input id="profile-img-file-input" type="file" class="profile-img-file-input">
+                                                <input id="profile-img-file-input" type="file" class="profile-img-file-input" name="avatar">
                                                 <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
                                     <span class="avatar-title rounded-circle bg-light text-body">
                                         <i class="ri-camera-fill"></i>
@@ -56,7 +57,7 @@
                             </div>
                         <div class="tab-pane active" id="personalDetails" role="tabpanel">
                             <p class="text-muted">*Si no registras una contraseña, se usara "welcome1" como contraseña predeterminada</p>
-                            <form method="POST" enctype="multipart/form-data" action="{{ route('updateProfile', $user->id) }}">
+
                             @csrf
 
                                 <div class="row">
@@ -139,7 +140,7 @@
                                         <div class="mb-3">
                                             <label for="roleInput" class="form-label">Rol</label>
                                             <select class="form-select select2" id="roleInput" name="role">
-                                                <option value="" disabled selected>Elige el rol para este usuario</option>
+                                                <option value="no change" disabled selected>Elige el rol para este usuario - Rol actual: {{ implode(', ', $user->roles->pluck('name')->toArray()) }}</option>
                                                 @foreach($roles as $role)
                                                     <option value="{{ $role->id }}">
                                                         {{ $role->name }}

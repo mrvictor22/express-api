@@ -209,11 +209,12 @@ class UserController extends Controller
     public function updateProfile(Request $request, $id)
     {
         $request->validate([
-            'firstname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email'],
-            'avatar' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:25600'],
-        ]);
+            'firstname' => 'required',
+            'email' => 'required|email',
+            'avatar' => 'nullable|mimes:jpg,jpeg,png,bmp,tiff|max:25600', // 25MB = 25600KB
 
+        ]);
+        //TODO: si la contra es vacia dejar welcome1 si no dejar la que ya habia dejado el usuario
         $password = $request->password ?: 'welcome1';
         $password = Hash::make($password);
 
@@ -233,7 +234,11 @@ class UserController extends Controller
             $request->avatar->move(public_path('images'), $avatarName);
             $user->avatar = $avatarName;
         }
-        $user->syncRoles($request->role); // Actualiza el rol del usuario
+        if ($request->role != 'no change' && $request->has('role')) {
+            $user->syncRoles($request->role); // Actualiza el rol del usuario
+        }
+
+
 
         $user->update();
         if ($user) {
