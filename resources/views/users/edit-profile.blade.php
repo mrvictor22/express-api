@@ -8,7 +8,7 @@
             Usuarios
         @endslot
         @slot('title')
-            Crear nuevo usuario
+            Edición de usuario
         @endslot
     @endcomponent
     <div class="position-relative mx-n4 mt-n4">
@@ -32,10 +32,33 @@
                 </div>
                 <div class="card-body p-4">
                     <div class="tab-content">
+                        <div class="col-xxl-12 ">
+                            <div class="card ">
+                                <div class="card-body ">
+                                    <div class="text-center">
+                                        <div class="profile-user">
+                                            <img src="@if (Auth::user()->avatar != '') {{ URL::asset('images/' . Auth::user()->avatar) }}@else{{ URL::asset('assets/images/users/avatar-1.jpg') }} @endif"
+                                                 class="  rounded-circle avatar-xl img-thumbnail user-profile-image"
+                                                 alt="user-profile-image">
+                                            <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
+                                                <input id="profile-img-file-input" type="file" class="profile-img-file-input">
+                                                <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
+                                    <span class="avatar-title rounded-circle bg-light text-body">
+                                        <i class="ri-camera-fill"></i>
+                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <h5 class="fs-16 mb-1">{{$user->name}}</h5>
+                                        <p class="text-muted mb-0">{{$user->Empresa}}</p>
+                                    </div>
+                                </div>
+                            </div>
                         <div class="tab-pane active" id="personalDetails" role="tabpanel">
                             <p class="text-muted">*Si no registras una contraseña, se usara "welcome1" como contraseña predeterminada</p>
                             <form method="POST" action="{{route('config.guardar')}}">
                                 @csrf
+
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="mb-3">

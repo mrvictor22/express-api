@@ -105,7 +105,7 @@
                                     <div class="col-lg-12">
                                         <div class="mb-3 pb-2">
                                             <label for="exampleFormControlTextarea"
-                                                class="form-label">Hablanos acerca de ti o tu empresa (opcional)</label>
+                                                class="form-label">Hablanos acerca de ti o tu empresa (Opcional)</label>
                                             <textarea class="form-control" id="exampleFormControlTextarea" placeholder="Enter your description" name="description"
                                                 rows="3"></textarea>
                                         </div>
@@ -124,7 +124,14 @@
 
                                     </div>
                                     <div class="col-lg-12">
-                                        <div class="hstack gap-2 justify-content-end">
+                                        <!-- Default File Input Example -->
+                                        <div>
+                                            <label for="formFile" class="form-label">Foto de perfil (Opcional)</label>
+                                            <input class="form-control" type="file" id="formFile" name="avatar">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="hstack gap-2 justify-content-center">
                                             <button type="submit" class="btn rounded-pill btn-primary waves-effect waves-light">Guardar</button>
                                         </div>
                                     </div>

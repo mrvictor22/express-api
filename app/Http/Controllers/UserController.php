@@ -78,14 +78,17 @@ class UserController extends Controller
         try {
             $request->validate([
                 'firstname' => 'required',
-                'email' => 'required|email'
+                'email' => 'required|email',
+                'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
 
             // verificar si el usuario ya existe
-            $user = User::where('name' , $request->firstname)->orWhere('lastname' ,$request->lastname)->orWhere('email' ,$request->email)->first();
-            info($user);
+            $user = User::where('name' , $request->firstname)
+                ->orWhere('lastname' ,$request->lastname)
+                ->orWhere('email' ,$request->email)
+                ->first();
+
             if ($user) {
-                info('El usuario ya existe');
                 Alert::error('Error!', 'El usuario ya existe');
                 return redirect()->back();
             }
@@ -104,6 +107,15 @@ class UserController extends Controller
             $user->Ciudad = $request->city;
             $user->Direccion = $request->direccion;
             $user->descripcion = $request->description;
+
+            // Si se cargó una imagen, guardarla en el directorio /public/images
+            if ($request->hasFile('avatar')) {
+                $image = $request->file('photo');
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $image->move(public_path('images'), $imageName);
+                $user->avatar = $imageName;
+            }
+
             $user->save();
 
             $user->roles()->attach($request->role);
@@ -116,6 +128,7 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'Error al crear el usuario');
         }
     }
+
 
 
 
