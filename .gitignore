@@ -23,3 +23,5 @@ server.php
 storage/framework/views/
 
 .idea/
+
+public/images/

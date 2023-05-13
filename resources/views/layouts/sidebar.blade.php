@@ -57,7 +57,8 @@
 {{--                Fin rutas menu--}}
 {{--                TODO Implementar sistema de permisos, quitar cuando este listo--}}
 {{--                display none--}}
-                <li class="nav-item" style="display: none;">
+                @if (auth()->user()->hasRole('admin'))
+                <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarConfig" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarConfig">
                         <i class="ri-home-line"></i> <span>Configuración</span>
                     </a>
@@ -72,6 +73,7 @@
                     </div>
 {{--                    <a href="rutas.rutas-form" class="nav-link">Rutas</a>--}}
                 </li>
+                @endif
 {{--                Fin rutas menu--}}
 
 
