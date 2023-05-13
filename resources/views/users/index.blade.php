@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-   Ingreso de rutas
+   Ingreso de Usuarios
 @endsection
 @section('css')
     <!--datatable css-->
@@ -12,10 +12,10 @@
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1')
-            Rutas
+            Usuarios
         @endslot
         @slot('title')
-            Usuarios
+            Lista de usuarios
         @endslot
     @endcomponent
 
