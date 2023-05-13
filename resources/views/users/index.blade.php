@@ -214,17 +214,26 @@
                 success: function(response) {
                     Swal.fire({
                         title: 'Información del usuario',
-                        html: '<b>Nombre:</b> ' + response.name + '<br>' +
-                            '<b>Apellidos:</b> ' + response.lastname + '<br>' +
-                            '<b>Telefono:</b> ' + response.phone_number + '<br>' +
-                            '<b>Email:</b> ' + response.email + '<br>' +
-                            '<b>Empresa:</b> ' + response.Empresa + '<br>' +
-                            '<b>Ciudad:</b> ' + response.Ciudad + '<br>' +
-                            '<b>Ciudad:</b> ' + response.Direccion + '<br>' +
-                            '<b>Fecha de registro:</b> ' + response.created_at + '<br>' +
-                            '<b>Información Extra:</b> ' + response.descripcion + '<br>',
+                        html: `
+    <div style=" flex-direction: column; align-items: center;">
+      <img src="${response.avatar ? '/images/' + response.avatar : '/assets/images/users/avatar-1.jpg'}" alt="Avatar" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;">
+      <br>
+      <b>Nombre:</b> ${response.name}<br>
+      <b>Apellidos:</b> ${response.lastname}<br>
+      <b>Telefono:</b> ${response.phone_number}<br>
+      <b>Email:</b> ${response.email}<br>
+      <b>Empresa:</b> ${response.Empresa}<br>
+      <b>Ciudad:</b> ${response.Ciudad}<br>
+      <b>Direccion:</b> ${response.Direccion}<br>
+      <b>Fecha de registro:</b> ${response.created_at}<br>
+      <b>Información Extra:</b> ${response.descripcion}<br>
+    </div>
+  `,
                         confirmButtonText: 'OK'
                     });
+
+
+
                 },
                 error: function(response) {
                     Swal.fire({

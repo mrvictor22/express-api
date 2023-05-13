@@ -214,16 +214,18 @@ class UserController extends Controller
             'avatar' => 'nullable|mimes:jpg,jpeg,png,bmp,tiff|max:25600', // 25MB = 25600KB
 
         ]);
-        //TODO: si la contra es vacia dejar welcome1 si no dejar la que ya habia dejado el usuario
-        $password = $request->password ?: 'welcome1';
-        $password = Hash::make($password);
+
 
         $user = User::find($id);
         $user->name = $request->firstname;
         $user->lastname = $request->lastname;
         $user->phone_number = $request->phonenumber;
         $user->email = $request->email;
-        $user->password = $password;
+        if ($request->has('password')) {
+            $password = Hash::make($request->password);
+        } else {
+            $password = $user->password;
+        }
         $user->Empresa = $request->empresa;
         $user->Ciudad = $request->city;
         $user->Direccion = $request->direccion;

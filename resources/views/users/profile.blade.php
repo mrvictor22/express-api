@@ -83,8 +83,9 @@
 
                     </ul>
                     <div class="flex-shrink-0">
-                        <a href="pages-profile-settings" class="btn btn-success"><i
-                                class="ri-edit-box-line align-bottom"></i>Editar informacion de usuario</a>
+                        <a href="{{ route('config.edit', ['config' => auth()->id()]) }}" class="btn btn-success">
+                            <i class="ri-edit-box-line align-bottom"></i>Editar informacion de usuario
+                        </a>
                     </div>
                 </div>
                 <!-- Tab panes -->
@@ -138,7 +139,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title mb-3">Acerca de</h5>
                                         <p>{{ !empty($user->descripcion) ? $user->descripcion : 'Informacion no registrada' }}</p>
-                                        
+
                                     </div>
                                     <!--end card-body-->
                                 </div><!-- end card -->
