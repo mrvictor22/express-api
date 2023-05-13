@@ -223,8 +223,10 @@ class UserController extends Controller
         $user->email = $request->email;
         if ($request->has('password')) {
             $password = Hash::make($request->password);
+            $user->password = $password;
         } else {
             $password = $user->password;
+            $user->password = $password;
         }
         $user->Empresa = $request->empresa;
         $user->Ciudad = $request->city;
