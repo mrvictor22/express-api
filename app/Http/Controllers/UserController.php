@@ -32,7 +32,16 @@ class UserController extends Controller
             return $id != $userId;
         })->toArray();
 
-        $users = DB::table('users')->whereIn('id', $userIds)->distinct()->get();
+        $users = User::whereIn('users.id', $userIds)
+            ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+            ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
+            ->distinct()
+            ->select('users.id', 'users.name', 'users.lastname', 'users.phone_number', 'users.email', 'users.Empresa', 'users.Ciudad', 'users.Direccion', 'users.created_at', 'users.descripcion', 'roles.name as role')
+            ->get();
+
+
+
+
 
         return datatables()->of($users)->toJson();
     }

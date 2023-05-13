@@ -62,6 +62,7 @@
                                         <th>User No.</th>
                                         <th>Nombre</th>
                                         <th>Email</th>
+                                        <th>Rol</th>
                                         <th>Fecha de registro</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -128,7 +129,16 @@
                     { data: 'id' },
                     { data: 'name' },
                     { data: 'email' },
-                    { data: 'created_at' },
+                    { data: 'role' },
+                    { "data": "created_at",
+                        "render": function ( data, type, row ) {
+                            var date = new Date(data);
+                            var day = date.getDate();
+                            var month = date.getMonth() + 1;
+                            var year = date.getFullYear();
+                            return day + '-' + month + '-' + year;
+                        }
+                    },
                     {
                         data: 'id',
                         "render": function (data, type, row) {
