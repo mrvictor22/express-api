@@ -27,9 +27,9 @@ Route::get('rutas/api/', [RutasController::class, 'to_api'])->name('rutas.call-a
 Route::get('rutas/trucks/', [RutasController::class, 'get_vehiculos'])->name('rutas.call-trucks');
 Route::get('rutas/qr-print/{ruta}', [RutasController::class, 'qr'])->name('ruta.print-qr');
 Route::get('/generar-numero-guia', [RutasController::class, 'generarNumeroGuia']);
-
+Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
 Route::middleware(['role:admin'])->group(function () {
-    Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
+
     // Rutas y controladores que solo los usuarios con el rol "admin" pueden acceder.
     Route::resource('config',UserController::class );
     #Ruta para eliminar usuarios
