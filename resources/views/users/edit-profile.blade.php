@@ -135,7 +135,7 @@
                                         </div>
                                     </div>
                                     <!--end col-->
-
+                                    @if (auth()->user()->hasRole('admin'))
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="roleInput" class="form-label">Rol</label>
@@ -149,7 +149,7 @@
                                             </select>
                                         </div>
                                     </div>
-
+                                    @endif
 
 
                                 </div>
