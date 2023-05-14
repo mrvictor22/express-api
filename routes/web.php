@@ -27,20 +27,20 @@ Route::get('rutas/api/', [RutasController::class, 'to_api'])->name('rutas.call-a
 Route::get('rutas/trucks/', [RutasController::class, 'get_vehiculos'])->name('rutas.call-trucks');
 Route::get('rutas/qr-print/{ruta}', [RutasController::class, 'qr'])->name('ruta.print-qr');
 Route::get('/generar-numero-guia', [RutasController::class, 'generarNumeroGuia']);
-Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
-Route::middleware(['role:admin'])->group(function () {
 
-    // Rutas y controladores que solo los usuarios con el rol "admin" pueden acceder.
-    Route::resource('config',UserController::class );
-    #Ruta para eliminar usuarios
-    Route::delete('config/eliminar/{id}', [UserController::class, 'destroy'])->name('config.eliminar');
-    #Ruta para almacenar usuarios
-    Route::post('config/new_user', [UserController::class, 'store'])->name('config.guardar');
-    #Ruta para ver usuarios en modal para la funcion checkData
-    Route::get('config/ver/{id}', [UserController::class, 'checkData'])->name('config.ver');
-    //Update User Details
-    Route::post('/update-profile/{id}', [UserController::class, 'updateProfile'])->name('updateProfile');
-    Route::post('/update-password/{id}', [UserController::class, 'updatePassword'])->name('updatePassword');
+Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
+// Rutas y controladores que solo los usuarios con el rol "admin" pueden acceder.
+Route::resource('config',UserController::class );
+#Ruta para eliminar usuarios
+Route::delete('config/eliminar/{id}', [UserController::class, 'destroy'])->name('config.eliminar');
+#Ruta para almacenar usuarios
+Route::post('config/new_user', [UserController::class, 'store'])->name('config.guardar');
+#Ruta para ver usuarios en modal para la funcion checkData
+Route::get('config/ver/{id}', [UserController::class, 'checkData'])->name('config.ver');
+//Update User Details
+Route::post('/update-profile/{id}', [UserController::class, 'updateProfile'])->name('updateProfile');
+Route::post('/update-password/{id}', [UserController::class, 'updatePassword'])->name('updatePassword');
+Route::middleware(['role:admin'])->group(function () {
 
 });
 
