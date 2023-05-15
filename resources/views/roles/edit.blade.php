@@ -9,7 +9,7 @@
 
     <div class="form-group">
         <label for="guard_name">Guard Name:</label>
-        <input type="text" class="form-control editable-input" id="guard_name" name="guard_name" value="{{ $role->guard_name }}" @if($role->name == 'admin') disabled @endif required>
+        <input type="text" class="form-control editable-input" id="guard_name" name="guard_name" value="{{ $role->guard_name }}" @if($isAdmin) disabled @endif required>
     </div>
 </form>
 

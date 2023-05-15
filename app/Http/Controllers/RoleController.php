@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\DataTables;
 
@@ -69,7 +70,10 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('roles.edit', compact('role'));
+        $user = Auth::user();
+        $isAdmin = $user->hasRole('admin');
+        info($isAdmin);
+        return view('roles.edit', compact('role', 'isAdmin'));
     }
 
 

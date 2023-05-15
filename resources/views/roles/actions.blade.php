@@ -3,7 +3,8 @@
 
 
 {{-- Botón de permisos de rol --}}
-<a href="{{ route('roles.show', $role->id) }}" class="btn btn-success">Permisos de rol<i class="fas fa-lock"></i></a>
+<a href="{{ route('permissions.index', ['id' => $role->id]) }}" class="btn btn-success">Permisos de rol<i class="fas fa-lock"></i></a>
+
 
 {{-- Botón de eliminar --}}
 <form action="{{ route('roles.destroy', $role->id) }}" method="POST" style="display: inline-block;">
