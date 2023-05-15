@@ -66,8 +66,7 @@
                         <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
                             <a href="{{route('config.index')}}" class="nav-link">Usuarios</a>
-                            <a href="" class="nav-link">Roles</a>
-                            <a href="" class="nav-link">Permisos</a>
+                            <a href="{{route('roles.index')}}" class="nav-link">Roles</a>
                         </li>
                         </ul>
                     </div>
