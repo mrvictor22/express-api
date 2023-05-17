@@ -381,7 +381,9 @@ class RutasController extends Controller
 
     public function csv_export()
     {
-        return Excel::download(new RutasExport, 'rutas.csv');
+        $Id_usuario = $this->id;
+        $nombre = User::find($Id_usuario);
+        return Excel::download(new RutasExport($nombre->id), 'rutas.csv');
 
     }
 
