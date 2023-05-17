@@ -52,7 +52,6 @@
                                         <th>Sucursal</th>
                                         <th>Fecha de despacho</th>
                                         <th>Fecha de registro</th>
-                                        <th>Creado por</th>
                                         <th>Acciones</th>
                                     </tr>
                                     </thead>
@@ -145,7 +144,6 @@
                     { data: 'sucursal' },
                     { data: 'fecha_despacho' },
                     { data: 'fecha_registro' },
-                    { data: 'creado_por' },
                     { data: 'id' ,
                        "render": function (data, type, row) {
 
