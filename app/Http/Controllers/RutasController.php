@@ -104,7 +104,7 @@ class RutasController extends Controller
                $ruta_save->direccion_contact = $request->direccion_contact;
                $ruta_save->sucursal         = $request->sucursal_contact;
                $ruta_save->mode         = $request->mode;
-               $ruta_save->creado_por         = $nombre->name;
+               $ruta_save->creado_por         = $nombre->id;
                $ruta_save->fecha_despacho   = $request->fecha_despacho;
                $ruta_save->debug_request = $request;
                $ruta_save->save();
@@ -296,7 +296,7 @@ class RutasController extends Controller
        $data = DB::table('rutas_tbl')
                 //->join('producto_rutas_tbl','rutas_tbl.id', '=' , 'producto_rutas_tbl.id_rutas_tbl')
                 //->groupBy('rutas_tbl.id')
-                ->where('creado_por' , $nombre->name)
+                ->where('creado_por' , $nombre->id)
                 ->orderBy('id','DESC')
                 ->get();
 
