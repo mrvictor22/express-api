@@ -30,8 +30,6 @@ class RutasExport implements FromCollection, WithMapping,WithHeadings
             ->select('rutas_tbl.*','producto_rutas_tbl.nombre_prod','producto_rutas_tbl.cant_prod','producto_rutas_tbl.cod_prod')
             ->where('rutas_tbl.creado_por',$this->userId)
             ->get();
-
-        dd($data);
         return $data;
     }
     public function headings(): array
