@@ -103,6 +103,7 @@ class RutasController extends Controller
                $ruta_save->email_contact    = $request->email_contact;
                $ruta_save->direccion_contact = $request->direccion_contact;
                $ruta_save->sucursal         = $request->sucursal_contact;
+               $ruta_save->monto_a_cobrar_general  = $request->monto_cobrar_gen;
                $ruta_save->mode         = $request->mode;
                $ruta_save->creado_por         = $nombre->id;
                $ruta_save->fecha_despacho   = $request->fecha_despacho;
@@ -156,6 +157,7 @@ class RutasController extends Controller
                     'f_despacho' => $request->fecha_despacho,
                     'guia'      => $request->guiaInput,
                     'mode'      => $request->mode,
+                    'monto_gen_cobrar'      => $request->monto_cobrar_gen,
                     'nombre_contacto' => $request->nombre_contact,
                     'telefono_contacto' => $request->phn_contact,
                     'dir_contacto' => $request->direccion_contact,
@@ -170,6 +172,7 @@ class RutasController extends Controller
                     'f_despacho' => $request->fecha_despacho,
                     'guia'      => $request->guiaInput,
                     'mode'      => $request->mode,
+                    'monto_gen_cobrar'      => $request->monto_cobrar_gen,
                     'nombre_contacto' => $request->nombre_contact,
                     'telefono_contacto' => $request->phn_contact,
                     'dir_contacto' => $request->direccion_contact,
@@ -206,7 +209,11 @@ class RutasController extends Controller
                     "contact_name"=> $object->nombre_contacto,
                     "contact_address"=> $object->dir_contacto,
                     "contact_phone"=> $object->telefono_contacto,
-                    "contact_email"=> $object->email_contacto
+                    "contact_email"=> $object->email_contacto,
+                    "tags"=>[[
+                        "name"=> "CANTIDAD A COBRAR",
+                        "value"=> $object->monto_gen_cobrar
+                    ]]
 
                 ]]
 
@@ -226,9 +233,14 @@ class RutasController extends Controller
                     "contact_address"=> $object->dir_contacto,
                     "contact_phone"=> $object->telefono_contacto,
                     "contact_email"=> $object->email_contacto,
-                    "items"=>  $productos
+                    "items"=>  $productos,
+                    "tags"=>[[
+                        "name"=> "CANTIDAD A COBRAR",
+                        "value"=> $object->monto_gen_cobrar
+                    ]]
 
-                ]]
+                ]],
+
 
             ];
         }
