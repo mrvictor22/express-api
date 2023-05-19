@@ -87,7 +87,7 @@
                         <!--end row-->
                         <br>
                         <div class="row align-items-center g-3">
-                            <div class="col-lg-3">
+                            <div class="col-lg">
                                 <div>
                                     <label for="vehiculoInput" class="form-label">Vehiculo</label><label class="text-muted">*</label>
 {{--                                    <input type="text" class="form-control" id="vehiculoInput" name="vehiculoInput">--}}
@@ -95,14 +95,20 @@
                                 </div>
                             </div>
                             <!--end col-->
-                            <div class="col-lg-3">
+                            <div class="col-lg">
                                 <div>
                                     <label for="sucursal_contact_id" class="form-label">Sucursal</label>
                                     <input type="text" class="form-control" id="sucursal_contact_id" name="sucursal_contact">
                                 </div>
                             </div>
+                            <div class="col-lg">
+                                <div>
+                                    <label for="monto_cobrar_gen_id" class="form-label">Monto a cobrar</label>
+                                    <input type="number" class="form-control" id="monto_cobrar_gen_id" name="monto_cobrar_gen" placeholder="$"  step="0.01" min="0.01">
+                                </div>
+                            </div>
                             <!--end col-->
-                            <div class="col-md-3">
+                            <div class="col-lg">
                                 <div>
                                     <label class="form-label mb-0">Fecha de despacho</label><label class="text-muted">*</label>
 
@@ -111,7 +117,7 @@
                                 </div>
                             </div>
                             <!--end col-->
-                            <div class="col-md-3">
+                            <div class="col-lg">
                                 <div>
                                     <label class="form-label mb-0">Modo</label><label class="text-muted">*</label>
                                     <select class="form-select" name="mode" required>
@@ -147,7 +153,7 @@
                                             </td>
                                             <td>
                                                 <div>
-                                                    Monto a cobrar
+                                                    Precio del item
                                                     <input type="number" class="form-control" id="n_monto_cobrar" name="DetailsCost[0]" placeholder="$"  step="0.01" min="0.01">
 
 
