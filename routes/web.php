@@ -23,6 +23,7 @@ Route::get('ajax_rutas', [RutasController::class, 'data'])->name('rutas.ajaxinde
 Route::get('routes-form' , [RutasController::class, 'form'])->name('test');
 Route::post('routes-form', [RutasController::class, 'store'])->name('routes-form.store');
 Route::get('rutas/export/', [RutasController::class, 'csv_export'])->name('rutas.export-csv');
+Route::get('rutas/custom_export/', [RutasController::class, 'csvCustomExport'])->name('rutas.export-custom-csv');
 Route::get('rutas/api/', [RutasController::class, 'to_api'])->name('rutas.call-api');
 Route::get('rutas/trucks/', [RutasController::class, 'get_vehiculos'])->name('rutas.call-trucks');
 Route::get('rutas/qr-print/{ruta}', [RutasController::class, 'qr'])->name('ruta.print-qr');

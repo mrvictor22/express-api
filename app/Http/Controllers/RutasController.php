@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\RutasCustomExport;
 use App\Models\Rutas;
 use App\Models\RutasProductos;
 use Illuminate\Support\Facades\Auth;
@@ -396,6 +397,12 @@ class RutasController extends Controller
         $Id_usuario = $this->id;
         $nombre = User::find($Id_usuario);
         return Excel::download(new RutasExport($nombre->id), 'rutas.csv');
+
+    }
+    public function csvCustomExport()
+    {
+
+        return Excel::download(new RutasCustomExport, 'rutas_custom.csv');
 
     }
 

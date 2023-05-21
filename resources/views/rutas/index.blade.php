@@ -121,7 +121,16 @@
                         action: function ( e, dt, button, config ) {
                             window.location = '{{route('rutas.export-csv')}}';
                         }
+                    },
+                        @if(auth()->user()->hasRole('admin'))
+                    {
+                        text: 'Exportar CSV Personalizado',
+                        titleAttr: 'export_custom_csv',
+                        action: function ( e, dt, button, config ) {
+                            window.location = '{{route('rutas.export-custom-csv')}}';
+                        }
                     }
+                    @endif
                 ],
                 order: [],
                 ajax: {
