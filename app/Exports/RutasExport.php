@@ -37,6 +37,7 @@ class RutasExport implements FromCollection, WithMapping,WithHeadings
         return [
             'No. Guia',
             'Vehiculo',
+            'Nombre de contacto',
             'Nombre producto',
             'Nombre Cantidad',
             'Codigo Item',
@@ -52,6 +53,7 @@ class RutasExport implements FromCollection, WithMapping,WithHeadings
         return [
             $export->numero_guia,
             $export->vehiculo,
+            $export->nombre_contact,
             $export->nombre_prod,
             $export->cant_prod,
             $export->cod_prod,
