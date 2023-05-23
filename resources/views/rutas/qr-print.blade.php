@@ -73,8 +73,8 @@
                         <!-- Aquí iría la información de los productos -->
                         <h6 id="z22">Articulos:</h6>
                         <span id="z22">{{ count($ruta->productos) }}</span> <br>
-                        <h6 id="z22">Total a Cobrar</h6>
-                        <span id="z22">{{ $ruta->monto_a_cobrar_general }}</span><br>
+{{--                        <h6 id="z22">Total a Cobrar</h6>--}}
+{{--                        <span id="z22">{{ $ruta->monto_a_cobrar_general }}</span><br>--}}
 
                     </div>
 
