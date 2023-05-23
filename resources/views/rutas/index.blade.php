@@ -69,6 +69,21 @@
         <!--end col-->
     </div>
     <!--end row-->
+   <div class="row">
+       <div class="col-lg-12">
+           <div class="card-border-info">
+
+               <iframe
+                   name='beetrack-widget'
+                   id='beetrack-widget'
+                   frameBorder='0'
+                   width='100%'
+                   height='310px'
+                   src='https://app.beetrack.com/widget/KiVahrbTgPcgCJFgspPhWA'></iframe>
+           </div>
+       </div>
+   </div>
+
 
     <div id="data-modal" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
