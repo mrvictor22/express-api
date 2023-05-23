@@ -21,9 +21,8 @@ class RutasCustomExport implements FromCollection,WithMapping,WithHeadings
         $usersToExclude = ['2', '3', '4', '5', '6', '7', '8', '9', '11'];
 
         $data = DB::table('rutas_tbl')
-            ->join('producto_rutas_tbl', 'rutas_tbl.id', '=', 'producto_rutas_tbl.id_rutas_tbl')
             ->join('users', 'rutas_tbl.creado_por', '=', 'users.id')
-            ->select('rutas_tbl.*', 'producto_rutas_tbl.nombre_prod', 'producto_rutas_tbl.cant_prod', 'producto_rutas_tbl.cod_prod', 'producto_rutas_tbl.monto_cobrar', 'users.name')
+            ->select('rutas_tbl.*',  'users.name')
             ->whereNotIn('rutas_tbl.creado_por', $usersToExclude)
             ->orderBy('rutas_tbl.id', 'desc')
             ->get();
@@ -46,11 +45,7 @@ class RutasCustomExport implements FromCollection,WithMapping,WithHeadings
             'Dirección de contacto',
             'Sucursal',
             'Monto a cobrar general',
-            'Fecha de despacho',
-            'Nombre producto',
-            'Cantidad de producto',
-            'Codigo Item',
-            'Precio del item',
+            'Fecha de despacho'
         ];
     }
     public function map($export): array
@@ -66,11 +61,7 @@ class RutasCustomExport implements FromCollection,WithMapping,WithHeadings
             $export->direccion_contact,
             $export->sucursal,
             $export->monto_a_cobrar_general,
-            $export->fecha_despacho,
-            $export->nombre_prod,
-            $export->cant_prod,
-            $export->cod_prod,
-            $export->monto_cobrar,
+            $export->fecha_despacho
         ];
     }
 }

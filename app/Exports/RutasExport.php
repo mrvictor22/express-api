@@ -26,8 +26,8 @@ class RutasExport implements FromCollection, WithMapping,WithHeadings
     public function collection()
     {
 
-        $data = DB::table('rutas_tbl')->join('producto_rutas_tbl','rutas_tbl.id','=','producto_rutas_tbl.id_rutas_tbl')
-            ->select('rutas_tbl.*','producto_rutas_tbl.nombre_prod','producto_rutas_tbl.cant_prod','producto_rutas_tbl.cod_prod')
+        $data = DB::table('rutas_tbl')
+            ->select('rutas_tbl.*')
             ->where('rutas_tbl.creado_por',$this->userId)
             ->get();
         return $data;
@@ -38,9 +38,6 @@ class RutasExport implements FromCollection, WithMapping,WithHeadings
             'No. Guia',
             'Vehiculo',
             'Nombre de contacto',
-            'Nombre producto',
-            'Nombre Cantidad',
-            'Codigo Item',
             'Dirección de contacto',
             'Sucursal',
             'Fecha de despacho',
@@ -54,9 +51,6 @@ class RutasExport implements FromCollection, WithMapping,WithHeadings
             $export->numero_guia,
             $export->vehiculo,
             $export->nombre_contact,
-            $export->nombre_prod,
-            $export->cant_prod,
-            $export->cod_prod,
             $export->direccion_contact,
             $export->sucursal,
             $export->fecha_despacho,
