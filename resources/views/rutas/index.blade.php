@@ -42,7 +42,7 @@
                                     <tr>
                                         <th scope="col" style="width: 10px;">
                                             <div class="form-check">
-                                                <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
+                                                <input class="form-check-input fs-15" type="checkbox" id="checkall" name="checkAll" value="option">
                                             </div>
                                         </th>
                                         <th>No. Guia</th>
@@ -125,11 +125,40 @@
 
     <script>
         $(document).ready(function () {
-            $('#user-table').DataTable({
+            var selectedIds = []; // Array para almacenar los IDs seleccionados
+            var table;
+            table = $('#user-table').DataTable({
                 processing: true,
                 serverSide: true,
-                dom: 'Bfrtip',
+                dom: '<"clear">lBfrtip',
+                lengthMenu: [10, 20, 40, 50, 100, 200, 300,500], // Opciones de longitud
+                language: {
+                    lengthMenu: 'Mostrar _MENU_ registros',
+                    // Otros textos personalizados...
+                },
                 buttons: [
+                    {
+                        text: 'Imprimir Guias Seleccionadas',
+                        titleAttr: 'massive_print',
+                        action: function (e, dt, button, config) {
+                            // Verificar si se han seleccionado rutas
+                            if (selectedIds.length > 0) {
+                                // Redireccionar a la ruta de impresión masiva con los IDs seleccionados
+                                var url = '{{ route("rutas.imprimir-masivo", ":rutas") }}';
+                                url = url.replace(':rutas', selectedIds.join(','));
+                                window.location.href = url;
+                            } else {
+                                // Mostrar SweetAlert con la advertencia de que no se han seleccionado rutas
+                                Swal.fire({
+                                    title: 'Advertencia',
+                                    text: 'No se ha seleccionado ninguna ruta para imprimir.',
+                                    icon: 'warning',
+                                    confirmButtonText: 'Aceptar'
+                                });
+                            }
+                        }
+
+                    },
                     {
                         text: 'Exportar CSV',
                         titleAttr: 'export_csv',
@@ -154,11 +183,12 @@
 
                 },
                 columns: [
-                    { data: 'id' ,
-                        "render": function (data, type, row) {
-                          return  '<div class="form-check"> <input class="form-check-input fs-15" type="checkbox" name="checkAll" value="'+row.id+'"> </div>'
-
-
+                    {
+                        data: 'id',
+                        orderable: false,
+                        render: function (data, type, row) {
+                            var checkbox = '<div class="form-check"> <input class="form-check-input fs-15" type="checkbox" name="checkAll[]" value="' + row.id + '"> </div>';
+                            return checkbox;
                         }
                     },
                     { data: 'numero_guia' },
@@ -182,12 +212,47 @@
 
                        }
                     }
-                ]
+                ],
+                rowCallback: function (row, data) {
+                    // Manejar el evento de cambio de estado del checkbox
+                    var checkbox = $(row).find('input[name="checkAll[]"]');
+                    checkbox.on('change', function () {
+                        var id = $(this).val();
+                        if (this.checked) {
+                            selectedIds.push(id); // Agregar ID al array si se selecciona
+                        } else {
+                            var index = selectedIds.indexOf(id);
+                            if (index !== -1) {
+                                selectedIds.splice(index, 1); // Eliminar ID del array si se deselecciona
+                            }
+                        }
+                    });
+                }
             });
 
-            $('.img').click(function() {
+            $('.img').click(function () {
 
             });
+
+            // Evento de clic para el checkbox principal
+            $('#checkall').on('click', function () {
+                var isChecked = $(this).prop('checked');
+
+                // Seleccionar/deseleccionar checkboxes en todas las filas
+                table.rows().every(function () {
+                    var checkbox = $(this.node()).find('input[name="checkAll[]"]');
+                    checkbox.prop('checked', isChecked);
+
+                    var id = checkbox.val();
+                    if (isChecked && !selectedIds.includes(id)) {
+                        selectedIds.push(id);
+                    } else if (!isChecked && selectedIds.includes(id)) {
+                        var index = selectedIds.indexOf(id);
+                        selectedIds.splice(index, 1);
+                    }
+                });
+            });
+
         });
 
 
@@ -197,5 +262,31 @@
            console.log(id);
             window.open(url).focus();
         }
+        let timerInterval
+        $(document).ready(function() {
+            Swal.fire({
+                title: 'Usa nuestro sistema con Chrome!',
+                html: 'para una mejor experiencia de uso.',
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                        b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+                /* Leer más sobre cómo manejar las acciones de cierre a continuación */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log('I was closed by the timer')
+                }
+            });
+        });
+
+
     </script>
 @endsection
