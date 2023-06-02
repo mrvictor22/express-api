@@ -24,7 +24,7 @@
         <div class="hidden-print">
             <div class="text-center">
                 <button class="btn btn-primary hidden-print" onclick="printableDiv('printableArea')">Imprimir</button>
-                <button class="btn btn-danger hidden-print" onclick="cerrarPestana()">Cerrar</button>
+                <button class="btn btn-danger hidden-print" onclick="cerrarPestana()">Volver</button>
                 <br>
                 <a href="#" onclick="mostrarVideo()">Tutorial de configuración de impresora</a>
                 <br>
@@ -94,7 +94,7 @@
         window.print();
     }
     function cerrarPestana() {
-        window.close();
+        window.history.back();
     }
     function eliminarElemento() {
         var elementos = document.querySelectorAll("#z22");
