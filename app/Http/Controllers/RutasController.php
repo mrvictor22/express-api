@@ -56,6 +56,7 @@ class RutasController extends Controller
 
     public function index()
     {
+
         return view('rutas.index');
 
     }
@@ -357,6 +358,17 @@ class RutasController extends Controller
         info($ruta);
         return view('rutas.qr-print', ['ruta' => $ruta,'google_API' => $google_API]);
     }
+
+    public function qrMassive($rutas)
+    {
+        $ruta_ids = explode(',', $rutas);
+        $rutas = Rutas::with('productos')->whereIn('id', $ruta_ids)->get();
+        info($rutas);
+        $google_API = "https://chart.googleapis.com/chart?chs=290x290&cht=qr&chl=";
+
+        return view('rutas.qr-print-massive', compact('rutas', 'google_API'));
+    }
+
 
     /**
      * Show the form for editing the specified resource.

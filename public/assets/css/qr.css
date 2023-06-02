@@ -92,9 +92,31 @@ margin-top: 3% !important;
 .grande {
     font-size: 100% !important;
 }
+#printableArea2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#etiqueta2 {
+    width: 6in;
+    height: 4in;
+    padding: 0.1cm;
+    line-height: 1.2;
+    border: 3px solid black;
+    margin-bottom: 10px;
+}
+
+
 
 
 @media print {
+    @page {
+        margin: 5mm 2mm 2mm 0mm !important;
+
+    }
+    body {
+        margin: 0;  /* Asegura que no haya márgenes predeterminados en el cuerpo del documento */
+    }
     .card-body {
         display: flex;
         justify-content: center;
@@ -199,5 +221,20 @@ margin-top: 3% !important;
     }
     .hidden-print {
         display: none !important;
+    }
+    #printableArea2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transform: scale(0.9); /* Define la escala de impresión */
+        margin: 0;
+    }
+    #etiqueta2 {
+        width: 6in;
+        height: 4in;
+        padding: 0.1cm;
+        line-height: 1.2;
+        border: 3px solid black;
+        margin-bottom: 10px;
     }
 }
