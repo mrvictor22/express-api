@@ -46,6 +46,7 @@ Route::middleware(['role:admin'])->group(function () {
     Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
     Route::get('/roles/list', [RoleController::class, 'list'])->name('roles.list');
     Route::resource('roles', RoleController::class);
+    Route::delete('/roles/{role}', [RoleController::class,'destroy'])->name('roles.destroy');
 
     Route::get('permissions/{id}', [PermissionsController::class, 'index'])->name('permissions.index');
 

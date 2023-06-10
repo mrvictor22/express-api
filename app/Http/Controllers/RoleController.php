@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\DataTables;
 
@@ -100,8 +101,24 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        //
+        // Obtener el ID del rol al que se reasignarán los usuarios (por ejemplo, el ID del rol "default")
+        $defaultRoleId = 4; // ID del rol "default"
+
+        // Obtener todos los usuarios que tienen el rol a eliminar
+        $users = $role->users;
+
+        // Reasignar a los usuarios al rol "default"
+        foreach ($users as $user) {
+            $user->syncRoles([$defaultRoleId]);
+        }
+
+        // Eliminar el rol
+        $role->delete();
+
+        // Realizar cualquier otra acción necesaria después de la eliminación del rol
+        Alert::success('Done!', 'Rol Borrado');
+        return redirect()->route('roles.index')->with('success', 'El rol ha sido eliminado exitosamente');
     }
 }

@@ -35,10 +35,10 @@
             <div class="card">
                 <div class="card-header align-items-center d-flex">
                     @role('admin')
-                    @if(auth()->user()->can('admin.create'))
+                    @if(auth()->user()->can('actualizar_configuracion'))
                         <!-- Mostrar contenido que solo los usuarios con el rol "admin" y el permiso "admin.create" pueden ver -->
                         <div class="flex-grow-1">
-                            <button type="button" class="btn rounded-pill btn-primary waves-effect waves-light" onclick="window.location.href='{{ route('config.create') }}'">Crear nuevo usuario</button>
+                            <button type="button" class="btn rounded-pill btn-primary waves-effect waves-light" onclick="window.location.href='{{ route('config.create') }}'">Crear nuevo rol</button>
                         </div>
                     @endif
                     @endrole
@@ -117,48 +117,7 @@
         });
 
 
-        function deleteItem(id, token, url) {
-            Swal.fire({
-                title: "¿Está seguro?",
-                text: "¡Una vez eliminado, no podrá recuperar este usuario!",
-                icon: "warning",
-                showDenyButton: true,
-                showCancelButton: true,
-                confirmButtonText: 'Eliminar!',
-                denyButtonText: `!No, cancelar!`,
-                dangerMode: true,
-            }).then((result) => {
-                if (result.isConfirmed) {
 
-                            let deleteUrl = url.replace(':id', id);
-                            let data = {_method: 'DELETE', _token: token};
-                            console.log(deleteUrl);
-                            console.log(data);
-                            axios.post(deleteUrl, data)
-                                .then(function(response){
-                                    //log the response
-                                    console.log(response);
-                                    Swal.fire("¡Usuario eliminado exitosamente!", {
-                                        icon: "success",
-                                    }).then(() => {
-                                        window.location.reload();
-                                    });
-                                })
-                                .catch(function(error){
-                                    Swal.fire("¡No se pudo eliminar el usuario!", {
-                                        icon: "error",
-                                    });
-                                });
-
-
-                } else if (result.isDenied) {
-                    Swal.fire('Changes are not saved', '', 'info')
-                }
-        });
-
-
-
-        }
 
     </script>
 @endsection

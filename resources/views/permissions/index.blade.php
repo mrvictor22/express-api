@@ -59,6 +59,7 @@
                                         <th>Leer</th>
                                         <th>Actualizar</th>
                                         <th>Borrar</th>
+                                        <th>Acciones</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -67,25 +68,25 @@
                                             <td>{{ $module }}</td>
                                             <td>
                                                 <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="{{ $module }}-create" {{ $permissions['create'] ? 'checked' : '' }}>
+                                                    <input class="form-check-input permission-switch" type="checkbox" role="switch" id="{{ $module }}-create" {{ $permissions['create'] ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="{{ $module }}-create"></label>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="{{ $module }}-read" {{ $permissions['read'] ? 'checked' : '' }}>
+                                                    <input class="form-check-input permission-switch" type="checkbox" role="switch" id="{{ $module }}-read" {{ $permissions['read'] ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="{{ $module }}-read"></label>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="{{ $module }}-update" {{ $permissions['update'] ? 'checked' : '' }}>
+                                                    <input class="form-check-input permission-switch" type="checkbox" role="switch" id="{{ $module }}-update" {{ $permissions['update'] ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="{{ $module }}-update"></label>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox" role="switch" id="{{ $module }}-delete" {{ $permissions['delete'] ? 'checked' : '' }}>
+                                                    <input class="form-check-input permission-switch" type="checkbox" role="switch" id="{{ $module }}-delete" {{ $permissions['delete'] ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="{{ $module }}-delete"></label>
                                                 </div>
                                             </td>
@@ -131,67 +132,73 @@
         console.log(csrfToken);
 
         $(document).ready(function() {
-            $('#permissions-table').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: "{{ route('permissions.index', ['id' => $id]) }}",
-                columns: [
-                    { data: 'module', name: 'module' },
-                    { data: 'create', name: 'create' },
-                    { data: 'read', name: 'read' },
-                    { data: 'update', name: 'update' },
-                    { data: 'delete', name: 'delete' },
-                ],
-                columnDefs: [
-                    {
-                        targets: 1,
-                        render: function(data, type, row, meta) {
-                            // Renderiza un switch para el permiso de creación
-                            return `
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" role="switch" id="create-${row.module}" ${row.create ? 'checked' : ''}>
-              <label class="form-check-label" for="create-${row.module}">Crear</label>
-            </div>
-          `;
-                        },
+            var table = $('#permissions-table').DataTable({
+                "paging": false,
+                "info": false,
+                "searching": false,
+                "columnDefs": [{
+                    "targets": -1,
+                    "data": null,
+                    "defaultContent": "<button class='btn btn-sm btn-primary save-button'>Guardar</button>"
+                }]
+            });
+
+            $('#permissions-table tbody').on('click', '.save-button', function() {
+                var row = $(this).parents('tr');
+                var rowData = table.row(row).data();
+                var module = rowData[0];
+                var create = row.find('#' + module + '-create').prop('checked');
+                var read = row.find('#' + module + '-read').prop('checked');
+                var update = row.find('#' + module + '-update').prop('checked');
+                var del = row.find('#' + module + '-delete').prop('checked');
+                $.ajax({
+                    url: '/permissions/update',
+                    method: 'POST',
+                    data: {
+                        'role_id': '{{ $role->id }}',
+                        'module': module,
+                        'create': create,
+                        'read': read,
+                        'update': update,
+                        'delete': del
                     },
-                    {
-                        targets: 2,
-                        render: function(data, type, row, meta) {
-                            // Renderiza un switch para el permiso de lectura
-                            return `
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" role="switch" id="read-${row.module}" ${row.read ? 'checked' : ''}>
-              <label class="form-check-label" for="read-${row.module}">Leer</label>
-            </div>
-          `;
-                        },
+                    success: function(response) {
+                        if (response.success) {
+                            toastr.success('Permisos actualizados correctamente.');
+                        } else {
+                            toastr.error('Error al actualizar los permisos.');
+                        }
                     },
-                    {
-                        targets: 3,
-                        render: function(data, type, row, meta) {
-                            // Renderiza un switch para el permiso de actualización
-                            return `
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" role="switch" id="update-${row.module}" ${row.update ? 'checked' : ''}>
-              <label class="form-check-label" for="update-${row.module}">Actualizar</label>
-            </div>
-          `;
-                        },
+                    error: function(xhr) {
+                        toastr.error('Error al actualizar los permisos.');
+                    }
+                });
+            });
+        });
+
+        $(document).ready(function() {
+            $('.permission-switch').change(function() {
+                var permission = $(this).attr('id').split('-');
+                var module = permission[0];
+                var action = permission[1];
+                var value = $(this).prop('checked');
+
+                $.ajax({
+                    url: '/permissions/update',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        module: module,
+                        action: action,
+                        value: value
                     },
-                    {
-                        targets: 4,
-                        render: function(data, type, row, meta) {
-                            // Renderiza un switch para el permiso de eliminación
-                            return `
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" role="switch" id="delete-${row.module}" ${row.delete ? 'checked' : ''}>
-              <label class="form-check-label" for="delete-${row.module}">Eliminar</label>
-            </div>
-          `;
-                        },
+                    success: function(response) {
+                        console.log(response);
                     },
-                ],
+                    error: function(response) {
+                        console.log(response);
+                    }
+                });
             });
         });
 

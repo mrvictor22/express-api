@@ -90,8 +90,17 @@ class PermissionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $role = Role::findOrFail($id);
+
+        // Obtener los permisos del formulario enviado
+        $permissions = $request->input('permissions');
+
+        // Actualizar los permisos del rol
+        $role->syncPermissions($permissions);
+
+        return redirect()->back()->with('success', 'Permisos actualizados correctamente');
     }
+
 
     /**
      * Remove the specified resource from storage.
