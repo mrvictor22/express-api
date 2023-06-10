@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class PermissionsController extends Controller
@@ -17,25 +18,31 @@ class PermissionsController extends Controller
     {
         $role = Role::findOrFail($id);
         $permissions = $role->permissions;
-        info($permissions);
 
         $modules = [
             'Gestion de rutas' => [
-                'create' => $permissions->contains('name', 'crear_ruta'),
-                'read' => $permissions->contains('name', 'leer_ruta'),
-                'update' => $permissions->contains('name', 'actualizar_ruta'),
-                'delete' => $permissions->contains('name', 'eliminar_ruta')
+                'create' => $permissions->contains('name', 'Gestion de rutas.create'),
+                'read' => $permissions->contains('name', 'Gestion de rutas.read'),
+                'update' => $permissions->contains('name', 'Gestion de rutas.update'),
+                'delete' => $permissions->contains('name', 'Gestion de rutas.delete')
             ],
             'Configuracion' => [
-                'create' => $permissions->contains('name', 'crear_configuracion'),
-                'read' => $permissions->contains('name', 'leer_configuracion'),
-                'update' => $permissions->contains('name', 'actualizar_configuracion'),
-                'delete' => $permissions->contains('name', 'eliminar_configuracion')
+                'create' => $permissions->contains('name', 'Configuracion.create'),
+                'read' => $permissions->contains('name', 'Configuracion.read'),
+                'update' => $permissions->contains('name', 'Configuracion.update'),
+                'delete' => $permissions->contains('name', 'Configuracion.delete')
             ]
         ];
 
+        $request = request();
+        if ($request->ajax()) {
+            return view('permissions.table', compact('modules'));
+        }
+
         return view('permissions.index', compact('modules', 'id'));
     }
+
+
 
 
     /**
@@ -86,20 +93,48 @@ class PermissionsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
         $role = Role::findOrFail($id);
+//        info($request);
+        $permissions = $request->input('permissions', []);
 
-        // Obtener los permisos del formulario enviado
-        $permissions = $request->input('permissions');
+        // Obtén los nombres de permisos basados en los valores booleanos
+        $permissionNames = [];
+        foreach ($permissions as $module => $modulePermissions) {
+            foreach ($modulePermissions as $permission => $value) {
+                if ($value === 'true') {
+                    // Verificar si el permiso existe
+                    $existingPermission = Permission::where('name', $permission)->first();
+                    if (!$existingPermission) {
+                        // Si el permiso no existe, crearlo
+                        $existingPermission = Permission::create([
+                            'name' => $permission,
+                            'guard_name' => 'web',
+                        ]);
+                    }
+                    $permissionNames[] = $existingPermission->name;
+                }
+            }
+        }
 
         // Actualizar los permisos del rol
-        $role->syncPermissions($permissions);
+        $role->syncPermissions($permissionNames);
 
-        return redirect()->back()->with('success', 'Permisos actualizados correctamente');
+        if ($request->ajax()) {
+            return response()->json(['success' => true, 'message' => 'Permisos actualizados correctamente']);
+        }
+
+        // Redirigir a la vista de permisos después de la actualización
+        return redirect()->route('permissions.index', ['id' => $id])->with('success', 'Permisos actualizados correctamente');
     }
+
+
+
+
+
 
 
     /**

@@ -49,53 +49,8 @@
                     <div class="col-lg-12">
                         <div class="card">
 
-                            <div class="card-body">
-                                <meta name="csrf-token" content="{{ csrf_token() }}">
-                                <table id="permissions-table" class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>Módulo</th>
-                                        <th>Crear</th>
-                                        <th>Leer</th>
-                                        <th>Actualizar</th>
-                                        <th>Borrar</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($modules as $module => $permissions)
-                                        <tr>
-                                            <td>{{ $module }}</td>
-                                            <td>
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input permission-switch" type="checkbox" role="switch" id="{{ $module }}-create" {{ $permissions['create'] ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="{{ $module }}-create"></label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input permission-switch" type="checkbox" role="switch" id="{{ $module }}-read" {{ $permissions['read'] ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="{{ $module }}-read"></label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input permission-switch" type="checkbox" role="switch" id="{{ $module }}-update" {{ $permissions['update'] ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="{{ $module }}-update"></label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input permission-switch" type="checkbox" role="switch" id="{{ $module }}-delete" {{ $permissions['delete'] ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="{{ $module }}-delete"></label>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+                            <div id="permissions-container"></div>
 
-                            </div>
                         </div>
                     </div>
 
@@ -131,74 +86,61 @@
         let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         console.log(csrfToken);
 
-        $(document).ready(function() {
-            var table = $('#permissions-table').DataTable({
-                "paging": false,
-                "info": false,
-                "searching": false,
-                "columnDefs": [{
-                    "targets": -1,
-                    "data": null,
-                    "defaultContent": "<button class='btn btn-sm btn-primary save-button'>Guardar</button>"
-                }]
-            });
+        $(document).ready(function () {
+            var permissions = {!! json_encode($modules) !!};
+            console.log(permissions)
+            // Cargar tabla de permisos por AJAX al cargar la página
+            loadPermissionsTable();
 
-            $('#permissions-table tbody').on('click', '.save-button', function() {
-                var row = $(this).parents('tr');
-                var rowData = table.row(row).data();
-                var module = rowData[0];
-                var create = row.find('#' + module + '-create').prop('checked');
-                var read = row.find('#' + module + '-read').prop('checked');
-                var update = row.find('#' + module + '-update').prop('checked');
-                var del = row.find('#' + module + '-delete').prop('checked');
+            // Función para cargar la tabla de permisos por AJAX
+            function loadPermissionsTable() {
                 $.ajax({
-                    url: '/permissions/update',
-                    method: 'POST',
-                    data: {
-                        'role_id': '{{ $role->id }}',
-                        'module': module,
-                        'create': create,
-                        'read': read,
-                        'update': update,
-                        'delete': del
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            toastr.success('Permisos actualizados correctamente.');
-                        } else {
-                            toastr.error('Error al actualizar los permisos.');
-                        }
-                    },
-                    error: function(xhr) {
-                        toastr.error('Error al actualizar los permisos.');
+                    url: "{{ route('permissions.index', ['id' => $id]) }}",
+                    method: "GET",
+                    success: function (data) {
+                        $('#permissions-container').html(data);
                     }
                 });
-            });
-        });
+            }
 
-        $(document).ready(function() {
-            $('.permission-switch').change(function() {
-                var permission = $(this).attr('id').split('-');
-                var module = permission[0];
-                var action = permission[1];
-                var value = $(this).prop('checked');
-
+            // Función para actualizar los permisos por AJAX
+            function updatePermissions(permissions) {
                 $.ajax({
-                    url: '/permissions/update',
-                    method: 'POST',
+                    url: "{{ route('permissions.update', ['id' => $id]) }}",
+                    method: "POST",
                     data: {
-                        _token: '{{ csrf_token() }}',
-                        module: module,
-                        action: action,
-                        value: value
+                        permissions: Object.values(permissions),
+                        _token: csrfToken
                     },
-                    success: function(response) {
-                        console.log(response);
+                    success: function (response) {
+                        Swal.fire({
+                            title: 'Éxito',
+                            text: response.message,
+                            icon: 'success'
+                        });
                     },
-                    error: function(response) {
-                        console.log(response);
+                    error: function (xhr) {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'No se pudo actualizar los permisos. Por favor, inténtelo nuevamente.',
+                            icon: 'error'
+                        });
                     }
                 });
+            }
+            // Manejar cambios en los switches de permisos
+            $(document).on('change', '.permission-switch', function () {
+                var module = $(this).data('module');
+                var permission = $(this).data('permission');
+                var isChecked = $(this).prop('checked');
+
+                // Actualizar permiso en el array de permisos
+                if (permissions.hasOwnProperty(module)) {
+                    permissions[module][permission] = isChecked;
+                }
+
+                // Actualizar los permisos por AJAX
+                updatePermissions(permissions);
             });
         });
 

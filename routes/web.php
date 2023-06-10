@@ -49,7 +49,8 @@ Route::middleware(['role:admin'])->group(function () {
     Route::delete('/roles/{role}', [RoleController::class,'destroy'])->name('roles.destroy');
 
     Route::get('permissions/{id}', [PermissionsController::class, 'index'])->name('permissions.index');
-
+    Route::get('permissions/table/{id}', [PermissionsController::class,'table'])->name('permissions.table');
+    Route::post('permissions/{id}/update', [PermissionsController::class,'update'])->name('permissions.update');
 
 
 
