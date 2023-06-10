@@ -45,12 +45,29 @@ class RoleController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        // Validar los datos del formulario de creación de roles
+        $validatedData = $request->validate([
+            'name' => 'required|unique:roles'
+        ]);
+
+        // Crear el nuevo rol
+        $role = Role::create($validatedData);
+
+        if ($role) {
+            // Si se creó correctamente el rol, se envía un mensaje de éxito y se redirecciona a la lista de roles
+            Alert::success('Done!', 'Rol Creado');
+            return redirect()->route('roles.index')->with('success', '¡Rol creado exitosamente!');
+        } else {
+            // Si no se creó correctamente el rol, se envía un mensaje de error y se redirecciona a la lista de roles
+            Alert::error('Error!', 'Rol no Creado');
+            return redirect()->back()->with('error', 'Error al crear el rol. Por favor, inténtelo nuevamente.');
+        }
     }
+
 
     /**
      * Display the specified resource.
@@ -73,7 +90,7 @@ class RoleController extends Controller
     {
         $user = Auth::user();
         $isAdmin = $user->hasRole('admin');
-        info($isAdmin);
+//        info($isAdmin);
         return view('roles.edit', compact('role', 'isAdmin'));
     }
 
@@ -91,6 +108,8 @@ class RoleController extends Controller
         $role->guard_name = $request->guard_name;
         $role->save();
 
+        #si se actualizo correctamente el rol se envia anuncion de success
+        Alert::success('Done!', 'Rol Actualizado');
         return redirect()->route('roles.index')->with('success', 'Rol actualizado correctamente.');
     }
 

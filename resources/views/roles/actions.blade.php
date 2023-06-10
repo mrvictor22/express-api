@@ -60,14 +60,14 @@
                         .then(function(response){
                             //log the response
                             console.log(response);
-                            Swal.fire("¡Usuario eliminado exitosamente!", {
+                            Swal.fire("¡Rol eliminado exitosamente!", {
                                 icon: "success",
                             }).then(() => {
                                 window.location.reload();
                             });
                         })
                         .catch(function(error){
-                            Swal.fire("¡No se pudo eliminar el usuario!", {
+                            Swal.fire("¡No se pudo eliminar el rol!", {
                                 icon: "error",
                             });
                         });

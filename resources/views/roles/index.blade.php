@@ -38,7 +38,7 @@
                     @if(auth()->user()->can('actualizar_configuracion'))
                         <!-- Mostrar contenido que solo los usuarios con el rol "admin" y el permiso "admin.create" pueden ver -->
                         <div class="flex-grow-1">
-                            <button type="button" class="btn rounded-pill btn-primary waves-effect waves-light" onclick="window.location.href='{{ route('config.create') }}'">Crear nuevo rol</button>
+                            <button type="button" id="create-role-btn" class="btn rounded-pill btn-primary waves-effect waves-light">Crear nuevo rol</button>
                         </div>
                     @endif
                     @endrole
@@ -116,7 +116,63 @@
             });
         });
 
+        $(document).ready(function () {
+            $('#create-role-btn').click(function () {
+                Swal.fire({
+                    title: 'Crear Rol',
+                    html: `<form id="create-role-form" action="{{ route('roles.store') }}" method="POST">
+                            @csrf
 
+                    <div class="form-group">
+                        <label for="name">Nombre del Rol:</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group" hidden>
+                        <label for="guard_name">Guard Name:</label>
+                        <input type="text" class="form-control" id="guard_name" value="web" name="guard_name">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>`,
+                    showCancelButton: true,
+                    showConfirmButton: false,
+                    cancelButtonText: 'Cancelar',
+                    cancelButtonColor: '#d33',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                    onOpen: function () {
+                        $('#create-role-form').submit(function (event) {
+                            event.preventDefault();
+
+                            $.ajax({
+                                url: $(this).attr('action'),
+                                method: 'POST',
+                                data: $(this).serialize(),
+                                success: function () {
+                                    Swal.fire({
+                                        title: '¡Rol creado!',
+                                        text: 'El rol se ha creado exitosamente.',
+                                        icon: 'success'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            location.reload(); // Recargar la página actual
+                                        }
+                                    });
+                                },
+                                error: function () {
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: 'No se pudo crear el rol. Por favor, inténtelo nuevamente.',
+                                        icon: 'error'
+                                    });
+                                }
+                            });
+                        });
+                    }
+                });
+            });
+        });
 
 
     </script>
