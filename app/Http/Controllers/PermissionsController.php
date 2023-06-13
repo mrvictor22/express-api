@@ -96,40 +96,42 @@ class PermissionsController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
-    {
-        $role = Role::findOrFail($id);
-//        info($request);
-        $permissions = $request->input('permissions', []);
+{
+    $role = Role::findOrFail($id);
+    info($request);
+    $permissions = $request->input('permissions', []);
 
-        // Obtén los nombres de permisos basados en los valores booleanos
-        $permissionNames = [];
-        foreach ($permissions as $module => $modulePermissions) {
-            foreach ($modulePermissions as $permission => $value) {
-                if ($value === 'true') {
-                    // Verificar si el permiso existe
-                    $existingPermission = Permission::where('name', $permission)->first();
-                    if (!$existingPermission) {
-                        // Si el permiso no existe, crearlo
-                        $existingPermission = Permission::create([
-                            'name' => $permission,
-                            'guard_name' => 'web',
-                        ]);
-                    }
-                    $permissionNames[] = $existingPermission->name;
-                }
+    // Actualizar los permisos del rol
+    foreach ($permissions as $module => $modulePermissions) {
+        foreach ($modulePermissions as $permission => $value) {
+            // Verificar si el permiso existe
+            $existingPermission = Permission::where('name', $permission)->first();
+            if (!$existingPermission) {
+                // Si el permiso no existe, crearlo
+                $existingPermission = Permission::create([
+                    'name' => $permission,
+                    'guard_name' => 'web',
+                ]);
+            }
+
+            if ($value === 'true') {
+                // Asignar permiso al rol
+                $role->givePermissionTo($existingPermission);
+            } else {
+                // Revocar permiso al rol
+                $role->revokePermissionTo($existingPermission);
             }
         }
-
-        // Actualizar los permisos del rol
-        $role->syncPermissions($permissionNames);
-
-        if ($request->ajax()) {
-            return response()->json(['success' => true, 'message' => 'Permisos actualizados correctamente']);
-        }
-
-        // Redirigir a la vista de permisos después de la actualización
-        return redirect()->route('permissions.index', ['id' => $id])->with('success', 'Permisos actualizados correctamente');
     }
+
+    if ($request->ajax()) {
+        return response()->json(['success' => true, 'message' => 'Permisos actualizados correctamente']);
+    }
+
+    // Redirigir a la vista de permisos después de la actualización
+    return redirect()->route('permissions.index', ['id' => $id])->with('success', 'Permisos actualizados correctamente');
+}
+
 
 
 

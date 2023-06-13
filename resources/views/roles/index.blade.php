@@ -35,7 +35,7 @@
             <div class="card">
                 <div class="card-header align-items-center d-flex">
                     @role('admin')
-                    @if(auth()->user()->can('actualizar_configuracion'))
+                    @if(auth()->user()->can('Configuracion.create'))
                         <!-- Mostrar contenido que solo los usuarios con el rol "admin" y el permiso "admin.create" pueden ver -->
                         <div class="flex-grow-1">
                             <button type="button" id="create-role-btn" class="btn rounded-pill btn-primary waves-effect waves-light">Crear nuevo rol</button>

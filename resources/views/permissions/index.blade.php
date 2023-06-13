@@ -35,7 +35,7 @@
             <div class="card">
                 <div class="card-header align-items-center d-flex">
                     @role('admin')
-                    @if(auth()->user()->can('admin.create'))
+                    @if(auth()->user()->can('Configuracion.create'))
                         <!-- Mostrar contenido que solo los usuarios con el rol "admin" y el permiso "admin.create" pueden ver -->
                         <div class="flex-grow-1">
                             <button type="button" class="btn rounded-pill btn-primary waves-effect waves-light" onclick="window.location.href='{{ route('config.create') }}'">Crear nuevo usuario</button>
@@ -87,62 +87,68 @@
         console.log(csrfToken);
 
         $(document).ready(function () {
-            var permissions = {!! json_encode($modules) !!};
-            console.log(permissions)
-            // Cargar tabla de permisos por AJAX al cargar la página
-            loadPermissionsTable();
+    var permissions = {!! json_encode($modules) !!};
+    console.log(permissions);
 
-            // Función para cargar la tabla de permisos por AJAX
-            function loadPermissionsTable() {
-                $.ajax({
-                    url: "{{ route('permissions.index', ['id' => $id]) }}",
-                    method: "GET",
-                    success: function (data) {
-                        $('#permissions-container').html(data);
-                    }
-                });
+    // Cargar tabla de permisos por AJAX al cargar la página
+    loadPermissionsTable();
+
+    // Función para cargar la tabla de permisos por AJAX
+    function loadPermissionsTable() {
+        $.ajax({
+            url: "{{ route('permissions.index', ['id' => $id]) }}",
+            method: "GET",
+            success: function (data) {
+                $('#permissions-container').html(data);
             }
-
-            // Función para actualizar los permisos por AJAX
-            function updatePermissions(permissions) {
-                $.ajax({
-                    url: "{{ route('permissions.update', ['id' => $id]) }}",
-                    method: "POST",
-                    data: {
-                        permissions: Object.values(permissions),
-                        _token: csrfToken
-                    },
-                    success: function (response) {
-                        Swal.fire({
-                            title: 'Éxito',
-                            text: response.message,
-                            icon: 'success'
-                        });
-                    },
-                    error: function (xhr) {
-                        Swal.fire({
-                            title: 'Error',
-                            text: 'No se pudo actualizar los permisos. Por favor, inténtelo nuevamente.',
-                            icon: 'error'
-                        });
-                    }
-                });
-            }
-            // Manejar cambios en los switches de permisos
-            $(document).on('change', '.permission-switch', function () {
-                var module = $(this).data('module');
-                var permission = $(this).data('permission');
-                var isChecked = $(this).prop('checked');
-
-                // Actualizar permiso en el array de permisos
-                if (permissions.hasOwnProperty(module)) {
-                    permissions[module][permission] = isChecked;
-                }
-
-                // Actualizar los permisos por AJAX
-                updatePermissions(permissions);
-            });
         });
+    }
+
+    // Función para actualizar el permiso por AJAX
+    function updatePermission(module, permission, value) {
+        $.ajax({
+            url: "{{ route('permissions.update', ['id' => $id]) }}",
+            method: "POST",
+            data: {
+                permissions: {
+                    [module]: {
+                        [permission]: value
+                    }
+                },
+                _token: csrfToken
+            },
+            success: function (response) {
+                Swal.fire({
+                    title: 'Éxito',
+                    text: response.message,
+                    icon: 'success'
+                });
+            },
+            error: function (xhr) {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'No se pudo actualizar el permiso. Por favor, inténtelo nuevamente.',
+                    icon: 'error'
+                });
+            }
+        });
+    }
+
+    // Manejar cambios en los switches de permisos
+    $(document).on('change', '.permission-switch', function () {
+        var module = $(this).data('module');
+        var permission = $(this).data('permission');
+        var isChecked = $(this).prop('checked');
+
+        // Actualizar permiso en el array de permisos
+        if (permissions.hasOwnProperty(module)) {
+            permissions[module][permission] = isChecked;
+        }
+
+        // Actualizar el permiso por AJAX
+        updatePermission(module, permission, isChecked);
+    });
+});
 
 
 
