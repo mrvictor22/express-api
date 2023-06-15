@@ -306,6 +306,7 @@ class RutasController extends Controller
     {
         $Id_usuario = $this->id;
         $nombre = User::find($Id_usuario);
+        $ajax_data = array();
 
        $data = DB::table('rutas_tbl')
                 //->join('producto_rutas_tbl','rutas_tbl.id', '=' , 'producto_rutas_tbl.id_rutas_tbl')
