@@ -19,7 +19,13 @@ use App\Http\Controllers\HomeController;
 |
 */
 
+Route::get('/landing', [\App\Http\Controllers\PublicLandingController::class, 'landing'])->name('landing');
+Route::get('/register', [\App\Http\Controllers\Auth\RegisterController::class, 'showRegistrationForm'])->name('register');
+
+
+
 Auth::routes();
+Route::get('/', [HomeController::class, 'root'])->name('root');
 Route::get('ajax_user', [UserController::class, 'userdata'])->name('config.ajaxindex');
 Route::get('ajax_rutas', [RutasController::class, 'data'])->name('rutas.ajaxindex');
 Route::get('routes-form' , [RutasController::class, 'form'])->name('test');
@@ -64,7 +70,7 @@ Route::resource('rutas',RutasController::class );
 //Language Translation
 Route::get('index/{locale}', [HomeController::class, 'lang']);
 
-Route::get('/', [HomeController::class, 'root'])->name('root');
+
 
 
 Route::get('{any}', [HomeController::class, 'index'])->name('index');

@@ -43,9 +43,9 @@
 {{--                            <li class="nav-item">--}}
 {{--                                <a class="nav-link" href="#features">Features</a>--}}
 {{--                            </li>--}}
-                            <li class="nav-item">
-                                <a class="nav-link" href="#plans">Planes</a>
-                            </li>
+{{--                            <li class="nav-item">--}}
+{{--                                <a class="nav-link" href="#plans">Planes</a>--}}
+{{--                            </li>--}}
 {{--                            <li class="nav-item">--}}
 {{--                                <a class="nav-link" href="#reviews">Reviews</a>--}}
 {{--                            </li>--}}
@@ -58,8 +58,8 @@
                         </ul>
 
                         <div class="">
-                            <a href="auth-signin-basic" class="btn btn-link fw-medium text-decoration-none text-dark">Registrate</a>
-                            <a href="auth-signup-basic" class="btn btn-primary">Inicia Sesión</a>
+                            <a href="{{route('register')}}" class="btn btn-link fw-medium text-decoration-none text-dark">Registrate</a>
+                            <a href=" {{route('login')}}" class="btn btn-primary">Inicia Sesión</a>
                         </div>
                     </div>
 
@@ -79,7 +79,7 @@
 
                                 <div class="d-flex gap-2 justify-content-center mt-4">
                                     <a href="auth-signup-basic" class="btn btn-primary">Inicia con nosotros! <i class="ri-arrow-right-line align-middle ms-1"></i></a>
-                                    <a href="pages-pricing" class="btn btn-danger">Ver planes <i class="ri-eye-line align-middle ms-1"></i></a>
+{{--                                    <a href="pages-pricing" class="btn btn-danger">Ver planes <i class="ri-eye-line align-middle ms-1"></i></a>--}}
                                 </div>
                             </div>
 
@@ -93,26 +93,26 @@
                                 <div class="carousel slide carousel-fade" data-bs-ride="carousel">
                                     <div class="carousel-inner shadow-lg p-2 bg-white rounded">
                                         <div class="carousel-item active" data-bs-interval="2000">
-                                            <img src="{{ URL::asset('assets/images/carrousel2/1.png') }}" class="d-block w-100" alt="...">
+                                            <img src="{{ URL::asset('assets/images/carrousel2/paqueteria-mensajeria-1024x597.jpg') }}" class="d-block w-100"  alt="...">
                                         </div>
                                         <div class="carousel-item" data-bs-interval="2000">
-                                            <img src="{{ URL::asset('assets/images/demos/saas.png') }}" class="d-block w-100" alt="...">
+                                            <img src="{{ URL::asset('assets/images/carrousel2/envios-paqueteria.jpg') }}" class="d-block w-100" alt="...">
                                         </div>
                                         <div class="carousel-item" data-bs-interval="2000">
-                                            <img src="{{ URL::asset('assets/images/demos/material.png') }}" class="d-block w-100" alt="...">
+                                            <img src="{{ URL::asset('assets/images/carrousel2/08_02.png') }}" class="d-block w-100" alt="...">
                                         </div>
                                         <div class="carousel-item" data-bs-interval="2000">
-                                            <img src="{{ URL::asset('assets/images/demos/minimal.png') }}" class="d-block w-100" alt="...">
+                                            <img src="{{ URL::asset('assets/images/carrousel2/HQK2ZMXJFRBYRIAKEA6SOUQRSU.jpg') }}" class="d-block w-100" alt="...">
                                         </div>
-                                        <div class="carousel-item" data-bs-interval="2000">
-                                            <img src="{{ URL::asset('assets/images/demos/creative.png') }}" class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item" data-bs-interval="2000">
-                                            <img src="{{ URL::asset('assets/images/demos/modern.png') }}" class="d-block w-100" alt="...">
-                                        </div>
-                                        <div class="carousel-item" data-bs-interval="2000">
-                                            <img src="{{ URL::asset('assets/images/demos/interactive.png') }}" class="d-block w-100" alt="...">
-                                        </div>
+{{--                                        <div class="carousel-item" data-bs-interval="2000">--}}
+{{--                                            <img src="{{ URL::asset('assets/images/demos/creative.png') }}" class="d-block w-100" alt="...">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="carousel-item" data-bs-interval="2000">--}}
+{{--                                            <img src="{{ URL::asset('assets/images/demos/modern.png') }}" class="d-block w-100" alt="...">--}}
+{{--                                        </div>--}}
+{{--                                        <div class="carousel-item" data-bs-interval="2000">--}}
+{{--                                            <img src="{{ URL::asset('assets/images/demos/interactive.png') }}" class="d-block w-100" alt="...">--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -625,350 +625,350 @@
             <!-- end features -->
 
             <!-- start plan -->
-            <section class="section bg-light" id="plans">
-                <div class="bg-overlay bg-overlay-pattern"></div>
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="text-center mb-5">
-                                <h3 class="mb-3 fw-semibold">Choose the plan that's right for you</h3>
-                                <p class="text-muted mb-4">Simple pricing. No hidden fees. Advanced features for you
-                                    business.</p>
+{{--            <section class="section bg-light" id="plans">--}}
+{{--                <div class="bg-overlay bg-overlay-pattern"></div>--}}
+{{--                <div class="container">--}}
+{{--                    <div class="row justify-content-center">--}}
+{{--                        <div class="col-lg-8">--}}
+{{--                            <div class="text-center mb-5">--}}
+{{--                                <h3 class="mb-3 fw-semibold">Choose the plan that's right for you</h3>--}}
+{{--                                <p class="text-muted mb-4">Simple pricing. No hidden fees. Advanced features for you--}}
+{{--                                    business.</p>--}}
 
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <div>
-                                        <h5 class="fs-14 mb-0">Month</h5>
-                                    </div>
-                                    <div class="form-check form-switch fs-20 ms-3 " onclick="check()">
-                                        <input class="form-check-input" type="checkbox" id="plan-switch">
-                                        <label class="form-check-label" for="plan-switch"></label>
-                                    </div>
-                                    <div>
-                                        <h5 class="fs-14 mb-0">Annual <span class="badge badge-soft-success">Save 20%</span></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end col -->
-                    </div>
-                    <!-- end row -->
+{{--                                <div class="d-flex justify-content-center align-items-center">--}}
+{{--                                    <div>--}}
+{{--                                        <h5 class="fs-14 mb-0">Month</h5>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="form-check form-switch fs-20 ms-3 " onclick="check()">--}}
+{{--                                        <input class="form-check-input" type="checkbox" id="plan-switch">--}}
+{{--                                        <label class="form-check-label" for="plan-switch"></label>--}}
+{{--                                    </div>--}}
+{{--                                    <div>--}}
+{{--                                        <h5 class="fs-14 mb-0">Annual <span class="badge badge-soft-success">Save 20%</span></h5>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!-- end col -->--}}
+{{--                    </div>--}}
+{{--                    <!-- end row -->--}}
 
-                    <div class="row gy-4">
-                        <div class="col-lg-4">
-                            <div class="card plan-box mb-0">
-                                <div class="card-body p-4 m-2">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1">
-                                            <h5 class="mb-1 fw-semibold">Basic Plan</h5>
-                                            <p class="text-muted mb-0">For Startup</p>
-                                        </div>
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary">
-                                                <i class="ri-book-mark-line fs-20"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="py-4 text-center">
-                                        <h1 class="month"><sup><small>$</small></sup><span class="ff-secondary fw-bold">19</span> <span
-                                                class="fs-13 text-muted">/Month</span></h1>
-                                        <h1 class="annual"><sup><small>$</small></sup><span class="ff-secondary fw-bold">171</span> <span
-                                                class="fs-13 text-muted">/Year</span></h1>
-                                    </div>
+{{--                    <div class="row gy-4">--}}
+{{--                        <div class="col-lg-4">--}}
+{{--                            <div class="card plan-box mb-0">--}}
+{{--                                <div class="card-body p-4 m-2">--}}
+{{--                                    <div class="d-flex align-items-center">--}}
+{{--                                        <div class="flex-grow-1">--}}
+{{--                                            <h5 class="mb-1 fw-semibold">Basic Plan</h5>--}}
+{{--                                            <p class="text-muted mb-0">For Startup</p>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="avatar-sm">--}}
+{{--                                            <div class="avatar-title bg-light rounded-circle text-primary">--}}
+{{--                                                <i class="ri-book-mark-line fs-20"></i>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="py-4 text-center">--}}
+{{--                                        <h1 class="month"><sup><small>$</small></sup><span class="ff-secondary fw-bold">19</span> <span--}}
+{{--                                                class="fs-13 text-muted">/Month</span></h1>--}}
+{{--                                        <h1 class="annual"><sup><small>$</small></sup><span class="ff-secondary fw-bold">171</span> <span--}}
+{{--                                                class="fs-13 text-muted">/Year</span></h1>--}}
+{{--                                    </div>--}}
 
-                                    <div>
-                                        <ul class="list-unstyled text-muted vstack gap-3 ff-secondary">
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-success me-1">
-                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        Upto <b>3</b> Projects
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-success me-1">
-                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        Upto <b>299</b> Customers
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-success me-1">
-                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        Scalable Bandwidth
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-success me-1">
-                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <b>5</b> FTP Login
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-danger me-1">
-                                                        <i class="ri-close-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <b>24/7</b> Support
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-danger me-1">
-                                                        <i class="ri-close-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <b>Unlimited</b> Storage
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-danger me-1">
-                                                        <i class="ri-close-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        Domain
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="mt-4">
-                                            <a href="javascript:void(0);" class="btn btn-soft-success w-100">Get
-                                                Started</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end col-->
-                        <div class="col-lg-4">
-                            <div class="card plan-box mb-0 ribbon-box right">
-                                <div class="card-body p-4 m-2">
-                                    <div class="ribbon-two ribbon-two-danger"><span>Popular</span></div>
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1">
-                                            <h5 class="mb-1 fw-semibold">Pro Business</h5>
-                                            <p class="text-muted mb-0">Professional plans</p>
-                                        </div>
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary">
-                                                <i class="ri-medal-fill fs-20"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="py-4 text-center">
-                                        <h1 class="month"><sup><small>$</small></sup><span class="ff-secondary fw-bold">29</span> <span
-                                                class="fs-13 text-muted">/Month</span></h1>
-                                        <h1 class="annual"><sup><small>$</small></sup><span class="ff-secondary fw-bold">261</span> <span
-                                                class="fs-13 text-muted">/Year</span></h1>
-                                    </div>
+{{--                                    <div>--}}
+{{--                                        <ul class="list-unstyled text-muted vstack gap-3 ff-secondary">--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-success me-1">--}}
+{{--                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        Upto <b>3</b> Projects--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-success me-1">--}}
+{{--                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        Upto <b>299</b> Customers--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-success me-1">--}}
+{{--                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        Scalable Bandwidth--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-success me-1">--}}
+{{--                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        <b>5</b> FTP Login--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-danger me-1">--}}
+{{--                                                        <i class="ri-close-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        <b>24/7</b> Support--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-danger me-1">--}}
+{{--                                                        <i class="ri-close-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        <b>Unlimited</b> Storage--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-danger me-1">--}}
+{{--                                                        <i class="ri-close-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        Domain--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                        </ul>--}}
+{{--                                        <div class="mt-4">--}}
+{{--                                            <a href="javascript:void(0);" class="btn btn-soft-success w-100">Get--}}
+{{--                                                Started</a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!--end col-->--}}
+{{--                        <div class="col-lg-4">--}}
+{{--                            <div class="card plan-box mb-0 ribbon-box right">--}}
+{{--                                <div class="card-body p-4 m-2">--}}
+{{--                                    <div class="ribbon-two ribbon-two-danger"><span>Popular</span></div>--}}
+{{--                                    <div class="d-flex align-items-center">--}}
+{{--                                        <div class="flex-grow-1">--}}
+{{--                                            <h5 class="mb-1 fw-semibold">Pro Business</h5>--}}
+{{--                                            <p class="text-muted mb-0">Professional plans</p>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="avatar-sm">--}}
+{{--                                            <div class="avatar-title bg-light rounded-circle text-primary">--}}
+{{--                                                <i class="ri-medal-fill fs-20"></i>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="py-4 text-center">--}}
+{{--                                        <h1 class="month"><sup><small>$</small></sup><span class="ff-secondary fw-bold">29</span> <span--}}
+{{--                                                class="fs-13 text-muted">/Month</span></h1>--}}
+{{--                                        <h1 class="annual"><sup><small>$</small></sup><span class="ff-secondary fw-bold">261</span> <span--}}
+{{--                                                class="fs-13 text-muted">/Year</span></h1>--}}
+{{--                                    </div>--}}
 
-                                    <div>
-                                        <ul class="list-unstyled text-muted vstack gap-3 ff-secondary">
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-success me-1">
-                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        Upto <b>15</b> Projects
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-success me-1">
-                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <b>Unlimited</b> Customers
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-success me-1">
-                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        Scalable Bandwidth
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-success me-1">
-                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <b>12</b> FTP Login
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-success me-1">
-                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <b>24/7</b> Support
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-danger me-1">
-                                                        <i class="ri-close-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <b>Unlimited</b> Storage
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-danger me-1">
-                                                        <i class="ri-close-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        Domain
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="mt-4">
-                                            <a href="javascript:void(0);" class="btn btn-soft-success w-100">Get
-                                                Started</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end col-->
-                        <div class="col-lg-4">
-                            <div class="card plan-box mb-0">
-                                <div class="card-body p-4 m-2">
-                                    <div class="d-flex align-items-center">
-                                        <div class="flex-grow-1">
-                                            <h5 class="mb-1 fw-semibold">Platinum Plan</h5>
-                                            <p class="text-muted mb-0">Enterprise Businesses</p>
-                                        </div>
-                                        <div class="avatar-sm">
-                                            <div class="avatar-title bg-light rounded-circle text-primary">
-                                                <i class="ri-stack-fill fs-20"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="py-4 text-center">
-                                        <h1 class="month"><sup><small>$</small></sup><span class="ff-secondary fw-bold">39</span> <span
-                                                class="fs-13 text-muted">/Month</span></h1>
-                                        <h1 class="annual"><sup><small>$</small></sup><span class="ff-secondary fw-bold">351</span> <span
-                                                class="fs-13 text-muted">/Year</span></h1>
-                                    </div>
+{{--                                    <div>--}}
+{{--                                        <ul class="list-unstyled text-muted vstack gap-3 ff-secondary">--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-success me-1">--}}
+{{--                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        Upto <b>15</b> Projects--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-success me-1">--}}
+{{--                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        <b>Unlimited</b> Customers--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-success me-1">--}}
+{{--                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        Scalable Bandwidth--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-success me-1">--}}
+{{--                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        <b>12</b> FTP Login--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-success me-1">--}}
+{{--                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        <b>24/7</b> Support--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-danger me-1">--}}
+{{--                                                        <i class="ri-close-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        <b>Unlimited</b> Storage--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-danger me-1">--}}
+{{--                                                        <i class="ri-close-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        Domain--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                        </ul>--}}
+{{--                                        <div class="mt-4">--}}
+{{--                                            <a href="javascript:void(0);" class="btn btn-soft-success w-100">Get--}}
+{{--                                                Started</a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!--end col-->--}}
+{{--                        <div class="col-lg-4">--}}
+{{--                            <div class="card plan-box mb-0">--}}
+{{--                                <div class="card-body p-4 m-2">--}}
+{{--                                    <div class="d-flex align-items-center">--}}
+{{--                                        <div class="flex-grow-1">--}}
+{{--                                            <h5 class="mb-1 fw-semibold">Platinum Plan</h5>--}}
+{{--                                            <p class="text-muted mb-0">Enterprise Businesses</p>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="avatar-sm">--}}
+{{--                                            <div class="avatar-title bg-light rounded-circle text-primary">--}}
+{{--                                                <i class="ri-stack-fill fs-20"></i>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="py-4 text-center">--}}
+{{--                                        <h1 class="month"><sup><small>$</small></sup><span class="ff-secondary fw-bold">39</span> <span--}}
+{{--                                                class="fs-13 text-muted">/Month</span></h1>--}}
+{{--                                        <h1 class="annual"><sup><small>$</small></sup><span class="ff-secondary fw-bold">351</span> <span--}}
+{{--                                                class="fs-13 text-muted">/Year</span></h1>--}}
+{{--                                    </div>--}}
 
-                                    <div>
-                                        <ul class="list-unstyled text-muted vstack gap-3 ff-secondary">
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-success me-1">
-                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <b>Unlimited</b> Projects
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-success me-1">
-                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <b>Unlimited</b> Customers
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-success me-1">
-                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        Scalable Bandwidth
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-success me-1">
-                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <b>Unlimited</b> FTP Login
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-success me-1">
-                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <b>24/7</b> Support
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-success me-1">
-                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <b>Unlimited</b> Storage
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 text-success me-1">
-                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        Domain
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <div class="mt-4">
-                                            <a href="javascript:void(0);" class="btn btn-soft-success w-100">Get
-                                                Started</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end col-->
-                    </div>
-                    <!--end row-->
-                </div>
-                <!-- end container -->
-            </section>
+{{--                                    <div>--}}
+{{--                                        <ul class="list-unstyled text-muted vstack gap-3 ff-secondary">--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-success me-1">--}}
+{{--                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        <b>Unlimited</b> Projects--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-success me-1">--}}
+{{--                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        <b>Unlimited</b> Customers--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-success me-1">--}}
+{{--                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        Scalable Bandwidth--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-success me-1">--}}
+{{--                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        <b>Unlimited</b> FTP Login--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-success me-1">--}}
+{{--                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        <b>24/7</b> Support--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-success me-1">--}}
+{{--                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        <b>Unlimited</b> Storage--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                            <li>--}}
+{{--                                                <div class="d-flex">--}}
+{{--                                                    <div class="flex-shrink-0 text-success me-1">--}}
+{{--                                                        <i class="ri-checkbox-circle-fill fs-15 align-middle"></i>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="flex-grow-1">--}}
+{{--                                                        Domain--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </li>--}}
+{{--                                        </ul>--}}
+{{--                                        <div class="mt-4">--}}
+{{--                                            <a href="javascript:void(0);" class="btn btn-soft-success w-100">Get--}}
+{{--                                                Started</a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <!--end col-->--}}
+{{--                    </div>--}}
+{{--                    <!--end row-->--}}
+{{--                </div>--}}
+{{--                <!-- end container -->--}}
+{{--            </section>--}}
             <!-- end plan -->
 
             <!-- start faqs -->
@@ -1244,7 +1244,8 @@
             <!-- end review -->
 
             <!-- start counter -->
-            <section class="py-5 position-relative bg-light">
+            <section class="py-5 position-relative bg-light" style="padding-top: 7rem!important;">
+
                 <div class="container">
                     <div class="row text-center gy-4">
                         <div class="col-lg-3 col-6">
@@ -1257,7 +1258,7 @@
 
                         <div class="col-lg-3 col-6">
                             <div>
-                                <h2 class="mb-2"><span class="counter-value" data-target="24">0</span></h2>
+                                <h2 class="mb-2"><span class="counter-value" data-target="5000">0</span>+</h2>
                                 <div class="text-muted">Cantidad de Productos entregados</div>
                             </div>
                         </div>
@@ -1265,14 +1266,14 @@
 
                         <div class="col-lg-3 col-6">
                             <div>
-                                <h2 class="mb-2"><span class="counter-value" data-target="20.3">0</span>k</h2>
+                                <h2 class="mb-2"><span class="counter-value" data-target="200">0</span>k</h2>
                                 <div class="text-muted">Clientes satisfechos</div>
                             </div>
                         </div>
                         <!-- end col -->
                         <div class="col-lg-3 col-6">
                             <div>
-                                <h2 class="mb-2"><span class="counter-value" data-target="50">0</span></h2>
+                                <h2 class="mb-2"><span class="counter-value" data-target="500">0</span></h2>
                                 <div class="text-muted">Colaboradores</div>
                             </div>
                         </div>
@@ -1774,7 +1775,7 @@
         <!-- end layout wrapper -->
 
 
-        @@include("partials/vendor-scripts")
+        @include("layouts.vendor-scripts")
 
 
     </body>
