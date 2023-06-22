@@ -56,7 +56,7 @@
 
                                     <div class="mb-3">
                                         <div class="float-end">
-                                            <a href="auth-pass-reset-basic" class="text-muted">Olvidaste tu contraseña?</a>
+                                            <a href="{{ route('password.request') }}" class="text-muted">Olvidaste tu contraseña?</a>
                                         </div>
                                         <label class="form-label" for="password-input">Contraseña</label>
                                         <div class="position-relative auth-pass-inputgroup mb-3">
@@ -115,7 +115,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center">
-                        <p class="mb-0 text-muted">&copy; <script>document.write(new Date().getFullYear())</script> Express System. Desarrollado con <i class="mdi mdi-heart text-danger"></i> by <a href="http://jbdevelopmentsv.com/">Jb Development</a></p>
+                        <p class="mb-0 text-muted">&copy; <script>document.write(new Date().getFullYear())</script> Express System. Desarrollado con <i class="mdi mdi-heart text-danger"></i> by <a href="">Apex Code Labs</a></p>
                     </div>
                 </div>
             </div>
