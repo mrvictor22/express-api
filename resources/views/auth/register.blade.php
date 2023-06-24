@@ -178,8 +178,8 @@
                         <div class="text-center">
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> Velzon. Crafted with <i
-                                    class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                            </script> Express El Salvador S.A de C.V. Crafted with <i
+                                    class="mdi mdi-heart text-danger"></i> by Apex Code Labs</p>
                         </div>
                     </div>
                 </div>
