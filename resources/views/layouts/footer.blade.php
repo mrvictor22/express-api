@@ -6,7 +6,7 @@
             </div>
             <div class="col-sm-6">
                 <div class="text-sm-end d-none d-sm-block">
-                    <a href="http://jbdevelopmentsv.com/">Design & Develop by Jb Development</a>
+                    <a href="">Design & Develop by Apex Code Labs</a>
 
                 </div>
             </div>
