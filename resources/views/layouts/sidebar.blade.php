@@ -61,7 +61,7 @@
 {{--                Fin rutas menu--}}
 {{--                TODO Implementar sistema de permisos, quitar cuando este listo--}}
 {{--                display none--}}
-                @if(auth()->user()->can('Gestion de rutas.read'))
+                @if(auth()->user()->can('Configuracion.read'))
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarConfig" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarConfig">
                         <i class="ri-home-line"></i> <span>Configuración</span>
