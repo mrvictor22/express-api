@@ -28,6 +28,17 @@
 </div>
     <div class="row">
         <div class="col-lg-12">
+            <div class="card-header align-items-center d-flex">
+                    @role('admin')
+                    @if(auth()->user()->can('Gestion de rutas.create'))
+                        <!-- Mostrar contenido que solo los usuarios con el rol "admin" y el permiso "admin.create" pueden ver -->
+                        <div class="flex-grow-1">
+                            <button type="button" class="btn rounded-pill btn-primary waves-effect waves-light" onclick="window.location.href='{{route('test')}}'">Crear nueva ruta</button>
+                        </div>
+                    @endif
+                    @endrole
+
+                </div><!-- end card header -->
             <div class="card">
                 <div class="card-header align-items-center d-flex">
                     <h4 class="card-title mb-0 flex-grow-1">Listado de rutas</h4>
@@ -203,7 +214,9 @@
 
                            return  '<div class="dropdown d-inline-block"><button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="ri-more-fill align-middle"></i></button><ul class="dropdown-menu dropdown-menu-end">'
                                // +'<li><a href="" class="dropdown-item" data-bs-toggle="modal" data-bs-target=".bs-example-modal-center"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> Ver</a></li>'
+                               @if(auth()->user()->can('Gestion de rutas.read'))
                                +'<li><a onclick=openInNewTab('+ row.id +') class="dropdown-item" ><i class="ri-eye-fill align-bottom me-2 text-muted"></i> Ver QR</a></li>'
+                               @endif
                                //+'<li><a class="dropdown-item edit-item-btn"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>'
                                //+'<li>'+'<a class="dropdown-item remove-item-btn">'+'<i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete'+'</a>' +'</li>'
                            +'</ul>'

@@ -135,7 +135,7 @@
                                         </div>
                                     </div>
                                     <!--end col-->
-                                    @if (auth()->user()->hasRole('admin'))
+                                    @if (auth()->user()->can('Configuracion.update'))
                                     <div class="col-lg-12">
                                         <div class="mb-3">
                                             <label for="roleInput" class="form-label">Rol</label>

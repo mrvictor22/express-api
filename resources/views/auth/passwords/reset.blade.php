@@ -24,10 +24,10 @@
                         <div class="text-center mt-sm-5 mb-4 text-white-50">
                             <div>
                                 <a href="index" class="d-inline-block auth-logo">
-                                    <img src="{{ URL::asset('assets/images/logo-light.png') }}" alt="" height="20">
+                                    <img src="{{URL::asset('assets/images/ssss.png')}}" alt="" height="70">
                                 </a>
                             </div>
-                            <p class="mt-3 fs-15 fw-medium">Premium Admin & Dashboard Template</p>
+                            <p class="mt-3 fs-15 fw-medium">Restablecimiento de contraseña</p>
                         </div>
                     </div>
                 </div>
@@ -39,8 +39,8 @@
 
                             <div class="card-body p-4">
                                 <div class="text-center mt-2">
-                                    <h5 class="text-primary">Forgot Password?</h5>
-                                    <p class="text-muted">Reset password with velzon</p>
+                                    <h5 class="text-primary">Olvidaste tu contraseña?</h5>
+                                    <p class="text-muted">Restablecela a continuación</p>
 
                                     <lord-icon src="https://cdn.lordicon.com/rhvddzym.json" trigger="loop"
                                         colors="primary:#0ab39c" class="avatar-xl">
@@ -48,9 +48,9 @@
 
                                 </div>
 
-                                <div class="alert alert-borderless alert-warning text-center mb-2 mx-2" role="alert">
-                                    Enter your email and instructions will be sent to you!
-                                </div>
+{{--                                <div class="alert alert-borderless alert-warning text-center mb-2 mx-2" role="alert">--}}
+{{--                                    Enter your email and instructions will be sent to you!--}}
+{{--                                </div>--}}
                                 <div class="p-2">
                                     <form class="form-horizontal" method="POST" action="{{ route('password.update') }}">
                                         @csrf
@@ -66,7 +66,7 @@
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="userpassword">Password</label>
+                                            <label for="userpassword">Nueva Contraseña</label>
                                             <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="userpassword" placeholder="Enter password">
                                             @error('password')
                                             <span class="invalid-feedback" role="alert">
@@ -76,12 +76,12 @@
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="userpassword">Confirm Password</label>
+                                            <label for="userpassword">Confirmar Contraseña</label>
                                             <input id="password-confirm" type="password" name="password_confirmation" class="form-control" placeholder="Enter confirm password">
                                         </div>
 
-                                        <div class="text-end">
-                                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Reset</button>
+                                        <div class="text-center">
+                                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Actualizar</button>
                                         </div>
 
                                     </form><!-- end form -->
@@ -91,10 +91,10 @@
                         </div>
                         <!-- end card -->
 
-                        <div class="mt-4 text-center">
-                            <p class="mb-0">Wait, I remember my password... <a href="auth-signin-basic"
-                                    class="fw-semibold text-primary text-decoration-underline"> Click here </a> </p>
-                        </div>
+{{--                        <div class="mt-4 text-center">--}}
+{{--                            <p class="mb-0">Espera!, Recuerdo mi contraseña... <a href="auth-signin-basic"--}}
+{{--                                    class="fw-semibold text-primary text-decoration-underline"> Click here </a> </p>--}}
+{{--                        </div>--}}
 
                     </div>
                 </div>
@@ -112,8 +112,8 @@
                         <div class="text-center">
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> Velzon. Crafted with <i
-                                    class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                            </script> Express El Salvador S.A de C.V. Crafted with <i
+                                    class="mdi mdi-heart text-danger"></i> by Apex Code Labs</p>
                         </div>
                     </div>
                 </div>

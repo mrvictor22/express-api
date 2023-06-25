@@ -90,9 +90,11 @@
 
                     </ul>
                     <div class="flex-shrink-0">
+                        @if(auth()->user()->can('Configuracion.update'))
                         <a href="{{ route('config.edit', ['config' => auth()->id()]) }}" class="btn btn-success">
                             <i class="ri-edit-box-line align-bottom"></i>Editar informacion de usuario
                         </a>
+                        @endif
                     </div>
                 </div>
                 <!-- Tab panes -->
