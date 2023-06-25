@@ -54,7 +54,7 @@ class UserController extends Controller
             abort(404);
         }
         // Verificar si el usuario autenticado tiene el rol de administrador y el permiso correspondiente
-        if (Auth::user()->hasRole('admin') && Auth::user()->can('admin.read')) {
+        if (Auth::user()->hasRole('admin') && Auth::user()->can('Configuracion.read')) {
             return response()->json($user);
         }else{
             // Devolver un error de acceso denegado en json
