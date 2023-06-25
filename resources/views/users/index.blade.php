@@ -35,7 +35,7 @@
             <div class="card">
                 <div class="card-header align-items-center d-flex">
                     @role('admin')
-                    @if(auth()->user()->can('admin.create'))
+                    @if(auth()->user()->can('Configuracion.create'))
                         <!-- Mostrar contenido que solo los usuarios con el rol "admin" y el permiso "admin.create" pueden ver -->
                         <div class="flex-grow-1">
                             <button type="button" class="btn rounded-pill btn-primary waves-effect waves-light" onclick="window.location.href='{{ route('config.create') }}'">Crear nuevo usuario</button>

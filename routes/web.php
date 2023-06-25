@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PermissionsController;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
@@ -43,8 +45,20 @@ Route::get('config/ver/{id}', [UserController::class, 'checkData'])->name('confi
 Route::post('/update-profile/{id}', [UserController::class, 'updateProfile'])->name('updateProfile');
 Route::post('/update-password/{id}', [UserController::class, 'updatePassword'])->name('updatePassword');
 Route::middleware(['role:admin'])->group(function () {
+    Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
+    Route::get('/roles/list', [RoleController::class, 'list'])->name('roles.list');
+    Route::resource('roles', RoleController::class);
+    Route::delete('/roles/{role}', [RoleController::class,'destroy'])->name('roles.destroy');
+
+    Route::get('permissions/{id}', [PermissionsController::class, 'index'])->name('permissions.index');
+    Route::get('permissions/table/{id}', [PermissionsController::class,'table'])->name('permissions.table');
+    Route::post('permissions/{id}/update', [PermissionsController::class,'update'])->name('permissions.update');
+
+
 
 });
+
+
 
 
 Route::resource('rutas',RutasController::class );

@@ -38,6 +38,7 @@
                     <a class="nav-link menu-link" href="#sidebarRutas" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarRutas">
                         <i class="bx bxs-car"></i> <span>Gestión de Rutas</span>
                     </a>
+                    @if(auth()->user()->can('Gestion de rutas.create'))
                     <div class="collapse menu-dropdown" id="sidebarRutas">
                         <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
@@ -45,6 +46,8 @@
                         </li>
                         </ul>
                     </div>
+                    @endif
+                    @if(auth()->user()->can('Gestion de rutas.read'))
                     <div class="collapse menu-dropdown" id="sidebarRutas">
                         <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
@@ -52,12 +55,13 @@
                         </li>
                         </ul>
                     </div>
+                    @endif
 {{--                    <a href="rutas.rutas-form" class="nav-link">Rutas</a>--}}
                 </li>
 {{--                Fin rutas menu--}}
 {{--                TODO Implementar sistema de permisos, quitar cuando este listo--}}
 {{--                display none--}}
-                @if (auth()->user()->hasRole('admin'))
+                @if(auth()->user()->can('Gestion de rutas.read'))
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarConfig" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarConfig">
                         <i class="ri-home-line"></i> <span>Configuración</span>
@@ -66,8 +70,7 @@
                         <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
                             <a href="{{route('config.index')}}" class="nav-link">Usuarios</a>
-                            <a href="" class="nav-link">Roles</a>
-                            <a href="" class="nav-link">Permisos</a>
+                            <a href="{{route('roles.index')}}" class="nav-link">Roles</a>
                         </li>
                         </ul>
                     </div>
