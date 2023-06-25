@@ -74,7 +74,6 @@
                         </li>
                         </ul>
                     </div>
-{{--                    <a href="rutas.rutas-form" class="nav-link">Rutas</a>--}}
                 </li>
                 @endif
 {{--                Fin rutas menu--}}
