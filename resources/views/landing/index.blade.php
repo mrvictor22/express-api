@@ -78,7 +78,7 @@
                                 <p class="lead text-muted lh-base">Somos la empresa líder en logística y envío de paquetería a nivel nacional. Nuestro objetivo es brindarte soluciones rápidas, seguras y confiables para tus necesidades de envío, ya sea para tus negocios o envíos personales.</p>
 
                                 <div class="d-flex gap-2 justify-content-center mt-4">
-                                    <a href="auth-signup-basic" class="btn btn-primary">Inicia con nosotros! <i class="ri-arrow-right-line align-middle ms-1"></i></a>
+                                    <a href="{{route('register')}}" class="btn btn-primary">Inicia con nosotros! <i class="ri-arrow-right-line align-middle ms-1"></i></a>
 {{--                                    <a href="pages-pricing" class="btn btn-danger">Ver planes <i class="ri-eye-line align-middle ms-1"></i></a>--}}
                                 </div>
                             </div>
@@ -1548,90 +1548,54 @@
             <!-- end team -->
 
             <!-- start contact -->
-{{--            <section class="section" id="contact">--}}
-{{--                <div class="container">--}}
-{{--                    <div class="row justify-content-center">--}}
-{{--                        <div class="col-lg-8">--}}
-{{--                            <div class="text-center mb-5">--}}
-{{--                                <h3 class="mb-3 fw-semibold">Get In Touch</h3>--}}
-{{--                                <p class="text-muted mb-4 ff-secondary">We thrive when coming up with innovative ideas but also--}}
-{{--                                    understand that a smart concept should be supported with faucibus sapien odio measurable--}}
-{{--                                    results.</p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <!-- end row -->--}}
+            <section class="section" id="contact">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="text-center mb-5">
+                                <h3 class="mb-3 fw-semibold">¡Contáctanos!</h3>
+                                <p class="text-muted mb-4 ff-secondary">Estamos aquí para ayudarte. Si tienes alguna pregunta, comentario o consulta, no dudes en ponerte en contacto con nosotros. Estaremos encantados de atenderte y brindarte la información que necesitas.
 
-{{--                    <div class="row gy-4">--}}
-{{--                        <div class="col-lg-4">--}}
-{{--                            <div>--}}
-{{--                                <div class="mt-4">--}}
-{{--                                    <h5 class="fs-13 text-muted text-uppercase">Office Address 1:</h5>--}}
-{{--                                    <div class="ff-secondary fw-semibold">4461 Cedar Street Moro, <br/>AR 72368</div>--}}
-{{--                                </div>--}}
-{{--                                <div class="mt-4">--}}
-{{--                                    <h5 class="fs-13 text-muted text-uppercase">Office Address 2:</h5>--}}
-{{--                                    <div class="ff-secondary fw-semibold">2467 Swick Hill Street <br />New Orleans, LA</div>--}}
-{{--                                </div>--}}
-{{--                                <div class="mt-4">--}}
-{{--                                    <h5 class="fs-13 text-muted text-uppercase">Working Hours:</h5>--}}
-{{--                                    <div class="ff-secondary fw-semibold">9:00am to 6:00pm</div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <!-- end col -->--}}
-{{--                        <div class="col-lg-8">--}}
-{{--                            <div>--}}
-{{--                                <form>--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-lg-6">--}}
-{{--                                            <div class="mb-4">--}}
-{{--                                                <label for="name" class="form-label fs-13">Name</label>--}}
-{{--                                                <input name="name" id="name" type="text"--}}
-{{--                                                    class="form-control bg-light border-light" placeholder="Your name*">--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-lg-6">--}}
-{{--                                            <div class="mb-4">--}}
-{{--                                                <label for="email" class="form-label fs-13">Email</label>--}}
-{{--                                                <input name="email" id="email" type="email"--}}
-{{--                                                    class="form-control bg-light border-light" placeholder="Your email*">--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-lg-12">--}}
-{{--                                            <div class="mb-4">--}}
-{{--                                                <label for="subject" class="form-label fs-13">Subject</label>--}}
-{{--                                                <input type="text" class="form-control bg-light border-light" id="subject"--}}
-{{--                                                    name="subject" placeholder="Your Subject.." />--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-lg-12">--}}
-{{--                                            <div class="mb-3">--}}
-{{--                                                <label for="comments" class="form-label fs-13">Message</label>--}}
-{{--                                                <textarea name="comments" id="comments" rows="3"--}}
-{{--                                                    class="form-control bg-light border-light"--}}
-{{--                                                    placeholder="Your message..."></textarea>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-lg-12 text-end">--}}
-{{--                                            <input type="submit" id="submit" name="send" class="submitBnt btn btn-primary"--}}
-{{--                                                value="Send Message">--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </form>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <!-- end row -->--}}
-{{--                </div>--}}
-{{--                <!-- end container -->--}}
-{{--            </section>--}}
+Puedes comunicarte con nosotros a través de los siguientes medios.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+                    <div class="row gy-4">
+                        <div class="col-lg-4">
+                            <div>
+                                <div class="mt-4">
+                                    <h5 class="fs-13 text-muted text-uppercase">Dirección:</h5>
+                                    <div class="ff-secondary fw-semibold">Calle Libertad D26 Jardines de Merliot</div>
+                                </div>
+                                <div class="mt-4">
+                                    <h5 class="fs-13 text-muted text-uppercase">Telefonos:</h5>
+                                    <div class="ff-secondary fw-semibold">22894200 y 74595990</div>
+                                </div>
+                                <div class="mt-4">
+                                    <h5 class="fs-13 text-muted text-uppercase">Horario de atención:</h5>
+                                    <div class="ff-secondary fw-semibold">Lunes a Sabado</div>
+                                    <div class="ff-secondary fw-semibold">8:00am a 6:00pm</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end col -->
+                        <div class="col-lg-8">
+                            <div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="card">
+                                           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.688942667705!2d-89.27328268754897!3d13.67666879896962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f632f6d75f73b97%3A0x6d0bd96084a5782a!2sEXPRESS%20EL%20SALVADOR!5e0!3m2!1ses!2ssv!4v1687819424864!5m2!1ses!2ssv" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end container -->
+            </section>
             <!-- end contact -->
 
             <!-- start cta -->
@@ -1785,4 +1749,12 @@
     @section('script')
         <script src="{{ URL::asset('/assets/libs/swiper/swiper.min.js') }}"></script>
         <script src="{{ URL::asset('/assets/js/pages/landing.init.js') }}"></script>
+    <script src="{{ URL::asset('assets/libs/prismjs/prismjs.min.js') }}"></script>
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyCtSAR45TFgZjOs4nBFFZnII-6mMHLfSYI"></script>
+
+    <script src="{{ URL::asset('assets/libs/gmaps/gmaps.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/js/pages/gmaps.init.js') }}"></script>
+    <script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
+
+
     @endsection
