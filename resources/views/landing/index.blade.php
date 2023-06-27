@@ -74,7 +74,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-8 col-sm-10">
                             <div class="text-center mt-lg-5 pt-5">
-                                <h1 class="display-6 fw-semibold mb-3 lh-base">¡Bienvenido a Express El Salvador! </h1>
+                                <h1 class="justify-content-center display-6 fw-semibold mb-3 lh-base">¡Bienvenido a Express El Salvador! </h1>
                                 <p class="lead text-muted lh-base">Somos la empresa líder en logística y envío de paquetería a nivel nacional. Nuestro objetivo es brindarte soluciones rápidas, seguras y confiables para tus necesidades de envío, ya sea para tus negocios o envíos personales.</p>
 
                                 <div class="d-flex gap-2 justify-content-center mt-4">
@@ -83,7 +83,7 @@
                                 </div>
                             </div>
 
-                            <div class="mt-4 mt-sm-5 pt-sm-5 mb-sm-n5 demo-carousel">
+                            <div class="mt-3 mt-sm-3 pt-sm-3 mb-sm-n3 demo-carousel">
                                 <div class="demo-img-patten-top d-none d-sm-block">
                                     <img src="{{ URL::asset('assets/images/landing/img-pattern.png') }}" class="d-block img-fluid" alt="...">
                                 </div>
@@ -92,21 +92,21 @@
                                 </div>
                                 <div class="carousel slide carousel-fade" data-bs-ride="carousel">
                                     <div class="carousel-inner shadow-lg p-2 bg-white rounded">
-                                        <div class="carousel-item active" data-bs-interval="2000">
-                                            <img src="{{ URL::asset('assets/images/carrousel2/paqueteria-mensajeria-1024x597.jpg') }}" class="d-block w-100"  alt="...">
+                                        <div class="carousel-item active" data-bs-interval="3000">
+                                            <img src="{{ URL::asset('assets/images/carrousel2/prom1.jpg') }}" class="d-block w-100"  alt="...">
                                         </div>
-                                        <div class="carousel-item" data-bs-interval="2000">
-                                            <img src="{{ URL::asset('assets/images/carrousel2/envios-paqueteria.jpg') }}" class="d-block w-100" alt="...">
+                                        <div class="carousel-item" data-bs-interval="3000">
+                                            <img src="{{ URL::asset('assets/images/carrousel2/prom2.jpg') }}" class="d-block w-100" alt="...">
                                         </div>
-                                        <div class="carousel-item" data-bs-interval="2000">
-                                            <img src="{{ URL::asset('assets/images/carrousel2/08_02.png') }}" class="d-block w-100" alt="...">
+                                        <div class="carousel-item" data-bs-interval="3000">
+                                            <img src="{{ URL::asset('assets/images/carrousel2/prom3.jpg') }}" class="d-block w-100" alt="...">
                                         </div>
-                                        <div class="carousel-item" data-bs-interval="2000">
-                                            <img src="{{ URL::asset('assets/images/carrousel2/HQK2ZMXJFRBYRIAKEA6SOUQRSU.jpg') }}" class="d-block w-100" alt="...">
+                                        <div class="carousel-item" data-bs-interval="3000">
+                                            <img src="{{ URL::asset('assets/images/carrousel2/prom4.jpg') }}" class="d-block w-100" alt="...">
                                         </div>
-{{--                                        <div class="carousel-item" data-bs-interval="2000">--}}
-{{--                                            <img src="{{ URL::asset('assets/images/demos/creative.png') }}" class="d-block w-100" alt="...">--}}
-{{--                                        </div>--}}
+                                        <div class="carousel-item" data-bs-interval="3000">
+                                            <img src="{{ URL::asset('assets/images/carrousel2/prom5.jpg') }}" class="d-block w-100" alt="...">
+                                        </div>
 {{--                                        <div class="carousel-item" data-bs-interval="2000">--}}
 {{--                                            <img src="{{ URL::asset('assets/images/demos/modern.png') }}" class="d-block w-100" alt="...">--}}
 {{--                                        </div>--}}
@@ -1584,11 +1584,11 @@ Puedes comunicarte con nosotros a través de los siguientes medios.</p>
                         <div class="col-lg-8">
                             <div>
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-8 col-sm-10 justify-content-center">
                                         <div class="card">
-                                           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.688942667705!2d-89.27328268754897!3d13.67666879896962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f632f6d75f73b97%3A0x6d0bd96084a5782a!2sEXPRESS%20EL%20SALVADOR!5e0!3m2!1ses!2ssv!4v1687819424864!5m2!1ses!2ssv" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.688942667705!2d-89.27328268754897!3d13.67666879896962!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f632f6d75f73b97%3A0x6d0bd96084a5782a!2sEXPRESS%20EL%20SALVADOR!5e0!3m2!1ses!2ssv!4v1687819424864!5m2!1ses!2ssv" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                        </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
